@@ -1,5 +1,6 @@
 package com.example.shareyourspot_client;
 
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
