@@ -9,5 +9,18 @@
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
+    <string name="logout">Logout</string>
+    <string name="share">Share</string>
+    <string name="friends">Friends</string>
+    <string name="groups">Groups</string>
+    <string name="profil">Profil</string>
+    <string name="rate">Rate</string>
+    <string name="comment">Comment</string>
+    <string name="add">add</string>
+    <string name="spots">Spots</string>
+    <string name="back">back</string>
+    <string name="map">Map</string>
+    <string name="search">search</string>
+    <string name="post">post</string>
 
 </resources>
