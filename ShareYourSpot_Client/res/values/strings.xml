@@ -22,5 +22,6 @@
     <string name="map">Map</string>
     <string name="search">search</string>
     <string name="post">post</string>
+    <string name="name">Name</string>
 
 </resources>
