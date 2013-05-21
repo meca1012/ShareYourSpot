@@ -24,5 +24,8 @@
     <string name="post">post</string>
     <string name="name">Name</string>
     <string name="enter_name">Enter Name</string>
+    <string name="new_group">Enter new name</string>
+    <string name="create">create</string>
+    <string name="add_friends_group">Add Friends to Group</string>
 
 </resources>
