@@ -23,5 +23,6 @@
     <string name="search">search</string>
     <string name="post">post</string>
     <string name="name">Name</string>
+    <string name="enter_name">Enter Name</string>
 
 </resources>

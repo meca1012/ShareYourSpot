@@ -67,6 +67,19 @@
         android:text="@string/friends"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_toLeftOf="@+id/quickContactBadge1"
+        android:ems="10"
+        android:text="@string/enter_name" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
+
     <Button
         android:id="@+id/button1"
         style="?android:attr/buttonStyleSmall"
@@ -74,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView4"
         android:layout_alignRight="@+id/quickContactBadge1"
-        android:layout_marginBottom="35dp"
+        android:layout_marginBottom="39dp"
         android:text="@string/add" />
 
 </RelativeLayout>
