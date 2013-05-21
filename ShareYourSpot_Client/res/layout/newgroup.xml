@@ -25,15 +25,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="112dp"
         android:layout_toLeftOf="@+id/button1"
-        android:ems="10" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_alignParentRight="true"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:ems="10"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/textView1"
