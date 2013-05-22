@@ -3,7 +3,7 @@
 //public class user {
 //id long
 ////list aprty
-//priovate String email
+//privatete String email
 //string name
 //string passwort
 //date created
