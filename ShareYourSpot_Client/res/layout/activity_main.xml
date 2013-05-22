@@ -25,7 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editText2"
         android:layout_centerVertical="true"
-        android:text="@string/login" />
+        android:text="@string/login" 
+     	android:onClick="login" />
 
     <Button
         android:id="@+id/button2"

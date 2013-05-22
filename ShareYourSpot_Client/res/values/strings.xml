@@ -27,5 +27,6 @@
     <string name="new_group">Enter new name</string>
     <string name="create">create</string>
     <string name="add_friends_group">Add Friends to Group</string>
+    <string name="title_activity_rest_test">RestTest</string>
 
 </resources>

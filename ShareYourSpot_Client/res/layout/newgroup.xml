@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText1"
         android:layout_alignParentRight="true"
-        android:text="@string/create" />
+        android:text="@string/create" 
+        android:onClick="onClick" />
 
     <EditText
         android:id="@+id/editText1"
