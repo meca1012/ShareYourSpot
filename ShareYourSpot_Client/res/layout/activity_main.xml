@@ -19,24 +19,6 @@
         android:inputType="textPassword"
         android:text="@string/password" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_centerVertical="true"
-        android:text="@string/login" 
-     	android:onClick="login" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="26dp"
-        android:text="@string/register" />
-
     <EditText
         android:id="@+id/editText1"
         android:layout_width="match_parent"
@@ -48,5 +30,34 @@
         android:ems="10"
         android:hint="@string/username"
         android:text="@string/username" />
+
+    <Button
+        android:id="@+id/btn_restTester"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:onClick="restTester"
+        android:text="RestTester" />
+
+    <Button
+        android:id="@+id/clearRestTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_below="@+id/editText2"
+        android:layout_marginTop="22dp"
+        android:onClick="login"
+        android:text="@string/login" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/clearRestTest"
+        android:layout_alignBottom="@+id/clearRestTest"
+        android:layout_centerHorizontal="true"
+        android:onClick="restTester"
+        android:text="@string/register" />
 
 </RelativeLayout>

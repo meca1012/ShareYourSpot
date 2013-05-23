@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="right"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -14,21 +15,126 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="restTest"
+                android:text="@string/getButtonText" />
+
+    <EditText
+        android:id="@+id/restTesterId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/restTestButton"
+        android:layout_below="@+id/restTestButton"
+        android:layout_marginTop="40dp"
+        android:editable="false"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/restTesterId"
+        android:layout_alignBottom="@+id/restTesterId"
+        android:layout_alignLeft="@+id/restTestButton"
+        android:text="ID"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/restTesterCreated"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/restTesterPassword"
+        android:layout_below="@+id/restTesterPassword"
+        android:editable="false"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/restTesterPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/restTesterName"
+        android:layout_below="@+id/restTesterName"
+        android:editable="false"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/restTesterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/restTesterMail"
+        android:layout_below="@+id/restTesterMail"
+        android:editable="false"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/restTesterMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/restTesterId"
+        android:layout_below="@+id/restTesterId"
+        android:editable="false"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/restTesterPassword"
+        android:layout_alignLeft="@+id/TextView02"
+        android:text="Pass"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/TextView04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/restTesterCreated"
+        android:layout_alignLeft="@+id/TextView03"
+        android:text="Date"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/restTesterName"
+        android:layout_alignLeft="@+id/TextView01"
+        android:text="Name"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/restTesterName"
+        android:layout_alignLeft="@+id/textView1"
+        android:text="eMail"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/getRestTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:onClick="restTest"
         android:text="@string/getButtonText" />
 
-   	<EditText
-   	    android:id="@+id/textRestResult"
-   	    android:layout_width="fill_parent"
-   	    android:layout_height="wrap_content"
-   	    android:layout_centerHorizontal="true"
-   	    android:layout_centerVertical="true"
-   	    android:layout_margin="20dip"
-   	    android:ems="10"
-   	    android:maxLines="150"
-   	    android:minLines="1"
-   	    android:textSize="35sp" >
-
-   	    <requestFocus />
-   	</EditText>
+    <Button
+        android:id="@+id/clearRestTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView04"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/restTesterCreated"
+        android:layout_marginBottom="26dp"
+        android:onClick="clearRestTest"
+        android:text="@string/clearButtonText" />
 
 </RelativeLayout>

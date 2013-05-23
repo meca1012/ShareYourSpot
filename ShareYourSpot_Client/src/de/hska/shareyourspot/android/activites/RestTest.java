@@ -3,7 +3,7 @@ package de.hska.shareyourspot.android.activites;
 
 
 
-import com.example.shareyourspot_client.R;
+import de.hska.shareyourspot.android.R;
 
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.restclient.RestClient;
@@ -21,18 +21,52 @@ public class RestTest extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_rest_test);
 		
-		 final Button button = (Button) findViewById(R.id.restTestButton);
-         button.setOnClickListener(new View.OnClickListener() {
+		 final Button getbutton = (Button) findViewById(R.id.getRestTest);
+         final Button clearButton = (Button) findViewById(R.id.clearRestTest);
+         
+         getbutton.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {
             	 	restClient = new RestClient();
-            	 	User test = restClient.getBenutzerXML();
-            	 	TextView text = (TextView) findViewById(R.id.textRestResult);
-            	 	text.setText(test.toString());
+            	 	User member = restClient.getBenutzerXML();
+            	 	TextView viewId = (TextView) findViewById(R.id.restTesterId);
+            	 	viewId.setText(member.getId().toString());
+            	 	
+            	 	TextView viewName = (TextView) findViewById(R.id.restTesterName);
+            	 	viewName.setText(member.getName().toString());
+            	 	
+            	 	TextView viewMail = (TextView) findViewById(R.id.restTesterMail);
+            	 	viewMail.setText(member.getEmail().toString());
+            	 	
+            	 	TextView viewPassword = (TextView) findViewById(R.id.restTesterPassword);
+            	 	viewPassword.setText(member.getPassword().toString());
+            	 	
+            	 	TextView viewCreated = (TextView) findViewById(R.id.restTesterCreated);
+            	 	viewCreated.setText(member.getCreated().toString());
+ 	
              }
          });
-	
+         
+         clearButton.setOnClickListener(new View.OnClickListener() {
+        	 public void onClick(View v) {
+         	 	TextView viewId = (TextView) findViewById(R.id.restTesterId);
+         	 	viewId.setText("");
+         	 	
+         	 	TextView viewName = (TextView) findViewById(R.id.restTesterName);
+         	 	viewName.setText("");
+         	 	
+         	 	TextView viewMail = (TextView) findViewById(R.id.restTesterMail);
+         	 	viewMail.setText("");
+         	 	
+         	 	TextView viewPassword = (TextView) findViewById(R.id.restTesterPassword);
+         	 	viewPassword.setText("");
+         	 	
+         	 	TextView viewCreated = (TextView) findViewById(R.id.restTesterCreated);
+         	 	viewCreated.setText("");
+        		 
+        	 }
+       });
 	}
 
 	@Override

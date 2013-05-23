@@ -44,8 +44,8 @@
         android:id="@+id/autoCompleteTextView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
+        android:layout_alignBaseline="@+id/clearRestTest"
+        android:layout_alignBottom="@+id/clearRestTest"
         android:layout_toLeftOf="@+id/quickContactBadge1"
         android:ems="10"
         android:text="@string/enter_name" >
@@ -80,7 +80,7 @@
         android:text="@string/name" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/clearRestTest"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

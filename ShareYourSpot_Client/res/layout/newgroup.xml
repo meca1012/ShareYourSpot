@@ -10,7 +10,7 @@
     tools:context=".NewGroup" >
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/clearRestTest"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="112dp"
-        android:layout_toLeftOf="@+id/button1"
+        android:layout_toLeftOf="@+id/clearRestTest"
         android:ems="10"
         android:inputType="text" />
 
