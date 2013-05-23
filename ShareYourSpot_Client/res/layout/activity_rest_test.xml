@@ -9,21 +9,20 @@
     tools:context=".RestTest" >
 
     <Button
-        android:id="@+id/my_button"
+        android:id="@+id/restTestButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:onClick="restTest"
-        android:text="GET" />
+        android:text="@string/getButtonText" />
 
    	<EditText
-   	    android:id="@+id/my_edit"
+   	    android:id="@+id/textRestResult"
    	    android:layout_width="fill_parent"
    	    android:layout_height="wrap_content"
    	    android:layout_centerHorizontal="true"
    	    android:layout_centerVertical="true"
    	    android:layout_margin="20dip"
-   	    android:editable="false"
    	    android:ems="10"
    	    android:maxLines="150"
    	    android:minLines="1"

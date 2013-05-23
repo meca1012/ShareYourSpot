@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.shareyourspot_client.activities.MainActivity"
+            android:name="de.hska.shareyourspot.android.activites.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.shareyourspot_client.activities.RestTest"
+            android:name="de.hska.shareyourspot.android.activites.RestTest"
             android:label="@string/title_activity_rest_test" >
         </activity>
     </application>
