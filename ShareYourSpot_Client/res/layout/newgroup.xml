@@ -10,21 +10,21 @@
     tools:context=".NewGroup" >
 
     <Button
-        android:id="@+id/clearRestTest"
+        android:id="@+id/loginBtnLogin"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
+        android:layout_alignBottom="@+id/loginUsername"
         android:layout_alignParentRight="true"
         android:text="@string/create" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/loginUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="112dp"
-        android:layout_toLeftOf="@+id/clearRestTest"
+        android:layout_toLeftOf="@+id/loginBtnLogin"
         android:ems="10"
         android:inputType="text" />
 
@@ -32,8 +32,8 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/loginUsername"
+        android:layout_below="@+id/loginUsername"
         android:layout_marginTop="40dp"
         android:text="@string/add_friends_group"
         android:textAppearance="?android:attr/textAppearanceMedium" />

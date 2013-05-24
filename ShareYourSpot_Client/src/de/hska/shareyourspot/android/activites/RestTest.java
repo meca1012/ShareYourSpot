@@ -1,8 +1,5 @@
 package de.hska.shareyourspot.android.activites;
 
-
-
-
 import de.hska.shareyourspot.android.R;
 
 import de.hska.shareyourspot.android.domain.User;
@@ -24,7 +21,7 @@ public class RestTest extends Activity {
 		setContentView(R.layout.activity_rest_test);
 		
 		 final Button getbutton = (Button) findViewById(R.id.getRestTest);
-         final Button clearButton = (Button) findViewById(R.id.clearRestTest);
+         final Button clearButton = (Button) findViewById(R.id.loginBtnLogin);
          
          getbutton.setOnClickListener(new View.OnClickListener() {
              public void onClick(View v) {

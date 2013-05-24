@@ -8,56 +8,57 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ShareYourSpot" >
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="42dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:text="@string/password" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="17dp"
-        android:layout_marginTop="78dp"
-        android:ems="10"
-        android:hint="@string/username"
-        android:text="@string/username" />
-
     <Button
         android:id="@+id/btn_restTester"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
         android:layout_alignParentBottom="true"
         android:onClick="restTester"
         android:text="RestTester" />
 
     <Button
-        android:id="@+id/clearRestTest"
+        android:id="@+id/loginBtnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText2"
+        android:layout_alignLeft="@+id/loginPassword"
+        android:layout_below="@+id/loginPassword"
         android:layout_marginTop="22dp"
-        android:onClick="login"
+        android:onClick="loginAction"
         android:text="@string/login" />
 
+    <EditText
+        android:id="@+id/loginUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:ems="10"
+        android:hint="@string/username"
+        android:text="@string/username" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/loginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/loginUsername"
+        android:layout_below="@+id/loginUsername"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="@string/password" />
+
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/loginBtnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/clearRestTest"
-        android:layout_alignBottom="@+id/clearRestTest"
+        android:layout_alignBaseline="@+id/loginBtnLogin"
+        android:layout_alignBottom="@+id/loginBtnLogin"
         android:layout_centerHorizontal="true"
-        android:onClick="restTester"
+        android:onClick="registerAction"
         android:text="@string/register" />
 
 </RelativeLayout>

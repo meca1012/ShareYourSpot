@@ -127,7 +127,7 @@
         android:text="@string/getButtonText" />
 
     <Button
-        android:id="@+id/clearRestTest"
+        android:id="@+id/loginBtnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/TextView04"
