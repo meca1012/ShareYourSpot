@@ -61,4 +61,14 @@
         android:onClick="registerAction"
         android:text="@string/register" />
 
+    <Button
+        android:id="@+id/btn_mapTester"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_restTester"
+        android:layout_alignLeft="@+id/btn_restTester"
+        android:layout_alignRight="@+id/btn_restTester"
+         android:onClick="mapTester"
+        android:text="@string/map" />
+
 </RelativeLayout>

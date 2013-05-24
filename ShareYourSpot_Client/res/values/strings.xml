@@ -30,7 +30,9 @@
     <string name="title_activity_rest_test">RestTest</string>
     <string name="getButtonText">Get</string>
     <string name="clearButtonText">Clear</string>
-     <string name="getResultText">Get</string>
-     <string name="passwordsNotMatchingTitle">Passwords-Issues</string>	
-	<string name="passwordsNotMatchingText">Passwords are not matching</string>	
+    <string name="getResultText">Get</string>
+    <string name="passwordsNotMatchingTitle">Passwords-Issues</string>
+    <string name="passwordsNotMatchingText">Passwords are not matching</string>
+    <string name="title_activity_google_maps">GoogleMaps</string>
+
 </resources>

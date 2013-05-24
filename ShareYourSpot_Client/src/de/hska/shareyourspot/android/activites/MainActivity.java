@@ -39,4 +39,9 @@ public class MainActivity extends Activity {
 		 startActivity(intent);
 	 }
 	 
+	 public void mapTester(View view) {
+		 Intent intent = new Intent(this, GoogleMaps.class);
+		 startActivity(intent);
+	 }
+	 
 }
