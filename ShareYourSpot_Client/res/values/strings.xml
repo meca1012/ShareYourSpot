@@ -34,5 +34,6 @@
     <string name="passwordsNotMatchingTitle">Passwords-Issues</string>
     <string name="passwordsNotMatchingText">Passwords are not matching</string>
     <string name="title_activity_google_maps">GoogleMaps</string>
+    <string name="settings">Settings</string>
 
 </resources>
