@@ -1,11 +1,7 @@
 package de.hska.shareyourspot.android.helper;
 
-import de.hska.shareyourspot.android.R;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
-import android.os.Bundle;
 
 public class AlertHelper
 {

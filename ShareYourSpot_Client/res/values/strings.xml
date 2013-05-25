@@ -35,5 +35,7 @@
     <string name="passwordsNotMatchingText">Passwords are not matching</string>
     <string name="title_activity_google_maps">ShareYourSpot Map</string>
     <string name="settings">Settings</string>
+    <string name="title_activity_cam">Cam</string>
+    <string name="camTakePicture">Cam</string>
 
 </resources>

@@ -71,4 +71,14 @@
          android:onClick="mapTester"
         android:text="@string/map" />
 
+    <Button
+        android:id="@+id/camTakePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_mapTester"
+        android:layout_alignLeft="@+id/btn_mapTester"
+        android:layout_alignRight="@+id/btn_mapTester"
+        android:onClick="camTester"
+        android:text="@string/camTakePicture" />
+
 </RelativeLayout>

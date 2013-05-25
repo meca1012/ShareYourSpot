@@ -1,10 +1,7 @@
 package de.hska.shareyourspot.android.activites;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.helper.AlertHelper;
-import de.hska.shareyourspot.android.restclient.RestClient;
 
 public class Register extends Activity {
 

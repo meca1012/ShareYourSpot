@@ -3,15 +3,22 @@ package de.hska.shareyourspot.android.activites;
 
 
 import de.hska.shareyourspot.android.R;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.Camera;
+import android.hardware.Camera.CameraInfo;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
-
+	  public final static String DEBUG_TAG = "MakePhotoActivity";
+	  private Camera camera;
+	  private int cameraId = 0;
+	  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,4 +51,10 @@ public class MainActivity extends Activity {
 		 startActivity(intent);
 	 }
 	 
-}
+	 public void camTester(View view) {
+		 Intent intent = new Intent(this, Cam.class);
+		 startActivity(intent);
+		  }
+		   
+	 }
+	 
