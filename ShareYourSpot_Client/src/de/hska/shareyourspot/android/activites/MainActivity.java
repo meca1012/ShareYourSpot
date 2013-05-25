@@ -1,22 +1,12 @@
 package de.hska.shareyourspot.android.activites;
 
-
-
-import java.io.ByteArrayOutputStream;
-
 import de.hska.shareyourspot.android.R;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.hardware.Camera;
-import android.hardware.Camera.CameraInfo;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Toast;
+
 
 public class MainActivity extends Activity {
 	    
