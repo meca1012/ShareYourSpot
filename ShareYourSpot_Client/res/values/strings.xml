@@ -6,7 +6,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="register">Register</string>
+    <string name="retypepassword">Retype Password</string>
+    <string name="register">Register</string> 
+    <string name="registration">Registration</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="logout">Logout</string>
@@ -31,8 +33,10 @@
     <string name="getButtonText">Get</string>
     <string name="clearButtonText">Clear</string>
     <string name="getResultText">Get</string>
-    <string name="passwordsNotMatchingTitle">Passwords-Issues</string>
+    <string name="passwordsNotMatchingTitle">Passwords-Issue</string>
     <string name="passwordsNotMatchingText">Passwords are not matching</string>
+     <string name="fillInputsTitle">Empty-Fields</string>
+     <string name="fillInputsText">Please fill all inputs, so we know who you are! </string>
     <string name="title_activity_google_maps">ShareYourSpot Map</string>
     <string name="settings">Settings</string>
     <string name="title_activity_cam">Cam</string>

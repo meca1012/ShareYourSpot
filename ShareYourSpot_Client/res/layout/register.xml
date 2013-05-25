@@ -12,12 +12,15 @@
         android:id="@+id/registerInputEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
-        android:text="@string/email" />
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" >
+
+        <requestFocus />
+    </EditText>
 
     <EditText
         android:id="@+id/registerInputUsername"
@@ -25,42 +28,49 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/registerInputEmail"
         android:layout_below="@+id/registerInputEmail"
-        android:layout_marginTop="15dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/username" />
+        android:hint="@string/username"
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/registerInputPasswordFirst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/registerInputEmail"
+        android:layout_alignLeft="@+id/registerInputUsername"
         android:layout_below="@+id/registerInputUsername"
-        android:layout_marginTop="14dp"
         android:ems="10"
-        android:inputType="textPassword"
-        android:text="@string/password" />
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/registerInputPasswordSecound"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/registerInputEmail"
+        android:layout_alignLeft="@+id/registerInputPasswordFirst"
         android:layout_below="@+id/registerInputPasswordFirst"
-        android:layout_centerVertical="true"
         android:ems="10"
-        android:inputType="textPassword"
-        android:text="@string/password" />
+        android:hint="@string/retypepassword"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/registerBtnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/registerInputPasswordSecound"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/registerInputPasswordSecound"
-        android:layout_marginBottom="27dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/registerInputPasswordSecound"
+        android:layout_marginTop="32dp"
         android:onClick="registerStart"
         android:text="@string/register" />
+
+    <TextView
+        android:id="@+id/regLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/registerInputEmail"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="29dp"
+        android:text="@string/register"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 
 </RelativeLayout>

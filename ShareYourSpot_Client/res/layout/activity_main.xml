@@ -17,51 +17,6 @@
         android:text="RestTester" />
 
     <Button
-        android:id="@+id/loginBtnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/loginPassword"
-        android:layout_below="@+id/loginPassword"
-        android:layout_marginTop="22dp"
-        android:onClick="loginAction"
-        android:text="@string/login" />
-
-    <EditText
-        android:id="@+id/loginUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
-        android:ems="10"
-        android:hint="@string/username"
-        android:text="@string/username" >
-
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/loginPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/loginUsername"
-        android:layout_below="@+id/loginUsername"
-        android:layout_marginTop="17dp"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:text="@string/password" />
-
-    <Button
-        android:id="@+id/loginBtnRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/loginBtnLogin"
-        android:layout_alignBottom="@+id/loginBtnLogin"
-        android:layout_centerHorizontal="true"
-        android:onClick="registerAction"
-        android:text="@string/register" />
-
-    <Button
         android:id="@+id/btn_mapTester"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,5 +35,61 @@
         android:layout_alignRight="@+id/btn_mapTester"
         android:onClick="camTester"
         android:text="@string/camTakePicture" />
+
+    <TextView
+        android:id="@+id/loginBtnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/loginBtnLogin"
+        android:layout_alignBottom="@+id/loginBtnLogin"
+        android:layout_alignRight="@+id/loginPassword"
+        android:clickable="true"
+        android:onClick="registerAction"
+        android:text="@string/registration"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/holo_blue_dark" />
+
+    <TextView
+        android:id="@+id/loginLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/loginUsername"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:text="@string/login"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/loginBtnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/loginPassword"
+        android:layout_below="@+id/loginPassword"
+        android:layout_marginTop="29dp"
+        android:onClick="loginAction"
+        android:text="@string/login" />
+
+    <EditText
+        android:id="@+id/loginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/loginUsername"
+        android:layout_below="@+id/loginUsername"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/loginUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/camTakePicture"
+        android:layout_below="@+id/loginLabel"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="@string/username" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

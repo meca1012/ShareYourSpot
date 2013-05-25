@@ -2,6 +2,7 @@ package de.hska.shareyourspot.android.helper;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 
 public class AlertHelper
 {
@@ -15,6 +16,15 @@ public class AlertHelper
 		this.title = passwordsnotmatchingtitle;
 		this.message = passwordsnotmatchingtext;
 	}
+	
+	public AlertHelper(Context context,int passwordsnotmatchingtitle, int passwordsnotmatchingtext, String button)
+	{
+		this.alertDialogBuilder = new  AlertDialog.Builder(context);
+		this.title = passwordsnotmatchingtitle;
+		this.message = passwordsnotmatchingtext;
+		this.alertDialogBuilder.setPositiveButton(button, null);
+	}
+	
 	
 	public void fireAlert()
 	{

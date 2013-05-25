@@ -36,17 +36,18 @@ public class Register extends Activity {
 				EditText passworSec = (EditText) findViewById(R.id.registerInputPasswordSecound);
 				String pw2 = passworSec.getText().toString();
 
-				if (!inputEmail.isEmpty() && !inputUsername.isEmpty()
-						&& pw1.isEmpty() && pw2.isEmpty()) {
-					if (pw1.equals(pw2)) {
-
-					} else {
-						new AlertHelper(context, R.string.passwordsNotMatchingTitle, R.string.passwordsNotMatchingText).fireAlert();
+				if (inputEmail.isEmpty() || inputUsername.isEmpty() || pw1.isEmpty() || pw2.isEmpty()) 
+					{
+					new AlertHelper(context, R.string.fillInputsTitle, R.string.fillInputsText, "Back").fireAlert();
+					return;
 					}
-				} else {
-					new AlertHelper(context, R.string.passwordsNotMatchingTitle, R.string.passwordsNotMatchingText).fireAlert();
-				}
-
+					
+					
+				if (!pw1.equals(pw2)) {
+					new AlertHelper(context, R.string.passwordsNotMatchingTitle, R.string.passwordsNotMatchingText, "Back").fireAlert();
+					return;
+					}
+					//TODO DO THE REGISTRATIOn
 			}
 		});
 

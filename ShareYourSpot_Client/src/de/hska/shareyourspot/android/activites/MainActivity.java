@@ -28,8 +28,7 @@ public class MainActivity extends Activity {
 		 startActivity(intent);
 	}	
 	 public void loginAction(View view) {
-		 Intent intent = new Intent(this, RestTest.class);
-		 startActivity(intent);
+		 //TODO: Implement LoginAction
 	 }
 	 
 	 public void restTester(View view) {
