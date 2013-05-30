@@ -9,10 +9,10 @@ import org.simpleframework.xml.Root;
 @Root(name = "user")
 public class User {
 	
-	@Attribute
+	@Attribute(required=false)
 	private Long id;
 
-	@Element
+	@Element(required=false)
 	private String email;
 	
 	@Element
@@ -21,13 +21,20 @@ public class User {
 	@Element
 	private String password;
 	
-	@Element
+	@Element(required=false)
 	private Date created;
 	
-	@Element
+	@Element(required=false)
 	private Date modified;
 	
 	public User(){}
+	
+	public User(String nEmail, String nName, String nPassword){
+		this.email = nEmail;
+		this.name = nName; 
+		this.password = nPassword;
+		
+	}
 	
 	public Long getId() {
 		return id;

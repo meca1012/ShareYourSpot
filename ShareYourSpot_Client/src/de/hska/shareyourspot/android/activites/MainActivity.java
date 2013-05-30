@@ -1,15 +1,22 @@
 package de.hska.shareyourspot.android.activites;
 
+import java.net.HttpURLConnection;
+
 import de.hska.shareyourspot.android.R;
+import de.hska.shareyourspot.android.domain.User;
+import de.hska.shareyourspot.android.restclient.RestClient;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 
 public class MainActivity extends Activity {
-	    
+	
+	private RestClient restClient = new RestClient();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,7 +35,24 @@ public class MainActivity extends Activity {
 		 startActivity(intent);
 	}	
 	 public void loginAction(View view) {
-		 //TODO: Implement LoginAction
+		 	User u = new User();
+		 	
+		 	EditText username = (EditText) findViewById(R.id.loginUsername);
+			u.setName(username.getText().toString());
+			
+		 	EditText password = (EditText) findViewById(R.id.loginPassword);
+			u.setPassword(password.getText().toString());
+		 	
+			int code = restClient.registerUser(u);
+			if(code ==  HttpURLConnection.HTTP_ACCEPTED)
+			{//Start new page
+				
+			}
+			else
+			{
+				//FireEvent
+			}
+			
 	 }
 	 
 	 public void restTester(View view) {

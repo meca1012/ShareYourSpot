@@ -19,6 +19,8 @@ import android.os.StrictMode;
 
 abstract class HttpHandler {
 	
+	public final String xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
+	
 	public HttpHandler()
 	{
 		if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -73,9 +75,10 @@ abstract class HttpHandler {
 		return responseCode;
 	}
 
-	private int post(String uri, String input) {
+	protected int post(String uri, String input) {
 		int statusCode = 0;
 		try {
+			input = xmlHeader + input;
 			URL url = new URL(uri);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);
@@ -85,7 +88,7 @@ abstract class HttpHandler {
 			if (input != null)
 				os.write(input.getBytes());
 			os.flush();
-			// statusCode = conn.getResponseCode();
+			statusCode = conn.getResponseCode();
 			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ conn.getResponseCode());
@@ -107,7 +110,7 @@ abstract class HttpHandler {
 		return statusCode;
 	}
 
-	private int delete(String uri) {
+	protected int delete(String uri) {
 		int statusCode = 0;
 		try {
 			URL url = new URL(uri);
@@ -123,7 +126,7 @@ abstract class HttpHandler {
 		return statusCode;
 	}
 
-	private String serialize(Object obj) {
+	protected String serialize(Object obj) {
 		Serializer serializer = new Persister();
 		String output = null;
 		ByteArrayOutputStream os = new ByteArrayOutputStream();

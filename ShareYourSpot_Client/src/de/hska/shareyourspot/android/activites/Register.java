@@ -1,5 +1,7 @@
 package de.hska.shareyourspot.android.activites;
 
+import java.net.HttpURLConnection;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import de.hska.shareyourspot.android.R;
+import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.AlertHelper;
+import de.hska.shareyourspot.android.restclient.RestClient;
 
 public class Register extends Activity {
 
 	final Context context = this;
+	private RestClient restClient = new RestClient();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +52,29 @@ public class Register extends Activity {
 					new AlertHelper(context, R.string.passwordsNotMatchingTitle, R.string.passwordsNotMatchingText, "Back").fireAlert();
 					return;
 					}
-					//TODO DO THE REGISTRATIOn
+					User newUser = new User(inputEmail, inputUsername, pw1);
+					
+					int code = restClient.registerUser(newUser);
+					if(code ==  HttpURLConnection.HTTP_CREATED)
+					{
+					new AlertHelper(context, R.string.registerDoneTitle, R.string.registerDoneText, "Go to Login").fireAlert();
+					startLoginIntent();
+					}
+					else
+					{
+						new AlertHelper(context, R.string.registerFailureTitle, R.string.registerFailureText, "Try Again").fireAlert();
+					}
 			}
 		});
 
 	}
 
+	public void startLoginIntent()
+	{
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+	}
+	
 	public void registerStart(View view) {
 		Intent intent = new Intent(this, Register.class);
 		startActivity(intent);
