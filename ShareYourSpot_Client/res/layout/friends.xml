@@ -48,7 +48,7 @@
         android:layout_alignBottom="@+id/loginBtnLogin"
         android:layout_toLeftOf="@+id/quickContactBadge1"
         android:ems="10"
-        android:text="@string/enter_name" >
+        android:hint="@string/enter_name" >
 
         <requestFocus />
     </AutoCompleteTextView>
@@ -60,7 +60,7 @@
         android:layout_above="@+id/textView1"
         android:layout_alignLeft="@+id/autoCompleteTextView1"
         android:layout_marginBottom="26dp"
-        android:text="@string/friends"
+        android:text="@string/friend_list"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <QuickContactBadge

@@ -8,4 +8,68 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Groups" >
 
+    <EditText
+        android:id="@+id/loginUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="110dp"
+        android:layout_toLeftOf="@+id/button1"
+        android:ems="10"
+        android:hint="@string/enter_name"
+        android:inputType="text" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/loginUsername"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="14dp"
+        android:text="@string/new_group" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/loginUsername"
+        android:layout_below="@+id/loginUsername"
+        android:layout_marginTop="26dp"
+        android:text="@string/your_groups"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="30dp"
+        android:text="Group X"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="52dp"
+        android:text="Group X"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView01"
+        android:layout_below="@+id/TextView01"
+        android:layout_marginTop="56dp"
+        android:text="Group X"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
 </RelativeLayout>
