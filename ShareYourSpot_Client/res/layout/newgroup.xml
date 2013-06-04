@@ -46,15 +46,6 @@
         android:text="@string/create" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/loginBtnLogin"
-        android:layout_alignLeft="@+id/textView1"
-        android:hint="@string/groupname"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/TextView02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,5 +60,31 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/loginBtnLogin"
         android:layout_alignTop="@+id/TextView02" />
+
+    <EditText
+        android:id="@+id/loginUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView1"
+        android:layout_alignLeft="@+id/textView1"
+        android:ems="10"
+        android:hint="@string/enter_name"
+        android:inputType="text" />
+
+    <RadioButton
+        android:id="@+id/radioButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/TextView02"
+        android:layout_alignLeft="@+id/TextView01"
+        android:text="@string/add" />
+
+    <RadioButton
+        android:id="@+id/RadioButton01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/QuickContactBadge01"
+        android:layout_alignLeft="@+id/TextView02"
+        android:text="@string/add" />
 
 </RelativeLayout>
