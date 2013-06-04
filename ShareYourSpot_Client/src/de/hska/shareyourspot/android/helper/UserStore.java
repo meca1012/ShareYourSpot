@@ -22,12 +22,12 @@ public class UserStore {
 
 	private User user;
 	private final String FILENAME = "SYSappUser";
-	private String xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
+	//private String xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
 	public UserStore(){}
 	
 	public void storeUser(Context ctx, User user) throws IOException
 	{
-		String xmlStream = xmlHeader + serialize(user);		
+		String xmlStream = serialize(user);		
 		
 		FileOutputStream fos = ctx.openFileOutput(FILENAME, Context.MODE_PRIVATE);
 		fos.write(xmlStream.getBytes());
@@ -71,14 +71,19 @@ public class UserStore {
 
 	private Object deserialize(String xmlStr) {
 		Serializer serializer = new Persister();
+		Object user = null;
 		try {
-				User u = serializer.read(User.class, xmlStr);
-				
+			System.out.println(xmlStr);
+			user = serializer.read(User.class, xmlStr);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Problem with SimpleXML");
 		}
-		return null;
+		finally
+		{
+			return user;
+			
+		}
 	}
 }

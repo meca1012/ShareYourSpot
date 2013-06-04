@@ -11,7 +11,10 @@ public class User {
 	
 	@Attribute(required=false)
 	private Long id;
-
+	
+	@Attribute(required=false)
+	private boolean userApproved;
+	
 	@Element(required=false)
 	private String email;
 	
@@ -35,7 +38,13 @@ public class User {
 		this.password = nPassword;
 		
 	}
-	
+	public boolean isUserApproved() {
+		return userApproved;
+	}
+
+	public void setUserApproved(boolean userApproved) {
+		this.userApproved = userApproved;
+	}
 	public Long getId() {
 		return id;
 	}
