@@ -14,23 +14,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="110dp"
-        android:layout_toLeftOf="@+id/pushPost"
         android:ems="10"
         android:hint="@string/enter_name"
         android:inputType="text" >
 
         <requestFocus />
     </EditText>
-
-    <Button
-        android:id="@+id/pushPost"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/loginUsername"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp"
-        android:text="@string/new_group" />
 
     <TextView
         android:id="@+id/textView1"
@@ -71,5 +60,50 @@
         android:layout_marginTop="56dp"
         android:text="Group X"
         android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:text="@string/spots" />
+
+    <Button
+        android:id="@+id/Button01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_toRightOf="@+id/button1"
+        android:text="@string/groups" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_toRightOf="@+id/button2"
+        android:text="@string/friends" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/Button01"
+        android:layout_toRightOf="@+id/Button01"
+        android:text="@string/new_group" />
+
+    <Button
+        android:id="@+id/button4"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/loginUsername"
+        android:layout_toRightOf="@+id/loginUsername"
+        android:text="@string/search" />
 
 </RelativeLayout>

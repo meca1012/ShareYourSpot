@@ -40,19 +40,6 @@
         android:layout_alignTop="@+id/quickContactBadge3"
         android:text="@string/name" />
 
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/loginBtnLogin"
-        android:layout_alignBottom="@+id/loginBtnLogin"
-        android:layout_toLeftOf="@+id/quickContactBadge1"
-        android:ems="10"
-        android:hint="@string/enter_name" >
-
-        <requestFocus />
-    </AutoCompleteTextView>
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -79,14 +66,52 @@
         android:layout_alignTop="@+id/quickContactBadge1"
         android:text="@string/name" />
 
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView4"
+        android:layout_marginBottom="21dp"
+        android:layout_toLeftOf="@+id/quickContactBadge1"
+        android:ems="10"
+        android:hint="@string/enter_name" >
+
+        <requestFocus />
+    </AutoCompleteTextView>
+
     <Button
         android:id="@+id/loginBtnLogin"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView4"
-        android:layout_alignRight="@+id/quickContactBadge1"
-        android:layout_marginBottom="29dp"
-        android:text="@string/add" />
+        android:layout_alignBottom="@+id/autoCompleteTextView1"
+        android:layout_toRightOf="@+id/autoCompleteTextView1"
+        android:text="@string/search" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/spots" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_toRightOf="@+id/button2"
+        android:text="@string/friends" />
+
+    <Button
+        android:id="@+id/Button01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_toRightOf="@+id/button1"
+        android:text="@string/groups" />
 
 </RelativeLayout>
