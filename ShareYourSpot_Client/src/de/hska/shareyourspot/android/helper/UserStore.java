@@ -55,6 +55,17 @@ public class UserStore {
 		return (User)deserialize(data);
 	}
 	
+	public void deleteUser(Context ctx)
+	{
+		try 
+		{
+		    ctx.deleteFile(FILENAME);
+		} 
+		catch (Exception e) {
+		    e.printStackTrace();
+		}
+		   
+	}
 	
 	private String serialize(Object obj) {
 		Serializer serializer = new Persister();

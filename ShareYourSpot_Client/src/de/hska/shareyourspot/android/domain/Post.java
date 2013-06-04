@@ -15,7 +15,7 @@ public class Post implements Constants  {
 	//private Party postedInParty;
 	private byte[] previewImage;
 	private String previewImageType;
-	private Picture picture;
+	//private Picture picture; 
 	private String text;
 //	private List<Comment> comments;
 	private Date created;
@@ -23,7 +23,7 @@ public class Post implements Constants  {
 	
 	public Post(String text, Picture pic, String Group)
 	{
-		this.picture = pic;
+		//this.picture = pic;
 		this.text = text;
 		
 		
@@ -53,12 +53,12 @@ public class Post implements Constants  {
 	public void setPreviewImageType(String previewImageType) {
 		this.previewImageType = previewImageType;
 	}
-	public Picture getPicture() {
-		return picture;
-	}
-	public void setPicture(Picture picture) {
-		this.picture = picture;
-	}
+//	public Picture getPicture() {
+//		return picture;
+//	}
+//	public void setPicture(Picture picture) {
+//		this.picture = picture;
+//	}
 	public String getText() {
 		return text;
 	}
