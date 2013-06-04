@@ -60,15 +60,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <RadioButton
-        android:id="@+id/RadioButton_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/TextView02"
-        android:layout_alignTop="@+id/QuickContactBadge01"
-        android:layout_marginTop="11dp"
-        android:text="@string/add" />
-
-    <RadioButton
         android:id="@+id/radioButton_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,5 +82,13 @@
         android:layout_alignLeft="@+id/quickContactBadge1"
         android:layout_below="@+id/TextView02"
         android:layout_marginTop="16dp" />
+
+    <RadioButton
+        android:id="@+id/RadioButton_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView02"
+        android:layout_alignTop="@+id/QuickContactBadge01"
+        android:text="@string/add" />
 
 </RelativeLayout>
