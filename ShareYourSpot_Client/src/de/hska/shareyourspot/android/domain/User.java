@@ -15,10 +15,10 @@ public class User {
 	@Element(required=false)
 	private String email;
 	
-	@Element
+	@Element(required=false)
 	private String name;
 	
-	@Element
+	@Element(required=false)
 	private String password;
 	
 	@Element(required=false)

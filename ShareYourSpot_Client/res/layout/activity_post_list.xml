@@ -44,16 +44,6 @@
         android:text="@string/groups" />
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/newPost"
-        android:layout_marginTop="18dp"
-        android:layout_toLeftOf="@+id/button1"
-        android:text="@string/latest_posts"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,5 +98,15 @@
         android:layout_below="@+id/TextView02"
         android:layout_marginTop="17dp"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pushPost"
+        android:layout_marginTop="24dp"
+        android:layout_toLeftOf="@+id/button1"
+        android:text="@string/latest_posts"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

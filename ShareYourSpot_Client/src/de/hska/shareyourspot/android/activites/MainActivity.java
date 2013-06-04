@@ -49,12 +49,20 @@ public class MainActivity extends Activity {
 		 	EditText password = (EditText) findViewById(R.id.loginPassword);
 			u.setPassword(password.getText().toString());
 		 	
-			int code = restClient.loginUser(u);
+			
+			
+			if(u.getName() == null || u.getName().isEmpty() || u.getPassword() == null || u.getPassword().isEmpty())
+			{
+				new AlertHelper(context, R.string.loginFailureTitle, R.string.loginFailureText, "Retry").fireAlert();
+			}
+			else
+			{
+				int code = restClient.loginUser(u);
 			if(code ==  HttpURLConnection.HTTP_ACCEPTED)
 			{
 				try {
-					uStore.storeUserData(this, u);
-					User test = uStore.getUserData(this);
+					uStore.storeUser(this, u);
+					User test = uStore.getUser(this);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -66,6 +74,7 @@ public class MainActivity extends Activity {
 			else
 			{
 				new AlertHelper(context, R.string.loginFailureTitle, R.string.loginFailureText, "Retry").fireAlert();
+			}
 			}
 			
 	 }
