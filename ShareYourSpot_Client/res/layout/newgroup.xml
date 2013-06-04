@@ -10,15 +10,6 @@
     tools:context=".NewGroup" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/loginBtnLogin"
-        android:layout_marginTop="37dp"
-        android:text="@string/add_friends_group"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/TextView01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,15 +18,8 @@
         android:layout_marginTop="32dp"
         android:text="@string/name" />
 
-    <QuickContactBadge
-        android:id="@+id/quickContactBadge1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/loginBtnLogin"
-        android:layout_alignTop="@+id/TextView01" />
-
     <Button
-        android:id="@+id/loginBtnLogin"
+        android:id="@+id/create"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,15 +38,8 @@
         android:layout_marginTop="70dp"
         android:text="@string/name" />
 
-    <QuickContactBadge
-        android:id="@+id/QuickContactBadge01"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/loginBtnLogin"
-        android:layout_alignTop="@+id/TextView02" />
-
     <EditText
-        android:id="@+id/loginUsername"
+        android:id="@+id/enter_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView1"
@@ -71,20 +48,48 @@
         android:hint="@string/enter_name"
         android:inputType="text" />
 
-    <RadioButton
-        android:id="@+id/radioButton1"
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/TextView02"
-        android:layout_alignLeft="@+id/TextView01"
+        android:layout_below="@+id/create"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_toLeftOf="@+id/quickContactBadge1"
+        android:text="@string/add_friends_group"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <RadioButton
+        android:id="@+id/RadioButton_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/TextView02"
+        android:layout_alignTop="@+id/QuickContactBadge01"
+        android:layout_marginTop="11dp"
         android:text="@string/add" />
 
     <RadioButton
-        android:id="@+id/RadioButton01"
+        android:id="@+id/radioButton_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/QuickContactBadge01"
-        android:layout_alignLeft="@+id/TextView02"
+        android:layout_alignLeft="@+id/TextView01"
+        android:layout_alignTop="@+id/quickContactBadge1"
         android:text="@string/add" />
+
+    <QuickContactBadge
+        android:id="@+id/quickContactBadge1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/create"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="13dp" />
+
+    <QuickContactBadge
+        android:id="@+id/QuickContactBadge01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/quickContactBadge1"
+        android:layout_below="@+id/TextView02"
+        android:layout_marginTop="16dp" />
 
 </RelativeLayout>

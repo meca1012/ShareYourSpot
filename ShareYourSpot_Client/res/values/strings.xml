@@ -56,5 +56,6 @@
     <string name="title_activity_new_post">NewPost</string>
     <string name="latest_posts">Latest Posts</string>
     <string name="spotter">Spotter</string>
+    <string name="title_activity_post__detail">Post_Detail</string>
 
 </resources>
