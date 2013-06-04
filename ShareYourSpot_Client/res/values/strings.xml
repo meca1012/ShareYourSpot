@@ -7,7 +7,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="retypepassword">Retype Password</string>
-    <string name="register">Register</string> 
+    <string name="register">Register</string>
     <string name="registration">Registration</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
@@ -33,10 +33,12 @@
     <string name="getButtonText">Get</string>
     <string name="clearButtonText">Clear</string>
     <string name="getResultText">Get</string>
+    <string name="loginFailureTitle">Login-Issue</string>
+    <string name="loginFailureText">Please check your Logindata</string>
     <string name="passwordsNotMatchingTitle">Passwords-Issue</string>
     <string name="passwordsNotMatchingText">Passwords are not matching</string>
-     <string name="fillInputsTitle">Empty-Fields</string>
-     <string name="fillInputsText">Please fill all inputs, so we know who you are! </string>
+    <string name="fillInputsTitle">Empty-Fields</string>
+    <string name="fillInputsText">Please fill all inputs, so we know who you are! </string>
     <string name="title_activity_google_maps">ShareYourSpot Map</string>
     <string name="registerFailureTitle">Failure</string>
     <string name="registerFailureText">You could not be registered</string>
@@ -49,6 +51,8 @@
     <string name="groupname">Groupname</string>
     <string name="your_groups">Your Groups</string>
     <string name="enter_text">Enter Text</string>
-   
+    <string name="title_activity_post_list">PostList</string>
+    <string name="newPost">New Post</string>
+    <string name="title_activity_new_post">NewPost</string>
 
 </resources>

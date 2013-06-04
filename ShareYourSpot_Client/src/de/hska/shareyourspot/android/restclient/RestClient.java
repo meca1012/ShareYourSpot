@@ -1,5 +1,7 @@
 package de.hska.shareyourspot.android.restclient;
 
+import java.net.HttpURLConnection;
+
 import de.hska.shareyourspot.android.activites.PostList;
 import de.hska.shareyourspot.android.domain.User;
 
@@ -29,13 +31,15 @@ public class RestClient extends HttpHandler{
 
 	public int loginUser(User user)
 	{
-		Integer responseCode = -1;
-		String url = BASE_URL + "/member/loginUser";
-		String xmlObjectStr = serialize(user);
-		if (xmlObjectStr != null) {
-			responseCode = post(url, xmlObjectStr);
-		}
-		return responseCode;
+//		Integer responseCode = -1;
+//		String url = BASE_URL + "/member/loginUser";
+//		String xmlObjectStr = serialize(user);
+//		if (xmlObjectStr != null) {
+//			responseCode = post(url, xmlObjectStr);
+//		}
+			//return responseCode;
+			//TODO: Change to Resposce Code that Login will Work
+			return HttpURLConnection.HTTP_ACCEPTED;
 		}
 	}
 
