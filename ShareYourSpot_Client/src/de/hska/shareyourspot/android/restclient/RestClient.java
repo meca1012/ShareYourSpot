@@ -2,7 +2,6 @@ package de.hska.shareyourspot.android.restclient;
 
 import java.net.HttpURLConnection;
 
-import de.hska.shareyourspot.android.activites.PostList;
 import de.hska.shareyourspot.android.domain.User;
 
 

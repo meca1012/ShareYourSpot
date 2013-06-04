@@ -1,10 +1,12 @@
 package de.hska.shareyourspot.android.activites;
 
+import java.io.IOException;
 import java.net.HttpURLConnection;
 
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.AlertHelper;
+import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.os.Bundle;
 import android.app.Activity;
@@ -19,6 +21,7 @@ public class MainActivity extends Activity {
 	
 	private RestClient restClient = new RestClient();
 	final Context context = this;
+	private UserStore uStore = new UserStore();
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,14 @@ public class MainActivity extends Activity {
 			int code = restClient.loginUser(u);
 			if(code ==  HttpURLConnection.HTTP_ACCEPTED)
 			{
+				try {
+					uStore.storeUserData(this, u);
+					User test = uStore.getUserData(this);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 				 Intent intent = new Intent(this, PostList.class);
 				 startActivity(intent);
 			}
