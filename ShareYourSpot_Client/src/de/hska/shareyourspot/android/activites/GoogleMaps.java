@@ -1,5 +1,9 @@
 package de.hska.shareyourspot.android.activites;
 
+import org.apache.http.HttpHost;
+import org.apache.http.conn.params.ConnRoutePNames;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -26,7 +30,11 @@ public class GoogleMaps extends FragmentActivity {
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_google_maps);
-	    	    
+	    
+//	    DefaultHttpClient httpclient = new DefaultHttpClient();
+//	    HttpHost proxy = new HttpHost("proxy.hs-karlrsuhe.de", 8888);
+//	    httpclient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
+	    
 	    
 	    map = ((SupportMapFragment)  getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 	    
