@@ -4,6 +4,7 @@ import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.helper.UserStore;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +12,7 @@ import android.view.View;
 
 public class PostList extends Activity {
 	private UserStore uStore = new UserStore();
+	private Context ctx = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +30,7 @@ public class PostList extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	  switch (item.getItemId()) {
 	  case R.id.action_logout:
-		   uStore.deleteUser(this);
-	        Intent intent = new Intent(this, MainActivity.class);
-	        intent.putExtra("finish", true);
-	        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
-	        startActivity(intent);
+		  	uStore.logout(ctx);
 	        finish();
 	    break;
 
