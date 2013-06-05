@@ -28,10 +28,12 @@ public class PostList extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	  switch (item.getItemId()) {
 	  case R.id.action_logout:
-		  //TODO: DELETE INTENT HISTORY COMPLETPLY
-		  uStore.deleteUser(this);
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
+		   uStore.deleteUser(this);
+	        Intent intent = new Intent(this, MainActivity.class);
+	        intent.putExtra("finish", true);
+	        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+	        startActivity(intent);
+	        finish();
 	    break;
 
 
