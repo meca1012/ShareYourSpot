@@ -28,8 +28,13 @@ public class MainActivity extends Activity {
 		try {
 			User u = uStore.getUser(context);
 			if (u != null && u.isUserApproved()) {
+				u.setUserApproved(true);
+				uStore.storeUser(this, u);
 				Intent intent = new Intent(this, PostList.class);
-				startActivity(intent);
+		        intent.putExtra("finish", true);
+		        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+		        startActivity(intent);
+		        finish();	
 			}
 		} catch (IOException e) {
 			setContentView(R.layout.activity_main);
@@ -40,7 +45,7 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
 	}
 
@@ -68,13 +73,16 @@ public class MainActivity extends Activity {
 				try {
 					u.setUserApproved(true);
 					uStore.storeUser(this, u);
+					Intent intent = new Intent(this, PostList.class);
+			        intent.putExtra("finish", true);
+			        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+			        startActivity(intent);
+			        finish();		
+					
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
-				Intent intent = new Intent(this, PostList.class);
-				startActivity(intent);
 			} else {
 				new AlertHelper(context, R.string.loginFailureTitle,
 						R.string.loginFailureText, "Retry").fireAlert();

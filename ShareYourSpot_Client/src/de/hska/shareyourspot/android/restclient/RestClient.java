@@ -7,8 +7,9 @@ import de.hska.shareyourspot.android.domain.User;
 
 
 public class RestClient extends HttpHandler{
-	public static String BASE_URL = "http://192.168.178.63:8080/ShareYourSpot/rest";
-	//public static String BASE_URL = "http://www.iwi.hs-karlsruhe.de/ebatc/ShareYourSpot/rest/";
+
+	//public static String BASE_URL = "http://192.168.178.63:8080/ShareYourSpot/rest";
+	public static String BASE_URL = "http://10.85.41.8:8080/ShareYourSpot-1/rest";
 
 	public User getBenutzerXML() {
 		String url = BASE_URL +  "/member/getUserXML";
@@ -30,15 +31,15 @@ public class RestClient extends HttpHandler{
 
 	public int loginUser(User user)
 	{
-//		Integer responseCode = -1;
-//		String url = BASE_URL + "/member/loginUser";
-//		String xmlObjectStr = serialize(user);
-//		if (xmlObjectStr != null) {
-//			responseCode = post(url, xmlObjectStr);
-//		}
-			//return responseCode;
+		Integer responseCode = -1;
+		String url = BASE_URL + "/member/loginUser";
+		String xmlObjectStr = serialize(user);
+		if (xmlObjectStr != null) {
+			responseCode = post(url, xmlObjectStr);
+		}
+			return responseCode;
 			//TODO: Change to Resposce Code that Login will Work
-			return HttpURLConnection.HTTP_ACCEPTED;
+			//return HttpURLConnection.HTTP_ACCEPTED;
 		}
 	}
 
