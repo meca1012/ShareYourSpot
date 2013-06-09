@@ -49,31 +49,26 @@
             android:name="de.hska.shareyourspot.android.activites.PostList"
             android:label="@string/title_activity_post_list"
             android:screenOrientation="portrait" >
- >
-        </activity>
+         </activity>
         <activity
             android:name="de.hska.shareyourspot.android.activites.NewPost"
             android:label="@string/title_activity_new_post"
             android:screenOrientation="portrait" >
->
         </activity>
         <activity
             android:name="de.hska.shareyourspot.android.activites.RestTest"
             android:label="@string/title_activity_rest_test"
             android:screenOrientation="portrait" >
->
         </activity>
         <activity
             android:name="de.hska.shareyourspot.android.activites.GoogleMaps"
             android:label="@string/title_activity_google_maps"
             android:screenOrientation="portrait" >
- >
         </activity>
         <activity
             android:name="de.hska.shareyourspot.android.activites.Cam"
             android:label="@string/title_activity_cam"
             android:screenOrientation="portrait" >
->
         </activity>
 
         <meta-data

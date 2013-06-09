@@ -12,8 +12,10 @@ import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Environment;
 
+import de.hska.shareyourspot.android.activites.MainActivity;
 import de.hska.shareyourspot.android.domain.User;
 
 
@@ -55,6 +57,26 @@ public class UserStore {
 		return (User)deserialize(data);
 	}
 	
+	public void deleteUser(Context ctx)
+	{
+		try 
+		{
+		    ctx.deleteFile(FILENAME);
+		} 
+		catch (Exception e) {
+		    e.printStackTrace();
+		}
+		   
+	}
+	
+	public void logout(Context ctx)
+	{
+		 	this.deleteUser(ctx);
+	        Intent intent = new Intent(ctx, MainActivity.class);
+	        intent.putExtra("finish", true);
+	        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+	        ctx.startActivity(intent);
+	}
 	
 	private String serialize(Object obj) {
 		Serializer serializer = new Persister();

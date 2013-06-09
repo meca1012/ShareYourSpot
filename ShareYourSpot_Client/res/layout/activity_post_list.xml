@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@android:id/tabs"
         android:layout_centerHorizontal="true"
+        android:onClick="logoutTest"
         android:text="@string/friends" />
 
     <TextView

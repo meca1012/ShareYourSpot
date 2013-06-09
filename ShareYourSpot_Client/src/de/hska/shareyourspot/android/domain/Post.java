@@ -9,24 +9,25 @@ import android.graphics.Picture;
 public class Post implements Constants, Serializable {
 
 	private static final long serialVersionUID = -7769905910137170288L;
-	
+
 	private Long postId = KEINE_ID;
 	private User createdByUser;
 	// private Party postedInParty;
 	private byte[] previewImage;
 	private String previewImageType;
-	private Picture picture;
+	// private Picture picture;
 	private String text;
 	// private List<Comment> comments;
 	private Date created;
 	private Date modified;
+
 	// TODO: add mapping
 	private Party party;
 
-	public Post(String text, Picture pic, Party party) {
-		this.picture = pic;
+	public Post(String text, Picture pic, String Group) {
+		// this.picture = pic;
 		this.text = text;
-		this.party = party;
+		// this.party = party;
 	}
 
 	public Long getPostId() {
@@ -61,13 +62,12 @@ public class Post implements Constants, Serializable {
 		this.previewImageType = previewImageType;
 	}
 
-	public Picture getPicture() {
-		return picture;
-	}
-
-	public void setPicture(Picture picture) {
-		this.picture = picture;
-	}
+	// public Picture getPicture() {
+	// return picture;
+	// }
+	// public void setPicture(Picture picture) {
+	// this.picture = picture;
+	// }
 
 	public String getText() {
 		return text;
