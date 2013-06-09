@@ -101,9 +101,8 @@
         android:id="@+id/Btn_friends"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/Btn_spots"
-        android:layout_alignBottom="@+id/Btn_spots"
-        android:layout_toLeftOf="@+id/Btn_spots"
+        android:layout_above="@+id/Btn_search"
+        android:layout_alignLeft="@+id/Btn_groups"
         android:text="@string/friends" />
 
 </RelativeLayout>

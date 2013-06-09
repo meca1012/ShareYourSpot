@@ -86,6 +86,7 @@
         android:layout_alignBaseline="@+id/friends"
         android:layout_alignBottom="@+id/friends"
         android:layout_toRightOf="@+id/friends"
+        android:onClick="showGroups"
         android:text="@string/groups" />
 
     <Button
@@ -104,6 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/autoCompleteText_entername"
         android:layout_alignRight="@+id/quickContactBadge1"
+        android:onClick="onClickSearch"
         android:text="@string/search" />
 
     <Button
