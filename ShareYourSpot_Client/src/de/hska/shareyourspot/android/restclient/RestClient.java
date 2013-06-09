@@ -3,7 +3,7 @@ package de.hska.shareyourspot.android.restclient;
 import java.net.HttpURLConnection;
 
 import de.hska.shareyourspot.android.domain.User;
-
+import de.hska.shareyourspot.android.domain.Post;
 
 
 public class RestClient extends HttpHandler{
@@ -21,6 +21,17 @@ public class RestClient extends HttpHandler{
 		Integer responseCode = -1;
 		String url = BASE_URL + "/member/createUser";
 		String xmlObjectStr = serialize(user);
+		if (xmlObjectStr != null) {
+			responseCode = post(url, xmlObjectStr);
+		}
+		return responseCode;
+	}
+	
+	public int createPost(Post post)
+	{
+		Integer responseCode = -1;
+		String url = BASE_URL + "/post/createPost";
+		String xmlObjectStr = serialize(post);
 		if (xmlObjectStr != null) {
 			responseCode = post(url, xmlObjectStr);
 		}

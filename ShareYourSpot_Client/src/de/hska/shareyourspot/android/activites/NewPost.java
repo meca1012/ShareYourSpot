@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import de.hska.shareyourspot.android.R;
+import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
 import android.os.Bundle;
 import android.app.Activity;
@@ -69,8 +70,13 @@ public class NewPost extends Activity {
 		//Get selected Group
 		Spinner spinner = (Spinner) findViewById(R.id.groupSpinner);
 		String group = spinner.getSelectedItem().toString();
+		Party party = new Party();
+		party.setName(group);
 		
-		//Post p = new Post(postText, bis, group);
+//		<Post p = new Post(postText, bis, group);>
+//		TODO: hier weitermachen
+//		Post p = new Post(postText, bis, party);
+
 		
 
 	}
