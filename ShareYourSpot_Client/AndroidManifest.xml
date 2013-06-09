@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="de.hska.shareyourspot.android"
+<manifest package="de.hska.shareyourspot.android"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-sdk
         android:minSdkVersion="17"
@@ -70,23 +69,39 @@
             android:label="@string/title_activity_cam"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="de.hska.shareyourspot.android.activites.Friends"
+            android:label="@string/title_activity_friends"
+            android:screenOrientation="portrait" >
+        </activity>
+                <activity
+            android:name="de.hska.shareyourspot.android.activites.Groups"
+            android:label="@string/title_activity_groups"
+            android:screenOrientation="portrait" >
+        </activity>
+        
+                                <activity
+            android:name="de.hska.shareyourspot.android.activites.NewGroup"
+            android:label="@string/new_group"
+            android:screenOrientation="portrait" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDFVXdN81eE0rzC2ZB6Hc6pOc-R9NndKzo" />
 
-        <activity
-            android:name="de.hska.shareyourspot.android.PostList"
-            android:label="@string/title_activity_post_list" >
-        </activity>
-        <activity
-            android:name="de.hska.shareyourspot.android.NewPost"
-            android:label="@string/title_activity_new_post" >
-        </activity>
-        <activity
-            android:name="de.hska.shareyourspot.android.Post_Detail"
-            android:label="@string/title_activity_post__detail" >
-        </activity>
+<!--         <activity -->
+<!--             android:name="de.hska.shareyourspot.android.PostList" -->
+<!--             android:label="@string/title_activity_post_list" > -->
+<!--         </activity> -->
+<!--         <activity -->
+<!--             android:name="de.hska.shareyourspot.android.NewPost" -->
+<!--             android:label="@string/title_activity_new_post" > -->
+<!--         </activity> -->
+<!--         <activity -->
+<!--             android:name="de.hska.shareyourspot.android.Post_Detail" -->
+<!--             android:label="@string/title_activity_post__detail" > -->
+<!--         </activity> -->
     </application>
 
 </manifest>

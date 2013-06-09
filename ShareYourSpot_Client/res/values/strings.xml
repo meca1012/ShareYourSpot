@@ -57,5 +57,7 @@
     <string name="latest_posts">Latest Posts</string>
     <string name="spotter">Spotter</string>
     <string name="title_activity_post__detail">Post_Detail</string>
+    <string name="title_activity_friends">Friends</string>
+    <string name="title_activity_groups">Groups</string>
 
 </resources>
