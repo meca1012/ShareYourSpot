@@ -28,8 +28,6 @@ import android.content.Intent;
 import android.os.StrictMode;
 import android.provider.Settings;
 
-
-
 abstract class HttpHandler {
 	
 	public final String xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
@@ -150,7 +148,8 @@ abstract class HttpHandler {
 			statusCode = conn.getResponseCode();
 			
 			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED &&
-				conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED)  {
+				conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED &&
+				conn.getResponseCode() != HttpURLConnection.HTTP_OK)  {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ conn.getResponseCode());
 			}
@@ -159,12 +158,17 @@ abstract class HttpHandler {
 					(conn.getInputStream())));
 			String output;
 			System.out.println("Output from Server .... \n");
-			
+			String xmlString = "";
 			while ((output = br.readLine()) != null) {
+				if(output!= null)
+				{
+				xmlString += output;
 				System.out.println(output);
+				}
+
 			}
 			
-			object = deserialize(output, type);
+			object = deserialize(xmlString, type);
 			statusCode = conn.getResponseCode();
 			System.out.println(statusCode);
 			conn.disconnect();
