@@ -7,6 +7,7 @@ import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.Users;
+import de.hska.shareyourspot.android.restclient.HttpHandler.DomainType;
 
 
 public class RestClient extends HttpHandler{
@@ -54,17 +55,16 @@ public class RestClient extends HttpHandler{
 	}
 
 
-	public int loginUser(User user)
+	public User loginUser(User user)
 	{
-		Integer responseCode = -1;
+		User reponseUser = null;
 		String url = BASE_URL + "/member/loginUser";
 		String xmlObjectStr = serialize(user);
 		if (xmlObjectStr != null) {
-			responseCode = post(url, xmlObjectStr);
+			reponseUser = 	(User)post(url, xmlObjectStr, DomainType.User);
+					return reponseUser;
 		}
-			return responseCode;
-			//TODO: Change to Resposce Code that Login will Work
-			//return HttpURLConnection.HTTP_ACCEPTED;
+		return reponseUser;
 		}
 	
 

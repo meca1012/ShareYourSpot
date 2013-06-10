@@ -14,6 +14,7 @@ import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
 import de.hska.shareyourspot.android.helper.UserStore;
+import de.hska.shareyourspot.android.restclient.RestClient;
 import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
@@ -24,7 +25,6 @@ import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -32,6 +32,7 @@ import android.widget.TextView;
 public class NewPost extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	private UserStore uStore = new UserStore();
+	private RestClient restClient = new RestClient();
 	
 	//TODO CHANGE TO DB DATA
 	private final String[] str={"Gruppe 1","Gruppe 2","Gruppe 3","Gruppe 4","Gruppe 5"};
@@ -109,11 +110,14 @@ public class NewPost extends Activity {
 		String group = spinner.getSelectedItem().toString();
 		Party party = new Party();
 		party.setName(group);
+		party.setPartyId(1L);
+
 		
 		
 		// Create Post
 		// TODO GroupSeleced
 		Post post = new Post(postText, pic, party);
+		restClient.createPost(post);
 		
 		//Test
 		Serializer serializer = new Persister();

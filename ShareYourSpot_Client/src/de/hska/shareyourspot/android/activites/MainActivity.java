@@ -68,11 +68,11 @@ public class MainActivity extends Activity {
 			new AlertHelper(context, R.string.loginFailureTitle,
 					R.string.loginFailureText, "Retry").fireAlert();
 		} else {
-			int code = restClient.loginUser(u);
-			if (code == HttpURLConnection.HTTP_ACCEPTED) {
+			User reponseUser = restClient.loginUser(u);
+			if (reponseUser != null) {
 				try {
-					u.setUserApproved(true);
-					uStore.storeUser(this, u);
+					reponseUser.setUserApproved(true);
+					uStore.storeUser(this, reponseUser);
 					Intent intent = new Intent(this, PostList.class);
 			        intent.putExtra("finish", true);
 			        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
