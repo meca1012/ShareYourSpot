@@ -56,7 +56,8 @@ public class Friends extends Activity {
 		
 		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, this.foundUsers);
 		
-		ListView listUsers = (ListView)findViewById(R.id.textView1);
+		ListView listUsers = (ListView)findViewById(R.id.list_FriendList);
+
 		listUsers.setAdapter(adapter);
 				
 		Intent intent = new Intent(this, Friends.class);
