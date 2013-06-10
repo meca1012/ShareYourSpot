@@ -90,7 +90,9 @@ abstract class HttpHandler {
 			os.flush();
 			statusCode = conn.getResponseCode();
 			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED &&
-				conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED)  {
+				conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED &&
+				conn.getResponseCode() != HttpURLConnection.HTTP_NOT_FOUND
+				)  {
 				throw new RuntimeException("Failed : HTTP error code : "
 						+ conn.getResponseCode());
 			}
