@@ -44,7 +44,7 @@ public class Friends extends Activity {
 		// TODO: search for users and get list, add friends	
 		this.lookFor = new User();
 		
-		EditText username = (EditText) findViewById(R.id.lookForUser);
+		EditText username = (EditText) findViewById(R.id.editText_enter_name);
 		this.lookFor.setName(username.getText().toString());
 			
 		Users users = this.restClient.searchUser(this.lookFor);
@@ -56,7 +56,7 @@ public class Friends extends Activity {
 		
 		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, this.foundUsers);
 		
-		ListView listUsers = (ListView)findViewById(R.id.listUsers);
+		ListView listUsers = (ListView)findViewById(R.id.list_FriendList);
 		listUsers.setAdapter(adapter);
 				
 		Intent intent = new Intent(this, Friends.class);
