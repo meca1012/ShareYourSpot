@@ -2,17 +2,25 @@ package de.hska.shareyourspot.android.activites;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
+
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Party;
+import de.hska.shareyourspot.android.domain.Picture;
 import de.hska.shareyourspot.android.domain.Post;
+import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
+import de.hska.shareyourspot.android.helper.UserStore;
 import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -23,7 +31,7 @@ import android.widget.TextView;
 
 public class NewPost extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-	
+	private UserStore uStore = new UserStore();
 	
 	//TODO CHANGE TO DB DATA
 	private final String[] str={"Gruppe 1","Gruppe 2","Gruppe 3","Gruppe 4","Gruppe 5"};
@@ -54,31 +62,48 @@ public class NewPost extends Activity {
 	public void pushPost(View view) {
 		
 		//Get LocationHelper
+				
 		GoogleMapsHelper locationHelper = new GoogleMapsHelper(this);
 		if(!locationHelper.canGetLocation())
 		{
 			locationHelper.showSettingsAlert();
 		}
 		
-		Location location = locationHelper.getLocation();
-				
-		
 		//Get Post Text
 		TextView txtview = (TextView) findViewById(R.id.postText);
 		String postText = txtview.getText().toString();
+
 		
+		//Build of PictureObject
+		// First get ImageDate from ImageView
+		ImageView imageView = (ImageView)findViewById(R.id.newImagePost);
+		Drawable drawable = imageView.getDrawable();
 		
-		//Get Image
-		ImageView pic = (ImageView)findViewById(R.id.newImagePost);
-		
-		BitmapDrawable bitmapDrawable = ((BitmapDrawable) pic.getDrawable());
+		BitmapDrawable bitmapDrawable = ((BitmapDrawable) drawable);
 		Bitmap bitmap = bitmapDrawable .getBitmap();
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 		byte[] imageInByte = stream.toByteArray();
-		ByteArrayInputStream bis = new ByteArrayInputStream(imageInByte);
-		
+		//ByteArrayInputStream bis = new ByteArrayInputStream(imageInByte);
 	
+		Picture pic = new Picture();
+		pic.setImgData(imageInByte);
+		pic.setImgType("JPEG");
+		
+		//Get PossitionData
+		Location location = locationHelper.getLocation();
+		
+		if(location == null)
+		{
+			//TODO pic.setLongitude(null);
+			//TODO pic.setLatitude(null);
+		}
+		else
+		{
+			pic.setLongitude(location.getLongitude());
+			pic.setLatitude(location.getLatitude());
+		}
+		
 		//Get selected Group
 		Spinner spinner = (Spinner) findViewById(R.id.groupSpinner);
 		String group = spinner.getSelectedItem().toString();
@@ -86,9 +111,22 @@ public class NewPost extends Activity {
 		party.setName(group);
 		
 		
-
-
+		// Create Post
+		// TODO GroupSeleced
+		Post post = new Post(postText, pic, party);
 		
+		//Test
+		Serializer serializer = new Persister();
+		String output = null;
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		try {
+			serializer.write(post, os);
+			output = new String(os.toByteArray());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(output.toString());
+
 
 	}
 

@@ -4,7 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.Date;
 import de.hska.shareyourspot.android.helper.Constants;
-import android.graphics.Picture;
+import de.hska.shareyourspot.android.domain.Picture;
 
 public class Post implements Constants, Serializable {
 
@@ -12,22 +12,22 @@ public class Post implements Constants, Serializable {
 
 	private Long postId = KEINE_ID;
 	private User createdByUser;
-	// private Party postedInParty;
+	private Party postedInParty;
 	private byte[] previewImage;
 	private String previewImageType;
-	// private Picture picture;
+	private Picture picture;
 	private String text;
-	// private List<Comment> comments;
+	//private List<Comment> comments;
 	private Date created;
 	private Date modified;
 
 	// TODO: add mapping
 	private Party party;
 
-	public Post(String text, Picture pic, String Group) {
-		// this.picture = pic;
+	public Post(String text, Picture pic, Party Group) {
+		this.picture = pic;
 		this.text = text;
-		// this.party = party;
+		this.party = party;
 	}
 
 	public Long getPostId() {
