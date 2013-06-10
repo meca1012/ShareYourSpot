@@ -1,9 +1,12 @@
 package de.hska.shareyourspot.android.restclient;
 
 import java.net.HttpURLConnection;
+import java.util.List;
 
+import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.domain.Post;
+import de.hska.shareyourspot.android.domain.Users;
 
 
 public class RestClient extends HttpHandler{
@@ -38,6 +41,17 @@ public class RestClient extends HttpHandler{
 		}
 		return responseCode;
 	}
+	
+	public int createGroup(Party party)
+	{
+		Integer responseCode = -1;
+		String url = BASE_URL + "/post/createGroup";
+		String xmlObjectStr = serialize(party);
+		if (xmlObjectStr != null) {
+			responseCode = post(url, xmlObjectStr);
+		}
+		return responseCode;
+	}
 
 
 	public int loginUser(User user)
@@ -52,7 +66,18 @@ public class RestClient extends HttpHandler{
 			//TODO: Change to Resposce Code that Login will Work
 			//return HttpURLConnection.HTTP_ACCEPTED;
 		}
+	
+
+	public Users searchUser(User user) {
+		Users foundUsers = null;
+		String url = BASE_URL + "/member/findUserByName";
+		String xmlObjectStr = serialize(user);
+		if (xmlObjectStr != null) {
+			 foundUsers = (Users) post(url, xmlObjectStr, DomainType.Users);
+		}
+		return foundUsers;
 	}
+}
 
 //SAMPLES
 		

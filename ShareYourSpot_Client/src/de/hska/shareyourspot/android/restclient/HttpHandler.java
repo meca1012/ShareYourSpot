@@ -8,10 +8,17 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
+import de.hska.shareyourspot.android.domain.Parties;
+import de.hska.shareyourspot.android.domain.Party;
+import de.hska.shareyourspot.android.domain.Post;
+import de.hska.shareyourspot.android.domain.Posts;
 import de.hska.shareyourspot.android.domain.User;
+import de.hska.shareyourspot.android.domain.Users;
 
 import android.os.StrictMode;
 
@@ -31,7 +38,12 @@ abstract class HttpHandler {
 	}
 	
 	public static enum DomainType {
-		User
+		User,
+		Party,
+		Post,
+		Users,
+		Parties,
+		Posts
 	};
 	
 	protected Object get(String uri, DomainType type) {
@@ -112,6 +124,51 @@ abstract class HttpHandler {
 		}
 		return statusCode;
 	}
+	
+	protected Object post(String uri, String input, DomainType type) {
+		int statusCode = 0;
+		Object object = null;
+		
+		try {
+			input = xmlHeader + input;
+			URL url = new URL(uri);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setDoOutput(true);
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/xml");
+			OutputStream os = conn.getOutputStream();
+			if (input != null)
+				os.write(input.getBytes());
+			os.flush();
+			statusCode = conn.getResponseCode();
+			
+			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED &&
+				conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED)  {
+				throw new RuntimeException("Failed : HTTP error code : "
+						+ conn.getResponseCode());
+			}
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(
+					(conn.getInputStream())));
+			String output;
+			System.out.println("Output from Server .... \n");
+			
+			while ((output = br.readLine()) != null) {
+				System.out.println(output);
+			}
+			
+			object = deserialize(output, type);
+			statusCode = conn.getResponseCode();
+			System.out.println(statusCode);
+			conn.disconnect();
+			
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return object;
+	}
 
 	protected int delete(String uri) {
 		int statusCode = 0;
@@ -148,7 +205,16 @@ abstract class HttpHandler {
 			switch (type) {
 			case User:
 				return serializer.read(User.class, xmlStr);
-
+			case Users:
+				return serializer.read(Users.class, xmlStr);
+			case Post:
+				return serializer.read(Post.class, xmlStr);
+			case Posts:
+				return serializer.read(Posts.class, xmlStr);
+			case Party:
+				return serializer.read(Party.class, xmlStr);
+			case Parties:
+				return serializer.read(Parties.class, xmlStr);
 			default:
 				return null;
 			}
@@ -158,4 +224,5 @@ abstract class HttpHandler {
 		}
 		return null;
 	}
+	
 }

@@ -74,15 +74,19 @@
             android:label="@string/title_activity_friends"
             android:screenOrientation="portrait" >
         </activity>
-                <activity
+        <activity
             android:name="de.hska.shareyourspot.android.activites.Groups"
             android:label="@string/title_activity_groups"
             android:screenOrientation="portrait" >
         </activity>
-        
-                                <activity
+		<activity
             android:name="de.hska.shareyourspot.android.activites.NewGroup"
             android:label="@string/new_group"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="de.hska.shareyourspot.android.activites.Test"
+            android:label="@string/title_activity_test"
             android:screenOrientation="portrait" >
         </activity>
 
