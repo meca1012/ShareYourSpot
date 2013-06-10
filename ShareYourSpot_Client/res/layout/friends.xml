@@ -8,35 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Friends" >
 
-    <ListView
-        android:id="@+id/listUsers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4" >
-
-    </ListView>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/spots"
-        android:layout_below="@+id/groups"
-        android:layout_marginTop="18dp"
-        android:text="@string/friend_list"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <Button
-        android:id="@+id/groups"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/spots"
-        android:layout_alignBottom="@+id/spots"
-        android:layout_toRightOf="@+id/spots"
-        android:onClick="showGroups"
-        android:text="@string/groups" />
-
     <Button
         android:id="@+id/spots"
         android:layout_width="wrap_content"
@@ -47,6 +18,28 @@
         android:layout_marginTop="20dp"
         android:text="@string/spots" />
 
+    
+    <Button
+        android:id="@+id/groups"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/spots"
+        android:layout_toRightOf="@+id/spots"
+        android:layout_marginLeft="21dp"
+        android:onClick="showGroups"
+        android:text="@string/groups" />
+    
+        <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/spots"
+        android:layout_below="@+id/groups"
+        android:layout_marginTop="18dp"
+        android:text="@string/friend_list"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
     <EditText
         android:id="@+id/lookForUser"
         android:layout_width="wrap_content"
@@ -58,15 +51,25 @@
 
         <requestFocus />
     </EditText>
+    
+    <ListView
+        android:id="@+id/listUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/textView4" >
+    </ListView>
 
     <Button
         android:id="@+id/button1"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/groups"
-        android:layout_toRightOf="@+id/groups"
+        android:layout_above="@+id/lookForUser"
+        android:layout_alignRight="@+id/lookForUser"
+        android:layout_marginRight="17dp"
         android:onClick="onClickSearch"
         android:text="search" />
+
 
 </RelativeLayout>

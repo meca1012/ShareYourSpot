@@ -1,5 +1,7 @@
 package de.hska.shareyourspot.android.activites;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.hska.shareyourspot.android.R;
@@ -7,15 +9,19 @@ import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.domain.Users;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 public class Friends extends Activity {
 
 	private RestClient restClient = new RestClient();
+	final Context context = this;
 	
 	private List<User> friends;
 	
@@ -42,12 +48,17 @@ public class Friends extends Activity {
 		this.lookFor.setName(username.getText().toString());
 			
 		Users users = this.restClient.searchUser(this.lookFor);
-		
-		View listUsers = findViewById(R.id.listUsers);
-		
+	
 //		TODO: add users to listUsers on UI
 		
+		this.foundUsers = new ArrayList<User>();
 		this.foundUsers.addAll(users.getAllUser());
+		
+		ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, this.foundUsers);
+		
+		ListView listUsers = (ListView)findViewById(R.id.listUsers);
+		listUsers.setAdapter(adapter);
+				
 		Intent intent = new Intent(this, Friends.class);
 		startActivity(intent);
 	}
@@ -76,4 +87,29 @@ public class Friends extends Activity {
 		this.foundUsers = foundUsers;
 	}
 
+	private class StableArrayAdapter extends ArrayAdapter<String> {
+
+	    HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
+
+	    public StableArrayAdapter(Context context, int textViewResourceId,
+	        List<String> objects) {
+	      super(context, textViewResourceId, objects);
+	      for (int i = 0; i < objects.size(); ++i) {
+	        mIdMap.put(objects.get(i), i);
+	      }
+	    }
+
+	    @Override
+	    public long getItemId(int position) {
+	      String item = getItem(position);
+	      return mIdMap.get(item);
+	    }
+
+	    @Override
+	    public boolean hasStableIds() {
+	      return true;
+	    }
+
+	  }
+	
 }
