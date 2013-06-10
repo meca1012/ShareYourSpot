@@ -6,7 +6,7 @@ import java.io.ByteArrayOutputStream;
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
-import de.hska.shareyourspot.android.helper.LocationHelper;
+import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
 import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
@@ -54,11 +54,14 @@ public class NewPost extends Activity {
 	public void pushPost(View view) {
 		
 		//Get LocationHelper
-		LocationHelper locationHelper = new LocationHelper(this);
+		GoogleMapsHelper locationHelper = new GoogleMapsHelper(this);
+		if(!locationHelper.canGetLocation())
+		{
+			locationHelper.showSettingsAlert();
+		}
+		
 		Location location = locationHelper.getLocation();
-		
-		
-		
+				
 		
 		//Get Post Text
 		TextView txtview = (TextView) findViewById(R.id.postText);

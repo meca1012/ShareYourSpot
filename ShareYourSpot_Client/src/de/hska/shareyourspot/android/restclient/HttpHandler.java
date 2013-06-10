@@ -13,6 +13,8 @@ import java.util.List;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
+import de.hska.shareyourspot.android.activites.GoogleMaps;
+import de.hska.shareyourspot.android.activites.MainActivity;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
@@ -20,7 +22,11 @@ import de.hska.shareyourspot.android.domain.Posts;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.domain.Users;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.StrictMode;
+import android.provider.Settings;
 
 
 
@@ -105,8 +111,9 @@ abstract class HttpHandler {
 				conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED &&
 				conn.getResponseCode() != HttpURLConnection.HTTP_NOT_FOUND
 				)  {
-				throw new RuntimeException("Failed : HTTP error code : "
-						+ conn.getResponseCode());
+				
+				// TODO ERRORHANDLING
+				return HttpURLConnection.HTTP_CLIENT_TIMEOUT;
 			}
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					(conn.getInputStream())));
