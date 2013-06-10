@@ -8,112 +8,65 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Friends" >
 
-    <QuickContactBadge
-        android:id="@+id/quickContactBadge2"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/listUsers"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quickContactBadge1"
-        android:layout_below="@+id/quickContactBadge1"
-        android:layout_marginTop="24dp" />
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_below="@+id/textView4" >
 
-    <QuickContactBadge
-        android:id="@+id/quickContactBadge3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quickContactBadge2"
-        android:layout_below="@+id/quickContactBadge2"
-        android:layout_marginTop="29dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignTop="@+id/quickContactBadge2"
-        android:text="@string/name" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignTop="@+id/quickContactBadge3"
-        android:text="@string/name" />
+    </ListView>
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
-        android:layout_alignLeft="@+id/autoCompleteTextView1"
-        android:layout_marginBottom="26dp"
+        android:layout_alignLeft="@+id/spots"
+        android:layout_below="@+id/groups"
+        android:layout_marginTop="18dp"
         android:text="@string/friend_list"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <QuickContactBadge
-        android:id="@+id/quickContactBadge1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="49dp" />
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignTop="@+id/quickContactBadge1"
-        android:text="@string/name" />
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteText_entername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView4"
-        android:layout_marginBottom="21dp"
-        android:layout_toLeftOf="@+id/quickContactBadge1"
-        android:ems="10"
-        android:hint="@string/enter_name" >
-
-        <requestFocus />
-    </AutoCompleteTextView>
 
     <Button
         android:id="@+id/groups"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/friends"
-        android:layout_alignBottom="@+id/friends"
-        android:layout_toRightOf="@+id/friends"
-        android:onClick="showGroups"
-        android:text="@string/groups" />
-
-    <Button
-        android:id="@+id/friends"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/spots"
         android:layout_alignBottom="@+id/spots"
         android:layout_toRightOf="@+id/spots"
-        android:text="@string/friends" />
-
-    <Button
-        android:id="@+id/search"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/autoCompleteText_entername"
-        android:layout_alignRight="@+id/quickContactBadge1"
-        android:onClick="onClickSearch"
-        android:text="@string/search" />
+        android:onClick="showGroups"
+        android:text="@string/groups" />
 
     <Button
         android:id="@+id/spots"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/autoCompleteText_entername"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
         android:text="@string/spots" />
+
+    <EditText
+        android:id="@+id/lookForUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@+id/textView4"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/groups"
+        android:layout_toRightOf="@+id/groups"
+        android:onClick="onClickSearch"
+        android:text="search" />
 
 </RelativeLayout>
