@@ -6,6 +6,8 @@ import java.io.ByteArrayOutputStream;
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
+import de.hska.shareyourspot.android.helper.LocationHelper;
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 
 public class NewPost extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+	
 	
 	//TODO CHANGE TO DB DATA
 	private final String[] str={"Gruppe 1","Gruppe 2","Gruppe 3","Gruppe 4","Gruppe 5"};
@@ -50,6 +53,13 @@ public class NewPost extends Activity {
 	
 	public void pushPost(View view) {
 		
+		//Get LocationHelper
+		LocationHelper locationHelper = new LocationHelper(this);
+		Location location = locationHelper.getLocation();
+		
+		
+		
+		
 		//Get Post Text
 		TextView txtview = (TextView) findViewById(R.id.postText);
 		String postText = txtview.getText().toString();
@@ -57,7 +67,6 @@ public class NewPost extends Activity {
 		
 		//Get Image
 		ImageView pic = (ImageView)findViewById(R.id.newImagePost);
-
 		
 		BitmapDrawable bitmapDrawable = ((BitmapDrawable) pic.getDrawable());
 		Bitmap bitmap = bitmapDrawable .getBitmap();
@@ -73,9 +82,8 @@ public class NewPost extends Activity {
 		Party party = new Party();
 		party.setName(group);
 		
-//		<Post p = new Post(postText, bis, group);>
-//		TODO: hier weitermachen
-//		Post p = new Post(postText, bis, party);
+		
+
 
 		
 
