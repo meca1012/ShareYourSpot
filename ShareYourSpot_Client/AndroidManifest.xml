@@ -84,11 +84,6 @@
             android:label="@string/new_group"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="de.hska.shareyourspot.android.activites.Test"
-            android:label="@string/title_activity_test"
-            android:screenOrientation="portrait" >
-        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
