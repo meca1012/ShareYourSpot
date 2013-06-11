@@ -51,7 +51,7 @@
     <string name="groupname">Groupname</string>
     <string name="your_groups">Your Groups</string>
     <string name="enter_text">Enter Text</string>
-    <string name="title_activity_post_list">PostList</string>
+    <string name="title_activity_post_list">Post List</string>
     <string name="newPost">New Post</string>
     <string name="title_activity_new_post">NewPost</string>
     <string name="latest_posts">Latest Posts</string>
@@ -59,5 +59,6 @@
     <string name="title_activity_post__detail">Post_Detail</string>
     <string name="title_activity_friends">Friends</string>
     <string name="title_activity_groups">Groups</string>
+    <string name="spot_text">Spot Text</string>
 
 </resources>
