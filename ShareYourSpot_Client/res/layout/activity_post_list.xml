@@ -9,20 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PostList" >
 
-    <TabWidget
-        android:id="@android:id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
-    </TabWidget>
-
     <Button
         android:id="@+id/pushPost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
         android:onClick="newPostCreate"
         android:text="@string/newPost" />
     
@@ -49,8 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pushPost"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="29dp"
-        android:layout_toLeftOf="@+id/Btn_friends"
         android:text="@string/latest_posts"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
