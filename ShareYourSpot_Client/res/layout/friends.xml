@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:text="@string/spots" />
 
@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/btn_spots"
         android:layout_below="@+id/btn_spots"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="33dp"
         android:ems="10"
         android:hint="@string/enter_name" />
