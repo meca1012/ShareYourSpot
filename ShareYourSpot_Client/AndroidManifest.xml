@@ -72,7 +72,12 @@
         <activity
             android:name="de.hska.shareyourspot.android.activites.Friends"
             android:label="@string/title_activity_friends"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait" 
+     		android:parentActivityName="de.hska.shareyourspot.android.activites.MainActivity" >
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="de.hska.shareyourspot.android.activites.MainActivity" />
+        
         </activity>
         <activity
             android:name="de.hska.shareyourspot.android.activites.Groups"

@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText_enter_name"
         android:layout_toRightOf="@+id/editText_enter_name"
+        android:onClick="onClickSearch"
         android:text="@string/search" />
 
     <TextView
@@ -61,7 +62,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ListView
-        android:id="@+id/list_FriendList"
+        android:id="@+id/list_friends"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
