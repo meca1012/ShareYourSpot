@@ -28,6 +28,7 @@
         android:layout_alignBaseline="@+id/btn_spots"
         android:layout_alignBottom="@+id/btn_spots"
         android:layout_toRightOf="@+id/btn_spots"
+        android:onClick="showGroups"
         android:text="@string/groups" />
 
     <EditText
