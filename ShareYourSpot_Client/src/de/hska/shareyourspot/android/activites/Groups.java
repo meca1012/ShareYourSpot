@@ -40,15 +40,10 @@ public class Groups extends Activity {
 				lv.setAdapter(adapter);
 	}
 
-	public void showFriends(View view) {
-		Intent intent = new Intent(this, Friends.class);
+	public void showSpots(View view) {
+		Intent intent = new Intent(this, PostList.class);
 		startActivity(intent);
 	}
-
-	// public void showMySpots(View view) {
-	// Intent intent = new Intent(this, Spots.class);
-	// startActivity(intent);
-	// }
 
 	public void newGroup(View view) {
 		Intent intent = new Intent(this, NewGroup.class);
