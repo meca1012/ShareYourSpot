@@ -1,9 +1,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+     <item
+        android:id="@+id/action_new_post"
+        android:icon="@drawable/camera"
+        android:showAsAction="ifRoom|withText"
+        android:orderInCategory="100"
+        android:title="@string/newPost"/>
+    
+    <item
+        android:id="@+id/action_groups"
+        android:icon="@drawable/group"
+        android:showAsAction="ifRoom|withText"
+        android:orderInCategory="100"
+        android:title="@string/groups"/>
+        
     <item
         android:id="@+id/action_logout"
+        android:icon="@drawable/ic_menu_logout"
+        android:showAsAction="ifRoom|withText"
         android:orderInCategory="100"
-        android:showAsAction="never"
         android:title="@string/logout"/>
 
 </menu>
