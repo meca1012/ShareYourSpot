@@ -146,7 +146,7 @@ abstract class HttpHandler {
 				os.write(input.getBytes());
 			os.flush();
 			statusCode = conn.getResponseCode();
-			
+
 			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED &&
 				conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED &&
 				conn.getResponseCode() != HttpURLConnection.HTTP_OK)  {

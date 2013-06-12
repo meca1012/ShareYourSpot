@@ -25,7 +25,7 @@ import android.widget.Toast;
 public class Friends extends Activity {
 
 	private RestClient restClient = new RestClient();
-	
+
 	final Context context = this;
 
 	private List<User> friends;
@@ -94,7 +94,7 @@ public class Friends extends Activity {
 
 		// listUsers.setAdapter(adapter);
 		this.listUsers.setAdapter(listenAdapter);
-		
+
 		this.listUsers.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -106,11 +106,11 @@ public class Friends extends Activity {
 						.show();
 			}
 		});
-//		String item = this.listUsers.getOnItemClickListener().toString();
-	String test = "";	
-	System.out.println(test);
+		// String item = this.listUsers.getOnItemClickListener().toString();
+		String test = "";
+		System.out.println(test);
 	}
-	
+
 	public List<User> getFriends() {
 		return friends;
 	}
