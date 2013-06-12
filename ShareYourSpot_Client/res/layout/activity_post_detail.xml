@@ -4,23 +4,12 @@
     android:layout_height="match_parent" >
 
     <Button
-        android:id="@+id/btn_friends"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn_PostList"
-        android:layout_alignBottom="@+id/btn_PostList"
-        android:layout_toRightOf="@+id/btn_PostList"
-        android:onClick="showFriends"
-        android:text="@string/friends" />
-
-    <Button
         android:id="@+id/btn_groups"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btn_friends"
-        android:layout_toRightOf="@+id/btn_friends"
+        android:layout_alignBaseline="@+id/btn_PostList"
+        android:layout_toRightOf="@+id/btn_PostList"
         android:onClick="newGroup"
         android:text="@string/groups" />
 
@@ -85,21 +74,21 @@
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView_spotter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btn_PostList"
-        android:layout_below="@+id/btn_friends"
-        android:layout_marginTop="54dp"
-        android:text="@string/spotter"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/textView_spot_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_spotter"
         android:layout_alignTop="@+id/imageView_load_picture"
         android:text="@string/spot_text" />
+
+    <TextView
+        android:id="@+id/textView_spotter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_PostList"
+        android:layout_below="@+id/btn_PostList"
+        android:layout_marginTop="59dp"
+        android:text="@string/spotter"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

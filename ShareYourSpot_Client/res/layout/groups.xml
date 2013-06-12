@@ -21,24 +21,6 @@
         android:onClick="newGroup"
         android:text="@string/new_group" />
 
-    <Button
-        android:id="@+id/btn_friends"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btn_newgroup"
-        android:layout_toRightOf="@+id/btn_newgroup"
-        android:text="@string/friends" />
-
-    <Button
-        android:id="@+id/btn_PostList"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/btn_friends"
-        android:layout_toRightOf="@+id/btn_friends"
-        android:text="@string/title_activity_post_list" />
-
     <EditText
         android:id="@+id/editText_entername"
         android:layout_width="wrap_content"
@@ -79,5 +61,14 @@
         android:layout_below="@+id/textView1"
         android:layout_marginTop="32dp" >
     </ListView>
+
+    <Button
+        android:id="@+id/btn_PostList"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editText_entername"
+        android:layout_toRightOf="@+id/btn_newgroup"
+        android:text="@string/title_activity_post_list" />
 
 </RelativeLayout>
