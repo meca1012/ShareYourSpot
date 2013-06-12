@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/newImagePost"
+        android:layout_marginRight="15dp"
         android:onClick="pushPost"
         android:text="@string/share" />
 

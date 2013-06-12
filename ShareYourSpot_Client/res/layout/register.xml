@@ -14,6 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="76dp"
         android:ems="10"
         android:hint="@string/email"
@@ -28,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/registerInputEmail"
         android:layout_below="@+id/registerInputEmail"
+        android:layout_marginRight="15dp"
         android:ems="10"
         android:hint="@string/username"
         android:inputType="textPersonName" />
@@ -38,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/registerInputUsername"
         android:layout_below="@+id/registerInputUsername"
+        android:layout_marginRight="15dp"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword" />
@@ -48,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/registerInputPasswordFirst"
         android:layout_below="@+id/registerInputPasswordFirst"
+        android:layout_marginRight="15dp"
         android:ems="10"
         android:hint="@string/retypepassword"
         android:inputType="textPassword" />
@@ -58,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/registerInputPasswordSecound"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="32dp"
         android:onClick="registerStart"
         android:text="@string/register" />
@@ -68,9 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/registerInputEmail"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="30dp"
         android:text="@string/register"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
 
 </RelativeLayout>

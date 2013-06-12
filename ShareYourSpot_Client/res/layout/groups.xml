@@ -43,16 +43,6 @@
         android:layout_toRightOf="@+id/editText_entername"
         android:text="@string/search" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText_entername"
-        android:layout_below="@+id/editText_entername"
-        android:layout_marginTop="39dp"
-        android:text="@string/your_groups"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <ListView
         android:id="@+id/list_groups"
         android:layout_width="match_parent"
@@ -70,5 +60,15 @@
         android:layout_above="@+id/editText_entername"
         android:layout_toRightOf="@+id/btn_newgroup"
         android:text="@string/title_activity_post_list" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_entername"
+        android:layout_below="@+id/editText_entername"
+        android:layout_marginTop="40dp"
+        android:text="@string/your_groups"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
