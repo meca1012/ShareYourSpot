@@ -22,11 +22,7 @@ public class Post_Detail extends Activity {
 		return true;
 	}
 	
-	public void showFriends(View view) {
-		Intent intent = new Intent(this, Friends.class);
-		startActivity(intent);
-	}
-	
+		
 	public void newGroup(View view) {
 		Intent intent = new Intent(this, Friends.class);
 		startActivity(intent);

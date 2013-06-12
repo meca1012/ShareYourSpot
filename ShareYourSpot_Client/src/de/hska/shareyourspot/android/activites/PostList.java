@@ -54,10 +54,7 @@ public class PostList extends Activity {
 		startActivity(intent);
 	}
 	
-	public void showFriends(View view) {
-		Intent intent = new Intent(this, Friends.class);
-		startActivity(intent);
-	}
+	
 	
 	public void showGroups(View view) {
 		Intent intent = new Intent(this, Groups.class);

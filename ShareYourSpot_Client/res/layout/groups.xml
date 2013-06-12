@@ -59,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/editText_entername"
         android:layout_toRightOf="@+id/btn_newgroup"
+        android:onClick="showSpots"
         android:text="@string/title_activity_post_list" />
 
     <TextView
