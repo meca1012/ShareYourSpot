@@ -61,7 +61,11 @@
             <activity
             android:name="de.hska.shareyourspot.android.activites.Post_Detail"
             android:label="@string/title_activity_post_Detail"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait" 
+            android:parentActivityName="de.hska.shareyourspot.android.activites.PostList" >
+       		<meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="de.hska.shareyourspot.android.activites.PostList" />
          </activity>
         <activity
             android:name="de.hska.shareyourspot.android.activites.NewPost"
