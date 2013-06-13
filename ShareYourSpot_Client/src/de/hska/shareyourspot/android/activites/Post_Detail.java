@@ -6,13 +6,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class Post_Detail extends Activity {
 
+	public final String postId = "postId";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		int groupNr = getIntent().getIntExtra(postId, 0);
 		setContentView(R.layout.activity_post_detail);
+		TextView spotText = (TextView) findViewById(R.id.textView_spot_text);
+		spotText.setText("POST NR. "  + groupNr  + " was tiped");
 	}
 
 	@Override

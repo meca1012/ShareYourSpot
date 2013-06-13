@@ -89,7 +89,7 @@ public class RestClient extends HttpHandler {
 
 	public User loginUser(User user) {
 		User reponseUser = null;
-		String url = BASE_URL + "/member/loginUser";
+		String url = BASE_URL + "/member/login";
 		String xmlObjectStr = serialize(user);
 		if (xmlObjectStr != null) {
 			reponseUser = (User) post(url, xmlObjectStr, DomainType.User);
