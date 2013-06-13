@@ -3,6 +3,7 @@ package de.hska.shareyourspot.android.restclient;
 import java.net.HttpURLConnection;
 import java.util.List;
 
+import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.domain.Post;
@@ -106,6 +107,23 @@ public class RestClient extends HttpHandler {
 		}
 		return foundUsers;
 	}
+	
+	public Parties searchParties(Party party) {
+		Parties parties = null;
+		String url = BASE_URL + "/party/findParty";
+		String xmlObjectStr = serialize(party);
+		if (xmlObjectStr != null) {
+			parties = (Parties) post(url, xmlObjectStr, DomainType.Parties);
+		}
+		return parties;
+	}
+	
+	public Parties getParties() {
+		String url = BASE_URL + "/party/getParties";
+		Parties parties = (Parties) get(url, DomainType.Parties);
+		return parties;
+	}
+	
 }
 
 // SAMPLES
