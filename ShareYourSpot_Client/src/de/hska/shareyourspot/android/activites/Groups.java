@@ -49,6 +49,38 @@ public class Groups extends Activity {
 		this.foundParties = new ArrayList<Party>();
 		this.meineListe = new ArrayList<String>();
 		this.listGroups = (ListView) findViewById(R.id.list_groups);
+		
+		Parties parties = this.restClient.getParties();
+
+		if(parties!=null){
+		
+		this.foundParties.addAll(parties.getAllParties());
+
+		for (Party party : foundParties) {
+			if (party.getName() != null || party.getName().isEmpty()) {
+				this.meineListe.add(party.getName());
+			}
+		}
+		
+		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, meineListe);
+
+		this.listGroups.setAdapter(listenAdapter);
+		
+		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				
+				
+				String item = ((TextView) view).getText().toString();
+				
+						Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
+								.show();
+						
+//						startGroupDetail(item);
+			}
+		});}
 	}
 
 	public void onClickSearch(View view) {
