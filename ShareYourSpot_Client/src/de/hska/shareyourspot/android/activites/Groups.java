@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,8 +21,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
-import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.restclient.RestClient;
+import de.hska.shareyourspot.android.helper.UserStore;
+
 
 public class Groups extends Activity {
 
@@ -32,7 +34,10 @@ public class Groups extends Activity {
 	private List<Party> foundParties;
 	private ListView listGroups;
 	private ArrayList<String> meineListe;
-	
+
+	private UserStore uStore = new UserStore();
+	private Context ctx = this;
+
 	public final String groupName = "groupName";
 
 	@SuppressWarnings("unchecked")
@@ -98,15 +103,28 @@ public class Groups extends Activity {
 		Intent intent = new Intent(this, NewGroup.class);
 		startActivity(intent);
 	}
-
+	
 	@Override
-	public void onListItemClick(ListView l, View v, int position, long id) {
-
-		String item = ((TextView) v).getText().toString();
-
-		Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG).show();
-
-		// TODO: joinGroup
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.groups, menu);
+		return true;
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	  switch (item.getItemId()) {
+	  case R.id.action_logout:
+		  	uStore.logout(ctx);
+	        finish();
+	    break;
+
+
+	  default:
+	    break;
+	  }
+
+	  return true;
+	} 
 
 }
