@@ -4,18 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Party;
+import de.hska.shareyourspot.android.helper.UserStore;
 
 public class Groups extends Activity {
 
+	private UserStore uStore = new UserStore();
+	private Context ctx = this;
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -57,6 +62,22 @@ public class Groups extends Activity {
 		getMenuInflater().inflate(R.menu.groups, menu);
 		return true;
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	  switch (item.getItemId()) {
+	  case R.id.action_logout:
+		  	uStore.logout(ctx);
+	        finish();
+	    break;
+
+
+	  default:
+	    break;
+	  }
+
+	  return true;
+	} 
 
 	
 

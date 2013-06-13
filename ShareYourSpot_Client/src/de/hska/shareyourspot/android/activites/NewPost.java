@@ -1,6 +1,8 @@
 package de.hska.shareyourspot.android.activites;
 
 import java.io.ByteArrayInputStream;
+
+
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
 
@@ -18,11 +20,13 @@ import de.hska.shareyourspot.android.restclient.RestClient;
 import android.location.Location;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -33,6 +37,7 @@ public class NewPost extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	private UserStore uStore = new UserStore();
 	private RestClient restClient = new RestClient();
+	private Context ctx = this;
 	
 	//TODO CHANGE TO DB DATA
 	private final String[] str={"Gruppe 1","Gruppe 2","Gruppe 3","Gruppe 4","Gruppe 5"};
@@ -44,6 +49,22 @@ public class NewPost extends Activity {
 		ArrayAdapter<String> adp2=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,str);
 		spinner.setAdapter(adp2);
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	  switch (item.getItemId()) {
+	  case R.id.action_logout:
+		  	uStore.logout(ctx);
+	        finish();
+	    break;
+
+
+	  default:
+	    break;
+	  }
+
+	  return true;
+	} 
 	
 	
 	@Override
