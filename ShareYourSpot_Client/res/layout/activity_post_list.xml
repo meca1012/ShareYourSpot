@@ -9,16 +9,16 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PostList" >
 
-    <Button
-        android:id="@+id/pushPost"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:onClick="newPostCreate"
-        android:text="@string/newPost" />
+<!--     <Button -->
+<!--         android:id="@+id/pushPost" -->
+<!--         style="?android:attr/buttonStyleSmall" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_alignParentLeft="true" -->
+<!--         android:layout_alignParentTop="true" -->
+<!--         android:layout_marginLeft="15dp" -->
+<!--         android:onClick="newPostCreate" -->
+<!--         android:text="@string/newPost" /> -->
 
     <ListView
         android:id="@+id/list"        
@@ -29,21 +29,21 @@
         android:layout_marginTop="41dp" >
     </ListView>
 
-    <Button
-        android:id="@+id/Btn_groups"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView1"
-        android:layout_toRightOf="@+id/pushPost"
-        android:onClick="showGroups"
-        android:text="@string/groups" />
+<!--     <Button -->
+<!--         android:id="@+id/Btn_groups" -->
+<!--         style="?android:attr/buttonStyleSmall" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_above="@+id/textView1" -->
+<!--         android:layout_toRightOf="@+id/pushPost" -->
+<!--         android:onClick="showGroups" -->
+<!--         android:text="@string/groups" /> -->
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pushPost"
+
         android:layout_marginLeft="15dp"
         android:layout_marginTop="31dp"
         android:text="@string/latest_posts"

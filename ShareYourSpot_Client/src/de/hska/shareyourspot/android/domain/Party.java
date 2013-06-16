@@ -1,14 +1,14 @@
 package de.hska.shareyourspot.android.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-
+@Root(name = "party")
 public class Party implements Serializable{
 	
 	/**
@@ -16,16 +16,22 @@ public class Party implements Serializable{
 	 */
 	private static final long serialVersionUID = -7408353739310692920L;
 
+	@Element(required=false)
 	private Long partyId;
-
+	
+	@Element(required=false)
 	private String name;
 
+	@ElementList(required=false)
 	private List<User> usersInParty;
 
+	@ElementList(required=false)
 	private List<Post> postsOfParty;
 	
+	@Element(required=false)
 	private Date created;
 
+	@Element(required=false)
 	private Date modified;
 	
 	public Party() {

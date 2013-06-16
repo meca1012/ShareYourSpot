@@ -48,7 +48,11 @@ public class Post_Detail extends Activity {
 		  	uStore.logout(ctx);
 	        finish();
 	    break;
-
+	    
+	  case R.id.action_groups:
+		  	toGroups();
+	        finish();
+	    break;
 
 	  default:
 	    break;
@@ -70,6 +74,11 @@ public class Post_Detail extends Activity {
 	
 	public void showPostList(View view) {
 		Intent intent = new Intent(this, PostList.class);
+		startActivity(intent);
+	}
+	
+	public void toGroups() {
+		Intent intent = new Intent(this, Groups.class);
 		startActivity(intent);
 	}
 

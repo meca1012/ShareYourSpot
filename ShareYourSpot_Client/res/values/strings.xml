@@ -64,5 +64,6 @@
     <string name="title_activity_group__detail">Group_Detail</string>
     <string name="join_group">Join Group</string>
     <string name="description">Description</string>
+    <string name="postlist">Post List</string>
 
 </resources>

@@ -7,6 +7,10 @@ import org.simpleframework.xml.Element;
 
 public class Picture implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4118518519877132454L;
 	
 	public static final String PREFIX = "Picture.";
 	public static final String PICTURE = "findPicture";

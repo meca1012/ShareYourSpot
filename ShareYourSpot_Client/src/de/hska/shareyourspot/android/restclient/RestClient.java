@@ -78,7 +78,7 @@ public class RestClient extends HttpHandler {
 
 	public Party joinGroup(Party party) {
 		// Integer responseCode = -1;
-		String url = BASE_URL + "/post/addFriend";
+		String url = BASE_URL + "/member/addUserToParty";
 		String xmlObjectStr = serialize(party);
 		if (xmlObjectStr != null) {
 			party = (Party) post(url, xmlObjectStr, DomainType.Party);

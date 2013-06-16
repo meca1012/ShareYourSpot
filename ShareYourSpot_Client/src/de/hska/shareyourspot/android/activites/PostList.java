@@ -100,9 +100,18 @@ public class PostList extends Activity {
 	  switch (item.getItemId()) {
 	  case R.id.action_logout:
 		  	uStore.logout(ctx);
+	        finish();       
+	        break;
+	        
+	  case R.id.action_groups:
+		  showGroups();
 	        finish();
 	    break;
-
+	    
+	  case R.id.action_new_post:
+		  newPostCreate();
+	        finish();
+	    break;
 
 	  default:
 	    break;
@@ -111,17 +120,14 @@ public class PostList extends Activity {
 	  return true;
 	} 
 	
-	public void newPostCreate(View view) {
+	public void newPostCreate() {
 		Intent intent = new Intent(this, NewPost.class);
 		startActivity(intent);
 	}
 	
-	
-	
-	public void showGroups(View view) {
+	public void showGroups() {
 		Intent intent = new Intent(this, Groups.class);
 		startActivity(intent);
 	}
 	
 }
-
