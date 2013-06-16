@@ -9,6 +9,7 @@ import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.domain.Users;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -96,6 +97,7 @@ public class Friends extends Activity {
 		this.listUsers.setAdapter(listenAdapter);
 
 		this.listUsers.setOnItemClickListener(new OnItemClickListener() {
+			
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -151,29 +153,38 @@ public class Friends extends Activity {
 		this.meineListe = meineListe;
 	}
 
-	private class StableArrayAdapter extends ArrayAdapter<String> {
-
-		HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
-
-		public StableArrayAdapter(Context context, int textViewResourceId,
-				List<String> objects) {
-			super(context, textViewResourceId, objects);
-			for (int i = 0; i < objects.size(); ++i) {
-				mIdMap.put(objects.get(i), i);
-			}
-		}
-
-		@Override
-		public long getItemId(int position) {
-			String item = getItem(position);
-			return mIdMap.get(item);
-		}
-
-		@Override
-		public boolean hasStableIds() {
-			return true;
-		}
-
-	}
+//	@Override
+//	public void onListItemClick(ListView l, View v, int position, long id) {
+//		// Do something when a list item is clicked
+//		String item = ((TextView) v).getText().toString();
+//
+//		Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
+//				.show();
+//	}
+	
+//	private class StableArrayAdapter extends ArrayAdapter<String> {
+//
+//		HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
+//
+//		public StableArrayAdapter(Context context, int textViewResourceId,
+//				List<String> objects) {
+//			super(context, textViewResourceId, objects);
+//			for (int i = 0; i < objects.size(); ++i) {
+//				mIdMap.put(objects.get(i), i);
+//			}
+//		}
+//
+//		@Override
+//		public long getItemId(int position) {
+//			String item = getItem(position);
+//			return mIdMap.get(item);
+//		}
+//
+//		@Override
+//		public boolean hasStableIds() {
+//			return true;
+//		}
+//
+//	}
 
 }

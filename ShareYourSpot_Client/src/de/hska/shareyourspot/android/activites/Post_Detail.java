@@ -1,15 +1,21 @@
 package de.hska.shareyourspot.android.activites;
 
 import de.hska.shareyourspot.android.R;
+import de.hska.shareyourspot.android.helper.UserStore;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class Post_Detail extends Activity {
+	
+	private UserStore uStore = new UserStore();
+	private Context ctx = this;
 
 	public final String postId = "postId";
 	@Override
@@ -24,9 +30,32 @@ public class Post_Detail extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.post__detail, menu);
+		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getMenuInflater().inflate(R.menu.post__detail, menu);
+//		return true;
+//	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	  switch (item.getItemId()) {
+	  case R.id.action_logout:
+		  	uStore.logout(ctx);
+	        finish();
+	    break;
+
+
+	  default:
+	    break;
+	  }
+
+	  return true;
+	} 
 	
 		
 	public void newGroup(View view) {

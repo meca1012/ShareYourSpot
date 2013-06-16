@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import org.simpleframework.xml.Attribute;
+
 
 public class Party implements Serializable{
 	
@@ -21,6 +23,7 @@ public class Party implements Serializable{
 	private List<User> usersInParty;
 
 	private List<Post> postsOfParty;
+	
 	private Date created;
 
 	private Date modified;

@@ -18,7 +18,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="75dp"
         android:ems="10"
-        android:hint="@string/enter_name" >
+        android:hint="@string/enter_name"
+        android:onClick="createNewGroup" >
 
         <requestFocus />
     </EditText>
@@ -30,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText1"
         android:layout_toRightOf="@+id/editText1"
+        android:onClick="createNewGroup"
         android:text="@string/create" />
 
     <TextView
