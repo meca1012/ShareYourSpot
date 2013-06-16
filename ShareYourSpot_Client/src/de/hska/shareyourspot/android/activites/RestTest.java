@@ -28,7 +28,7 @@ public class RestTest extends Activity {
             	 	restClient = new RestClient();
             	 	User member = restClient.getBenutzerXML();
             	 	TextView viewId = (TextView) findViewById(R.id.restTesterId);
-            	 	viewId.setText(member.getId().toString());
+            	 	viewId.setText(member.getUserId().toString());
             	 	
             	 	TextView viewName = (TextView) findViewById(R.id.restTesterName);
             	 	viewName.setText(member.getName().toString());

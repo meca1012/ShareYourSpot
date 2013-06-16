@@ -9,10 +9,10 @@ import org.simpleframework.xml.Root;
 @Root(name = "user")
 public class User {
 	
-	@Attribute(required=false)
-	private Long id;
+	@Element(required=false)
+	private Long userId;
 	
-	@Attribute(required=false)
+	@Element(required=false)
 	private boolean userApproved;
 	
 	@Element(required=false)
@@ -45,11 +45,11 @@ public class User {
 	public void setUserApproved(boolean userApproved) {
 		this.userApproved = userApproved;
 	}
-	public Long getId() {
-		return id;
+	public Long getUserId() {
+		return userId;
 	}
 	public void setUserId(Long userId) {
-		this.id = userId;
+		this.userId = userId;
 	}
 	public String getEmail() {
 		return email;
@@ -78,7 +78,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "UserId=" + id + ", email=" + email + ", name=" + name;
+		return "UserId=" + userId + ", email=" + email + ", name=" + name;
 	}
 	
 	

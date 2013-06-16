@@ -53,7 +53,7 @@ public class Users {
 		else {
 			str = "Users = [\n";
 			for (User user : users) {
-				str += (user.getId() + " " + user.getName() + 
+				str += (user.getUserId() + " " + user.getName() + 
 						" (" + user.getEmail() + ")" + ",\n");
 			}
 			str += "]";
