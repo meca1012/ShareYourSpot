@@ -1,15 +1,19 @@
 package de.hska.shareyourspot.android.activites;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
 import de.hska.shareyourspot.android.R;
+import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Picture;
 import de.hska.shareyourspot.android.domain.Post;
@@ -38,15 +42,31 @@ public class NewPost extends Activity {
 	private UserStore uStore = new UserStore();
 	private RestClient restClient = new RestClient();
 	private Context ctx = this;
+	private List<String> groupList;
+	private int THUMBNAIL_SIZE = 64;
 	
 	//TODO CHANGE TO DB DATA
-	private final String[] str={"Gruppe 1","Gruppe 2","Gruppe 3","Gruppe 4","Gruppe 5"};
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Parties parties = new Parties();
+		this.groupList = new ArrayList();
+		try {
+			parties = restClient.getPartiesForUser(uStore.getUser(ctx));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(Party party : parties.getAllParties())
+		{
+			this.groupList.add(party.getName());
+		}
+		
 		setContentView(R.layout.activity_new_post);
 		Spinner spinner = (Spinner) findViewById(R.id.groupSpinner);
-		ArrayAdapter<String> adp2=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,str);
+		ArrayAdapter<String> adp2=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,this.groupList);
 		spinner.setAdapter(adp2);
 	}
 	
@@ -82,7 +102,7 @@ public class NewPost extends Activity {
 
 	}
 	
-	public void pushPost(View view) {
+	public void pushPost(View view) throws IOException {
 		
 		//Get LocationHelper
 				
@@ -104,14 +124,25 @@ public class NewPost extends Activity {
 		
 		BitmapDrawable bitmapDrawable = ((BitmapDrawable) drawable);
 		Bitmap bitmap = bitmapDrawable .getBitmap();
+		Bitmap bitmap_thumbnail = bitmapDrawable .getBitmap();
+		
+		Float width = new Float(bitmap_thumbnail.getWidth());
+		Float height = new Float(bitmap_thumbnail.getHeight());
+		Float ratio = width/height;
+		
+		bitmap_thumbnail = Bitmap.createScaledBitmap(bitmap_thumbnail, (int)(THUMBNAIL_SIZE * ratio), THUMBNAIL_SIZE, false);
+		
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
 		byte[] imageInByte = stream.toByteArray();
-		//ByteArrayInputStream bis = new ByteArrayInputStream(imageInByte);
+
+		stream = new ByteArrayOutputStream();
+		bitmap_thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+		byte[] thumbInByte = stream.toByteArray();
 	
 		Picture pic = new Picture();
 		pic.setImgData(imageInByte);
-		pic.setImgType("JPEG");
+		pic.setImgType(Bitmap.CompressFormat.JPEG.toString());
 		
 		//Get PossitionData
 		Location location = locationHelper.getLocation();
@@ -132,13 +163,14 @@ public class NewPost extends Activity {
 		String group = spinner.getSelectedItem().toString();
 		Party party = new Party();
 		party.setName(group);
-		party.setPartyId(1L);
-
 		
 		
 		// Create Post
 		// TODO GroupSeleced
 		Post post = new Post(postText, pic, party);
+		post.setCreatedByUser(uStore.getUser(ctx));
+		post.setPreviewImage(thumbInByte);
+		post.setPreviewImageType(Bitmap.CompressFormat.JPEG.toString());
 		restClient.createPost(post);
 		
 		//Test
@@ -180,4 +212,6 @@ public class NewPost extends Activity {
 			}
 		}
 	}
+	
+	
 }

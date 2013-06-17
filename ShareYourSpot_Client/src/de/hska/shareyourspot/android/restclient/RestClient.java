@@ -38,6 +38,7 @@ public class RestClient extends HttpHandler {
 		Integer responseCode = -1;
 		String url = BASE_URL + "/post/createPost";
 		String xmlObjectStr = serialize(post);
+		System.out.println(xmlObjectStr);
 		if (xmlObjectStr != null) {
 			post = (Post)post(url, xmlObjectStr, DomainType.Post);
 		}
@@ -122,6 +123,17 @@ public class RestClient extends HttpHandler {
 		String url = BASE_URL + "/member/getAllParties";
 		Parties parties = (Parties) get(url, DomainType.Parties);
 		return parties;
+	}
+	
+	public Parties getPartiesForUser(User u) {
+		Parties p = new Parties();
+		String url = BASE_URL + "/member/getPartiesByUser";
+		String xmlObjectStr = serialize(u);
+	
+		if (xmlObjectStr != null) {
+			p = (Parties) post(url, xmlObjectStr, DomainType.Parties);
+		}
+		return p;
 	}
 	
 }
