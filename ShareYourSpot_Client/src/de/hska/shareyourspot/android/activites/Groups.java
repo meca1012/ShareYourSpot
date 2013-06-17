@@ -51,7 +51,7 @@ public class Groups extends Activity {
 		this.meineListe = new ArrayList<String>();
 		this.listGroups = (ListView) findViewById(R.id.list_groups);
 
-		Parties parties = this.restClient.getParties();
+		Parties parties = this.restClient.getAllParties();
 
 		if (parties != null) {
 
