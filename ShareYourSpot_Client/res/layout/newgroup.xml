@@ -41,7 +41,7 @@
         android:layout_alignLeft="@+id/editText1"
         android:layout_below="@+id/editText1"
         android:layout_marginTop="37dp"
-        android:text="@string/add_friends_group"
+        android:text="@string/all_groups"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ListView
@@ -52,5 +52,24 @@
         android:layout_below="@+id/textView1"
         android:layout_marginTop="19dp" >
     </ListView>
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_create"
+        android:layout_marginBottom="11dp"
+        android:layout_toLeftOf="@+id/btn_create"
+        android:ems="10"
+        android:hint="@string/enter_name" />
+
+    <Button
+        android:id="@+id/button1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText2"
+        android:layout_toRightOf="@+id/editText2"
+        android:text="@string/search" />
 
 </RelativeLayout>

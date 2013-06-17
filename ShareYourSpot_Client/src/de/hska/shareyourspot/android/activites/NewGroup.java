@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hska.shareyourspot.android.R;
+import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.UserStore;
@@ -30,13 +31,65 @@ public class NewGroup extends Activity {
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
 	private Party newParty;
-	
+	private Party lookForParty;
+	private List<Party> foundParties;
+	private ListView listGroups;
+	private ArrayList<String> meineListe;
+	public final String groupId = "groupId";
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.new_group, menu);
 		return true;
+	}
+	
+	public void onClickSearch(View view) {
+
+		this.lookForParty = new Party();
+		EditText editText = (EditText) findViewById(R.id.editText2);
+		this.lookForParty.setName(editText.getText().toString());
+
+		Parties parties = this.restClient.searchParties(this.lookForParty);
+
+		this.foundParties.addAll(parties.getAllParties());
+
+		for (Party party : foundParties) {
+			if (party.getName() != null || party.getName().isEmpty()) {
+				this.meineListe.add(party.getName());
+			}
+		}
+		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, meineListe);
+
+		this.listGroups.setAdapter(listenAdapter);
+
+		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
+			
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				String item = ((TextView) view).getText().toString();
+
+				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
+						.show();
+
+				groupDetail(item);
+			}
+		});
+	}
+	
+	public void groupDetail(String name) {
+		Intent intent = new Intent(this, Group_Detail.class);
+						 
+		for (Party party : this.foundParties) {
+				if (party.getName().equalsIgnoreCase(name)) {
+					intent.putExtra(this.groupId,Long.valueOf(party.getPartyId()));
+				}
+		}
+				
+		startActivity(intent);
 	}
 	
 	@Override

@@ -65,5 +65,7 @@
     <string name="join_group">join</string>
     <string name="description">Description</string>
     <string name="postlist">Post List</string>
+    <string name="title_activity_my_groups">MyGroups</string>
+     <string name="all_groups">All Groups</string>
 
 </resources>
