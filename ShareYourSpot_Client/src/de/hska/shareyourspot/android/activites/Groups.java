@@ -1,5 +1,6 @@
 package de.hska.shareyourspot.android.activites;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
+import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import de.hska.shareyourspot.android.helper.UserStore;
 
@@ -51,7 +53,15 @@ public class Groups extends Activity {
 		this.meineListe = new ArrayList<String>();
 		this.listGroups = (ListView) findViewById(R.id.list_groups);
 
-		Parties parties = this.restClient.getAllParties();
+//		Parties parties = this.restClient.getAllParties();
+		User u = null;
+		try {
+			u = uStore.getUser(ctx);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Parties parties = this.restClient.getPartiesByUser(u);
 
 		if (parties != null) {
 

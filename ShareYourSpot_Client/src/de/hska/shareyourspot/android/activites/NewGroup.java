@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class NewGroup extends Activity {
+	
 	private RestClient restClient = new RestClient();
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
@@ -36,12 +37,12 @@ public class NewGroup extends Activity {
 	private ListView listGroups;
 	private ArrayList<String> meineListe;
 	public final String groupId = "groupId";
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newgroup);
-		
+
 		this.lookForParty = new Party();
 		EditText editText = (EditText) findViewById(R.id.editText2);
 		this.lookForParty.setName(editText.getText().toString());
@@ -61,7 +62,7 @@ public class NewGroup extends Activity {
 		this.listGroups.setAdapter(listenAdapter);
 
 		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
-			
+
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -75,14 +76,14 @@ public class NewGroup extends Activity {
 			}
 		});
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.new_group, menu);
 		return true;
 	}
-	
+
 	public void onClickSearch(View view) {
 
 		this.lookForParty = new Party();
@@ -104,7 +105,7 @@ public class NewGroup extends Activity {
 		this.listGroups.setAdapter(listenAdapter);
 
 		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
-			
+
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
@@ -118,79 +119,80 @@ public class NewGroup extends Activity {
 			}
 		});
 	}
-	
+
 	public void groupDetail(String name) {
 		Intent intent = new Intent(this, Group_Detail.class);
-						 
+
 		for (Party party : this.foundParties) {
-				if (party.getName().equalsIgnoreCase(name)) {
-					intent.putExtra(this.groupId,Long.valueOf(party.getPartyId()));
-				}
+			if (party.getName().equalsIgnoreCase(name)) {
+				intent.putExtra(this.groupId, Long.valueOf(party.getPartyId()));
+			}
 		}
-				
+
 		startActivity(intent);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	  switch (item.getItemId()) {
-	  case R.id.action_logout:
-		  	uStore.logout(ctx);
-	        finish();
-	    break;
-	    
-	  case R.id.action_postlist:
+		switch (item.getItemId()) {
+		case R.id.action_logout:
+			uStore.logout(ctx);
+			finish();
+			break;
+
+		case R.id.action_postlist:
 			toPostList();
 			finish();
 			break;
 
-					
 		case R.id.action_new_post:
 			toNewPost();
 			finish();
 			break;
 
+		case R.id.action_groups:
+			showGroups();
+			finish();
+			break;
 
-	  default:
-	    break;
-	  }
+		default:
+			break;
+		}
 
-	  return true;
-	} 
-	
+		return true;
+	}
+
 	public void toPostList() {
 		Intent intent = new Intent(this, PostList.class);
 		startActivity(intent);
 	}
-	
-		
+
 	public void toNewPost() {
 		Intent intent = new Intent(this, NewPost.class);
 		startActivity(intent);
 	}
-	
 
-		
-	
-		
-		public void createNewGroup(View view) throws IOException {
-			
-			EditText groupname = (EditText) findViewById(R.id.editText1);
-			this.newParty = new Party();
-			this.newParty.setName(groupname.getText().toString());
-			
-			List<User> newUsers = new ArrayList<User>();
-			User user = uStore.getUser(ctx);
-			newUsers.add(user);
-			this.newParty.setUsersInParty(newUsers);
-			
-			int i = this.restClient.createGroup(this.newParty);
-			System.out.println(i);
-			
-			Intent intent = new Intent(this, Groups.class);
-			startActivity(intent);
-		}
-	
-	
+	public void showGroups() {
+		Intent intent = new Intent(this, Groups.class);
+		startActivity(intent);
+	}
+
+	public void createNewGroup(View view) throws IOException {
+
+		EditText groupname = (EditText) findViewById(R.id.editText1);
+		this.newParty = new Party();
+		this.newParty.setName(groupname.getText().toString());
+
+		List<User> newUsers = new ArrayList<User>();
+		User user = uStore.getUser(ctx);
+		newUsers.add(user);
+		this.newParty.setUsersInParty(newUsers);
+
+		int i = this.restClient.createGroup(this.newParty);
+		System.out.println(i);
+
+		Intent intent = new Intent(this, Groups.class);
+		startActivity(intent);
+	}
 
 }
