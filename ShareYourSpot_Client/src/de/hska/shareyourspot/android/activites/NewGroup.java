@@ -35,7 +35,7 @@ public class NewGroup extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.new_group, menu);
 		return true;
 	}
 	
@@ -46,6 +46,21 @@ public class NewGroup extends Activity {
 		  	uStore.logout(ctx);
 	        finish();
 	    break;
+	    
+	  case R.id.action_postlist:
+			toPostList();
+			finish();
+			break;
+
+		case R.id.action_newGroup:
+			toNewGroup();
+			finish();
+			break;
+			
+		case R.id.action_new_post:
+			toNewPost();
+			finish();
+			break;
 
 
 	  default:
@@ -55,7 +70,21 @@ public class NewGroup extends Activity {
 	  return true;
 	} 
 	
-	@SuppressWarnings("unchecked")
+	public void toPostList() {
+		Intent intent = new Intent(this, PostList.class);
+		startActivity(intent);
+	}
+	
+	public void toNewGroup() {
+		Intent intent = new Intent(this, NewGroup.class);
+		startActivity(intent);
+	}
+	
+	public void toNewPost() {
+		Intent intent = new Intent(this, NewPost.class);
+		startActivity(intent);
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

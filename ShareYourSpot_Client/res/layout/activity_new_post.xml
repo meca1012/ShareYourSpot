@@ -29,24 +29,23 @@
         android:onClick="pushPost"
         android:text="@string/share" />
 
-    <EditText
-        android:id="@+id/postText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/groupSpinner"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:hint="@string/enter_text"
-        android:inputType="textMultiLine" >
-
-        <requestFocus />
-    </EditText>
-
     <Spinner
         android:id="@+id/groupSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/pushPost"
         android:layout_alignLeft="@+id/postText" />
+
+    <EditText
+        android:id="@+id/postText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/groupSpinner"
+        android:layout_alignLeft="@+id/newImagePost"
+        android:layout_alignRight="@+id/newImagePost"
+        android:ems="10"
+        android:hint="@string/enter_text"
+        android:inputType="textMultiLine"
+        android:lines="4" />
     
     </RelativeLayout>
