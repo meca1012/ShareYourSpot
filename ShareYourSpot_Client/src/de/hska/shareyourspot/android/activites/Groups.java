@@ -51,7 +51,7 @@ public class Groups extends Activity {
 		this.meineListe = new ArrayList<String>();
 		this.listGroups = (ListView) findViewById(R.id.list_groups);
 
-		Parties parties = this.restClient.getParties();
+		Parties parties = this.restClient.getAllParties();
 
 		if (parties != null) {
 
@@ -84,41 +84,41 @@ public class Groups extends Activity {
 		}
 	}
 
-	public void onClickSearch(View view) {
-
-		this.lookForParty = new Party();
-		EditText editText = (EditText) findViewById(R.id.editText_enterGroupName);
-		this.lookForParty.setName(editText.getText().toString());
-
-		Parties parties = this.restClient.searchParties(this.lookForParty);
-
-		this.foundParties.addAll(parties.getAllParties());
-
-		for (Party party : foundParties) {
-			if (party.getName() != null || party.getName().isEmpty()) {
-				this.meineListe.add(party.getName());
-			}
-		}
-		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, meineListe);
-
-		this.listGroups.setAdapter(listenAdapter);
-
-		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
-			
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
-				String item = ((TextView) view).getText().toString();
-
-				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
-						.show();
-
-				groupDetail(item);
-			}
-		});
-	}
+//	public void onClickSearch(View view) {
+//
+//		this.lookForParty = new Party();
+//		EditText editText = (EditText) findViewById(R.id.editText_enterGroupName);
+//		this.lookForParty.setName(editText.getText().toString());
+//
+//		Parties parties = this.restClient.searchParties(this.lookForParty);
+//
+//		this.foundParties.addAll(parties.getAllParties());
+//
+//		for (Party party : foundParties) {
+//			if (party.getName() != null || party.getName().isEmpty()) {
+//				this.meineListe.add(party.getName());
+//			}
+//		}
+//		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
+//				android.R.layout.simple_list_item_1, meineListe);
+//
+//		this.listGroups.setAdapter(listenAdapter);
+//
+//		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
+//			
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view,
+//					int position, long id) {
+//
+//				String item = ((TextView) view).getText().toString();
+//
+//				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
+//						.show();
+//
+//				groupDetail(item);
+//			}
+//		});
+//	}
 
 	public void groupDetail(String name) {
 		Intent intent = new Intent(this, Group_Detail.class);

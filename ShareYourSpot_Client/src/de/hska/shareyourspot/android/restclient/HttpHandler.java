@@ -29,27 +29,21 @@ import android.os.StrictMode;
 import android.provider.Settings;
 
 abstract class HttpHandler {
-	
+
 	public final String xmlHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
-	
-	public HttpHandler()
-	{
+
+	public HttpHandler() {
 		if (android.os.Build.VERSION.SDK_INT > 9) {
-			StrictMode.ThreadPolicy policy = 
-			        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+					.permitAll().build();
 			StrictMode.setThreadPolicy(policy);
-			}	
+		}
 	}
-	
+
 	public static enum DomainType {
-		User,
-		Party,
-		Post,
-		Users,
-		Parties,
-		Posts
+		User, Party, Post, Users, Parties, Posts
 	};
-	
+
 	protected Object get(String uri, DomainType type) {
 		Object obj = null;
 		try {
@@ -65,7 +59,7 @@ abstract class HttpHandler {
 					(conn.getInputStream())));
 			String output = br.readLine();
 			obj = deserialize(output, type);
-			
+
 			conn.disconnect();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -105,13 +99,16 @@ abstract class HttpHandler {
 				os.write(input.getBytes());
 			os.flush();
 			statusCode = conn.getResponseCode();
-			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED &&
-				conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED &&
-				conn.getResponseCode() != HttpURLConnection.HTTP_NOT_FOUND
-				)  {
-				
-				// TODO ERRORHANDLING
-				return HttpURLConnection.HTTP_CLIENT_TIMEOUT;
+			try {
+				if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED
+						&& conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED
+						&& conn.getResponseCode() != HttpURLConnection.HTTP_NOT_FOUND) {
+
+					// TODO ERRORHANDLING
+					return HttpURLConnection.HTTP_CLIENT_TIMEOUT;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					(conn.getInputStream())));
@@ -129,11 +126,11 @@ abstract class HttpHandler {
 		}
 		return statusCode;
 	}
-	
+
 	protected Object post(String uri, String input, DomainType type) {
 		int statusCode = 0;
 		Object object = null;
-		
+
 		try {
 			input = xmlHeader + input;
 			URL url = new URL(uri);
@@ -146,33 +143,34 @@ abstract class HttpHandler {
 				os.write(input.getBytes());
 			os.flush();
 			statusCode = conn.getResponseCode();
-
-			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED &&
-				conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED &&
-				conn.getResponseCode() != HttpURLConnection.HTTP_OK)  {
-				throw new RuntimeException("Failed : HTTP error code : "
-						+ conn.getResponseCode());
+			try {
+				if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED
+						&& conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED
+						&& conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+					throw new RuntimeException("Failed : HTTP error code : "
+							+ conn.getResponseCode());
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					(conn.getInputStream())));
 			String output;
 			System.out.println("Output from Server .... \n");
 			String xmlString = "";
 			while ((output = br.readLine()) != null) {
-				if(output!= null)
-				{
-				xmlString += output;
-				System.out.println(output);
+				if (output != null) {
+					xmlString += output;
+					System.out.println(output);
 				}
 
 			}
-			
+
 			object = deserialize(xmlString, type);
 			statusCode = conn.getResponseCode();
 			System.out.println(statusCode);
 			conn.disconnect();
-			
+
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -235,5 +233,5 @@ abstract class HttpHandler {
 		}
 		return null;
 	}
-	
+
 }

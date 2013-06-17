@@ -8,6 +8,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Transient;
 
 @Root(name = "user")
 public class User {
@@ -33,8 +34,8 @@ public class User {
 	@Element(required=false)
 	private Date modified;
 	
-	@ElementList(name="userInParty", required=false)
-	private List<Long> partyIds;
+	@Element(required=false, name="newParties")
+	private Parties parties;
 
 	public User(){}
 	
@@ -82,18 +83,17 @@ public class User {
 		this.created = created;
 	}
 	
-	public List<Long> getPartyIds() {
-		return this.partyIds;
+	public Parties getParties() {
+		return parties;
 	}
-	
-	public void setPartyIds(List<Long> partyIds) {
-		this.partyIds = partyIds;
+
+	public void setParties(Parties parties) {
+		this.parties = parties;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "UserId=" + userId + ", email=" + email + ", name=" + name;
 	}
-	
 	
 }
