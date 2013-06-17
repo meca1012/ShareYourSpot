@@ -110,6 +110,11 @@ public class NewGroup extends Activity {
 			toNewPost();
 			finish();
 			break;
+			
+		case R.id.action_groups:
+			  showGroups();
+		        finish();
+		    break;
 
 
 	  default:
@@ -127,6 +132,11 @@ public class NewGroup extends Activity {
 		
 	public void toNewPost() {
 		Intent intent = new Intent(this, NewPost.class);
+		startActivity(intent);
+	}
+	
+	public void showGroups() {
+		Intent intent = new Intent(this, Groups.class);
 		startActivity(intent);
 	}
 	
