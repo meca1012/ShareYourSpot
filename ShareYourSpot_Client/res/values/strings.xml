@@ -52,7 +52,7 @@
     <string name="your_groups">Your Groups</string>
     <string name="enter_text">Enter Text</string>
     <string name="title_activity_post_list">Post List</string>
-    <string name="title_activity_post_Detail">Post Detail</string>
+    <string name="title_activity_post_Detail">Post</string>
     <string name="newPost">New Post</string>
     <string name="title_activity_new_post">NewPost</string>
     <string name="latest_posts">Latest Posts</string>
@@ -61,9 +61,11 @@
     <string name="title_activity_friends">Friends</string>
     <string name="title_activity_groups">Groups</string>
     <string name="spot_text">Spot Text</string>
-    <string name="title_activity_group__detail">Group_Detail</string>
-    <string name="join_group">Join Group</string>
+    <string name="title_activity_group__detail">Details</string>
+    <string name="join_group">join</string>
     <string name="description">Description</string>
     <string name="postlist">Post List</string>
+    <string name="title_activity_my_groups">MyGroups</string>
+     <string name="all_groups">All Groups</string>
 
 </resources>

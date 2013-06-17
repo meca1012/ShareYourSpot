@@ -9,31 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Groups" >
 
-    <Button
-        android:id="@+id/button1"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText_enterGroupName"
-        android:layout_toRightOf="@+id/editText_enterGroupName"
-        android:text="@string/search" />
-
-    <Button
-        android:id="@+id/btn_newgroup"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="13dp"
-        android:onClick="newGroup"
-        android:text="@string/new_group" />
-
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText_enterGroupName"
-        android:layout_below="@+id/editText_enterGroupName"
         android:layout_marginTop="20dp"
         android:text="@string/your_groups"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -46,18 +25,5 @@
         android:layout_below="@+id/textView1"
         android:layout_marginTop="20dp" >
     </ListView>
-
-    <EditText
-        android:id="@+id/editText_enterGroupName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btn_newgroup"
-        android:layout_below="@+id/btn_newgroup"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="@string/enter_name" >
-
-        <requestFocus />
-    </EditText>
 
 </RelativeLayout>

@@ -133,25 +133,7 @@ public class Groups extends Activity {
 	}
 
 
-	public void newGroup(View view) {
-		Intent intent = new Intent(this, NewGroup.class);
-		startActivity(intent);
-	}
-
-	public void toPostList() {
-		Intent intent = new Intent(this, PostList.class);
-		startActivity(intent);
-	}
 	
-//	public void toNewGroup() {
-//		Intent intent = new Intent(this, NewGroup.class);
-//		startActivity(intent);
-//	}
-	
-	public void toNewPost() {
-		Intent intent = new Intent(this, NewPost.class);
-		startActivity(intent);
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -174,15 +156,12 @@ public class Groups extends Activity {
 			finish();
 			break;
 
-//		case R.id.action_newGroup:
-//			toNewGroup();
-//			finish();
-//			break;
-			
-		case R.id.action_new_post:
-			toNewPost();
+		case R.id.action_newGroup:
+			toNewGroup();
 			finish();
 			break;
+			
+		
 			
 			
 		// Respond to the action bar's Up/Home button
@@ -210,5 +189,18 @@ public class Groups extends Activity {
 
 		return true;
 	}
+	
+
+	public void toPostList() {
+		Intent intent = new Intent(this, PostList.class);
+		startActivity(intent);
+	}
+	
+	public void toNewGroup() {
+		Intent intent = new Intent(this, NewGroup.class);
+		startActivity(intent);
+	}
+	
+	
 
 }
