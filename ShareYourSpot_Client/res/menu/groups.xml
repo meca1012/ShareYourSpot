@@ -2,7 +2,7 @@
 
     <item
         android:id="@+id/action_postlist"
-        android:icon="@drawable/camera"
+        android:icon="@drawable/postlist"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
         android:title="@string/postlist"/>
@@ -16,15 +16,16 @@
     
     <item
         android:id="@+id/action_newGroup"
-        android:icon="@drawable/camera"
+        android:icon="@drawable/group"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
         android:title="@string/new_group"/>
-    <item
+    
+   <item
         android:id="@+id/action_logout"
         android:icon="@drawable/ic_menu_logout"
-        android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
+        android:orderInCategory="100"
         android:title="@string/logout"/>
 
 </menu>

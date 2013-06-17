@@ -30,7 +30,7 @@ public class Post_Detail extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.post_detail, menu);
 		return true;
 	}
 	
@@ -53,7 +53,22 @@ public class Post_Detail extends Activity {
 		  	toGroups();
 	        finish();
 	    break;
-
+	    
+	  case R.id.action_postlist:
+			toPostList();
+			finish();
+			break;
+	    
+	  case R.id.action_newGroup:
+			toNewGroup();
+			finish();
+			break;
+			
+		case R.id.action_new_post:
+			toNewPost();
+			finish();
+			break;
+	   
 	  default:
 	    break;
 	  }
@@ -62,10 +77,28 @@ public class Post_Detail extends Activity {
 	} 
 	
 		
-	public void newGroup(View view) {
-		Intent intent = new Intent(this, Friends.class);
+	public void toNewPost() {
+		Intent intent = new Intent(this, NewPost.class);
 		startActivity(intent);
 	}
+	
+	 public void toPostList() {
+			Intent intent = new Intent(this, PostList.class);
+			startActivity(intent);
+		}
+	 
+	 public void newGroup(View view) {
+			Intent intent = new Intent(this, Friends.class);
+			startActivity(intent);
+		}
+		
+	public void toNewGroup() {
+			Intent intent = new Intent(this, NewGroup.class);
+			startActivity(intent);
+		}
+	    
+	
+	
 	
 	public void newPostCreate(View view) {
 		Intent intent = new Intent(this, NewPost.class);
