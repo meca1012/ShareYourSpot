@@ -1,9 +1,12 @@
 package de.hska.shareyourspot.android.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root(name = "user")
@@ -30,6 +33,9 @@ public class User {
 	@Element(required=false)
 	private Date modified;
 	
+	@ElementList(required=false)
+	private List<Long> partyIds;
+
 	public User(){}
 	
 	public User(String nEmail, String nName, String nPassword){
@@ -74,6 +80,14 @@ public class User {
 	}
 	public void setCreated(Date created) {
 		this.created = created;
+	}
+	
+	public List<Long> getPartyIds() {
+		return this.partyIds;
+	}
+	
+	public void setPartyIds(List<Long> partyIds) {
+		this.partyIds = partyIds;
 	}
 	
 	@Override
