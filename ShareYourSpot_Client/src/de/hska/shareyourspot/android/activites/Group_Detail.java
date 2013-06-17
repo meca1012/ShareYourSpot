@@ -78,7 +78,7 @@ public class Group_Detail extends Activity {
 	  return true;
 	} 
 	
-	public void joinGroup() throws IOException{
+	public void joinGroup(View view) throws IOException{
 //		TODO: implement joinGroup in Rest
 		User user = uStore.getUser(ctx);
 		List<Long> parties = new ArrayList<Long>();

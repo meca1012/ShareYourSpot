@@ -33,7 +33,7 @@ public class User {
 	@Element(required=false)
 	private Date modified;
 	
-	@ElementList(required=false)
+	@ElementList(name="userInParty", required=false)
 	private List<Long> partyIds;
 
 	public User(){}
