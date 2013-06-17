@@ -39,7 +39,7 @@ public class Groups extends Activity {
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
 
-	public final String groupName = "groupName";
+	public final String groupId = "groupId";
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -58,7 +58,7 @@ public class Groups extends Activity {
 
 			this.foundParties.addAll(parties.getAllParties());
 
-			for (Party party : foundParties) {
+			for (Party party : this.foundParties) {
 				if (party.getName() != null || party.getName().isEmpty()) {
 					this.meineListe.add(party.getName());
 				}
@@ -122,7 +122,13 @@ public class Groups extends Activity {
 
 	public void groupDetail(String name) {
 		Intent intent = new Intent(this, Group_Detail.class);
-		intent.putExtra(groupName, name);
+						 
+		for (Party party : this.foundParties) {
+				if (party.getName().equalsIgnoreCase(name)) {
+					intent.putExtra(this.groupId,Long.valueOf(party.getPartyId()));
+				}
+		}
+				
 		startActivity(intent);
 	}
 

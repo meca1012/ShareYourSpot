@@ -76,15 +76,15 @@ public class RestClient extends HttpHandler {
 		return user;
 	}
 
-	public Party joinGroup(Party party) {
+	public User joinGroup(User user) {
 		// Integer responseCode = -1;
 		String url = BASE_URL + "/member/addUserToParty";
-		String xmlObjectStr = serialize(party);
+		String xmlObjectStr = serialize(user);
 		if (xmlObjectStr != null) {
-			party = (Party) post(url, xmlObjectStr, DomainType.Party);
+			user = (User) post(url, xmlObjectStr, DomainType.User);
 		}
 		// return responseCode;
-		return party;
+		return user;
 	}
 
 	public User loginUser(User user) {
@@ -122,6 +122,12 @@ public class RestClient extends HttpHandler {
 		String url = BASE_URL + "/member/getAllParties";
 		Parties parties = (Parties) get(url, DomainType.Parties);
 		return parties;
+	}
+	
+	public Party getParty(Long id) {
+		String url = BASE_URL + "/member/getParty/" + id;
+		Party party= (Party) get(url, DomainType.Party);
+		return party;
 	}
 	
 }

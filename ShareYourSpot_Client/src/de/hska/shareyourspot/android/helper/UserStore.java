@@ -1,8 +1,7 @@
 package de.hska.shareyourspot.android.helper;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -13,12 +12,9 @@ import org.simpleframework.xml.core.Persister;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Environment;
 
 import de.hska.shareyourspot.android.activites.MainActivity;
 import de.hska.shareyourspot.android.domain.User;
-
-
 
 public class UserStore {
 
