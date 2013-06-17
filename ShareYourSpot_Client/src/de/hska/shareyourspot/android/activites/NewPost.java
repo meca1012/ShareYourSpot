@@ -58,6 +58,15 @@ public class NewPost extends Activity {
 	        finish();
 	    break;
 
+	  case R.id.action_postlist:
+			toPostList();
+			finish();
+			break;
+
+		case R.id.action_newGroup:
+			toNewGroup();
+			finish();
+			break;
 
 	  default:
 	    break;
@@ -66,6 +75,15 @@ public class NewPost extends Activity {
 	  return true;
 	} 
 	
+	public void toPostList() {
+		Intent intent = new Intent(this, PostList.class);
+		startActivity(intent);
+	}
+	
+	public void toNewGroup() {
+		Intent intent = new Intent(this, NewGroup.class);
+		startActivity(intent);
+	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
