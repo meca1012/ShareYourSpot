@@ -14,13 +14,7 @@
         android:showAsAction="ifRoom|withText"
         android:title="@string/newPost"/>
     
-    <item
-        android:id="@+id/action_newGroup"
-        android:icon="@drawable/group"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/new_group"/>
-    
+       
    <item
         android:id="@+id/action_logout"
         android:icon="@drawable/ic_menu_logout"
