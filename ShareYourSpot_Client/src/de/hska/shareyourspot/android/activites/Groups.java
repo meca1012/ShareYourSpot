@@ -156,7 +156,7 @@ public class Groups extends Activity {
 			finish();
 			break;
 
-		case R.id.action_newGroup:
+		case R.id.action_new_group:
 			toNewGroup();
 			finish();
 			break;
