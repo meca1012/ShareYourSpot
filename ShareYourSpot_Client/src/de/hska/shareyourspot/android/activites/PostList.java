@@ -1,7 +1,10 @@
 package de.hska.shareyourspot.android.activites;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.android.gms.internal.em;
 
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Party;
@@ -10,6 +13,7 @@ import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.Posts;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.UserStore;
+import de.hska.shareyourspot.android.restclient.RestClient;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -29,8 +33,11 @@ import android.widget.AdapterView.OnItemClickListener;
 public class PostList extends Activity {
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
-	private List<Post> posts;
+	private Posts posts;
+	private Posts returnPost;
 	private List<String> postsTitle;
+	private RestClient restclient = new RestClient();
+
 	public final String postId = "postId";
 	
 	@Override
@@ -38,28 +45,25 @@ public class PostList extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_post_list);
-			// __ MOCK
+		this.posts = new Posts();
 			
-			Posts posts = new Posts();
-			Post post1 = new Post("Post 1", new Picture(),new Party());
-			Post post2 = new Post("Post 2", new Picture(),new Party());
-			Post post3 = new Post("Post 3", new Picture(),new Party());
-			Post post4 = new Post("Post 4", new Picture(),new Party());
-			posts.addPost(post1);
-			posts.addPost(post2);
-			posts.addPost(post3);
-			posts.addPost(post4);
-		
-			// __
-
-			// TODO: add users to listUsers on UI
-			this.posts = new ArrayList<Post>();
-		
-			this.posts.addAll(posts.getAllPosts());
+		try {
+			returnPost = restclient.getPostByUser(uStore.getUser(ctx));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 			
+			if(returnPost == null)
+			{
+				returnPost = new Posts();
+				Post emptyPost = new Post();
+				emptyPost.setText("No Posts To Show");
+				returnPost.addPost(emptyPost);
+			}
+			this.posts.addPostList(returnPost.getAllPosts());
 			this.postsTitle = new ArrayList<String>();
-			
-			for (Post post : this.posts) {
+			for (Post post : this.posts.getAllPosts()) {
 				this.postsTitle.add(post.getText());
 				}
 			

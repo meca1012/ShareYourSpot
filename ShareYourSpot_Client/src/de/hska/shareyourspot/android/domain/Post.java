@@ -52,6 +52,9 @@ public class Post implements Constants, Serializable {
 		this.picture = pic;
 		this.party = group;
 	}
+	
+	public Post()
+	{}
 
 	public Long getPostId() {
 		return postId;
