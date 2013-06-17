@@ -3,46 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <Button
-        android:id="@+id/btn_groups"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn_PostList"
-        android:layout_toRightOf="@+id/btn_PostList"
-        android:onClick="newGroup"
-        android:text="@string/groups" />
-
-    <Button
-        android:id="@+id/btn_PostList"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:onClick="showPostList"
-        android:text="@string/title_activity_post_list" />
-
-    <Button
-        android:id="@+id/btn_new_post"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn_groups"
-        android:layout_alignBottom="@+id/btn_groups"
-        android:layout_toRightOf="@+id/btn_groups"
-        android:onClick="newPostCreate"
-        android:text="@string/newPost" />
-
     <EditText
         android:id="@+id/editText_enter_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btn_PostList"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="79dp"
+        android:layout_marginLeft="30dp"
         android:ems="10"
         android:hint="@string/enter_text" >
 
@@ -74,21 +41,20 @@
         android:src="@drawable/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView_spot_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_spotter"
-        android:layout_alignTop="@+id/imageView_load_picture"
-        android:text="@string/spot_text" />
-
-    <TextView
         android:id="@+id/textView_spotter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btn_PostList"
-        android:layout_below="@+id/btn_PostList"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="59dp"
         android:text="@string/spotter"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView_spot_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText_enter_text"
+        android:layout_alignTop="@+id/imageView_load_picture"
+        android:text="@string/spot_text" />
 
 </RelativeLayout>

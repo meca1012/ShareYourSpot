@@ -10,15 +10,6 @@
     tools:context=".Groups" >
 
     <Button
-        android:id="@+id/btn_PostList"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"        
-        android:layout_toRightOf="@+id/btn_newgroup"
-        android:onClick="showSpots"
-        android:text="@string/title_activity_post_list" />
-
-    <Button
         android:id="@+id/button1"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -32,8 +23,6 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn_PostList"
-        android:layout_alignBottom="@+id/btn_PostList"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="13dp"
         android:onClick="newGroup"
@@ -49,19 +38,6 @@
         android:text="@string/your_groups"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <EditText
-        android:id="@+id/editText_enterGroupName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btn_newgroup"
-        android:layout_below="@+id/btn_PostList"
-        android:layout_marginTop="22dp"
-        android:ems="10"
-        android:hint="@string/enter_name" >
-
-        <requestFocus />
-    </EditText>
-
     <ListView
         android:id="@+id/list_groups"
         android:layout_width="match_parent"
@@ -70,5 +46,18 @@
         android:layout_below="@+id/textView1"
         android:layout_marginTop="20dp" >
     </ListView>
+
+    <EditText
+        android:id="@+id/editText_enterGroupName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_newgroup"
+        android:layout_below="@+id/btn_newgroup"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:hint="@string/enter_name" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>

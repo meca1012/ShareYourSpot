@@ -59,11 +59,7 @@ public class Post_Detail extends Activity {
 			finish();
 			break;
 	    
-	  case R.id.action_newGroup:
-			toNewGroup();
-			finish();
-			break;
-			
+	  			
 		case R.id.action_new_post:
 			toNewPost();
 			finish();
@@ -87,28 +83,8 @@ public class Post_Detail extends Activity {
 			startActivity(intent);
 		}
 	 
-	 public void newGroup(View view) {
-			Intent intent = new Intent(this, Friends.class);
-			startActivity(intent);
-		}
-		
-	public void toNewGroup() {
-			Intent intent = new Intent(this, NewGroup.class);
-			startActivity(intent);
-		}
-	    
-	
-	
-	
-	public void newPostCreate(View view) {
-		Intent intent = new Intent(this, NewPost.class);
-		startActivity(intent);
-	}
-	
-	public void showPostList(View view) {
-		Intent intent = new Intent(this, PostList.class);
-		startActivity(intent);
-	}
+			
+	    	
 	
 	public void toGroups() {
 		Intent intent = new Intent(this, Groups.class);

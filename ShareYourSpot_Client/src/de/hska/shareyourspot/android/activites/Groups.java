@@ -132,10 +132,6 @@ public class Groups extends Activity {
 		startActivity(intent);
 	}
 
-	public void showSpots(View view) {
-		Intent intent = new Intent(this, PostList.class);
-		startActivity(intent);
-	}
 
 	public void newGroup(View view) {
 		Intent intent = new Intent(this, NewGroup.class);
@@ -147,10 +143,10 @@ public class Groups extends Activity {
 		startActivity(intent);
 	}
 	
-	public void toNewGroup() {
-		Intent intent = new Intent(this, NewGroup.class);
-		startActivity(intent);
-	}
+//	public void toNewGroup() {
+//		Intent intent = new Intent(this, NewGroup.class);
+//		startActivity(intent);
+//	}
 	
 	public void toNewPost() {
 		Intent intent = new Intent(this, NewPost.class);
@@ -178,10 +174,10 @@ public class Groups extends Activity {
 			finish();
 			break;
 
-		case R.id.action_newGroup:
-			toNewGroup();
-			finish();
-			break;
+//		case R.id.action_newGroup:
+//			toNewGroup();
+//			finish();
+//			break;
 			
 		case R.id.action_new_post:
 			toNewPost();

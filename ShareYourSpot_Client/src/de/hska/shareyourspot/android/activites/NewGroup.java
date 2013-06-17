@@ -52,11 +52,7 @@ public class NewGroup extends Activity {
 			finish();
 			break;
 
-		case R.id.action_newGroup:
-			toNewGroup();
-			finish();
-			break;
-			
+					
 		case R.id.action_new_post:
 			toNewPost();
 			finish();
@@ -75,11 +71,7 @@ public class NewGroup extends Activity {
 		startActivity(intent);
 	}
 	
-	public void toNewGroup() {
-		Intent intent = new Intent(this, NewGroup.class);
-		startActivity(intent);
-	}
-	
+		
 	public void toNewPost() {
 		Intent intent = new Intent(this, NewPost.class);
 		startActivity(intent);
