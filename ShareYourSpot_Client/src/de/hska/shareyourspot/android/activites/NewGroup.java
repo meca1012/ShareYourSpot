@@ -38,6 +38,45 @@ public class NewGroup extends Activity {
 	public final String groupId = "groupId";
 	
 	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.newgroup);
+		
+		this.lookForParty = new Party();
+		EditText editText = (EditText) findViewById(R.id.editText2);
+		this.lookForParty.setName(editText.getText().toString());
+
+		Parties parties = this.restClient.getAllParties();
+
+		this.foundParties.addAll(parties.getAllParties());
+
+		for (Party party : foundParties) {
+			if (party.getName() != null || party.getName().isEmpty()) {
+				this.meineListe.add(party.getName());
+			}
+		}
+		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, meineListe);
+
+		this.listGroups.setAdapter(listenAdapter);
+
+		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
+			
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				String item = ((TextView) view).getText().toString();
+
+				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
+						.show();
+
+				groupDetail(item);
+			}
+		});
+	}
+	
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.new_group, menu);
@@ -50,7 +89,7 @@ public class NewGroup extends Activity {
 		EditText editText = (EditText) findViewById(R.id.editText2);
 		this.lookForParty.setName(editText.getText().toString());
 
-		Parties parties = this.restClient.searchParties(this.lookForParty);
+		Parties parties = this.restClient.getAllParties();
 
 		this.foundParties.addAll(parties.getAllParties());
 
@@ -130,12 +169,7 @@ public class NewGroup extends Activity {
 		startActivity(intent);
 	}
 	
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.newgroup);
 
-	}
 		
 	
 		
