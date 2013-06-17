@@ -16,6 +16,7 @@ public class RestClient extends HttpHandler {
 	// "http://192.168.178.63:8080/ShareYourSpot/rest";
 
 	public static String BASE_URL = "http://10.85.41.8:8080/ShareYourSpot-1/rest";
+
 	//public static String BASE_URL = "http://10.0.2.2:8080/ShareYourSpot-1/rest";
 
 	public User getBenutzerXML() {
@@ -40,7 +41,7 @@ public class RestClient extends HttpHandler {
 		String xmlObjectStr = serialize(post);
 		System.out.println(xmlObjectStr);
 		if (xmlObjectStr != null) {
-			post = (Post)post(url, xmlObjectStr, DomainType.Post);
+			post = (Post) post(url, xmlObjectStr, DomainType.Post);
 		}
 		return post;
 	}
@@ -109,39 +110,41 @@ public class RestClient extends HttpHandler {
 		return foundUsers;
 	}
 	
-	public Parties searchParties(Party party) {
+	//	allParties
+	public Parties getAllParties() {
+		String url = BASE_URL + "/member/getAllParties";
+		Parties parties = (Parties) get(url, DomainType.Parties);
+		return parties;
+	}
+
+	public Parties getPartiesByName(Party party) {
 		Parties parties = null;
-		String url = BASE_URL + "/member/findParty";
+		String url = BASE_URL + "/member/getPartiesByName";
 		String xmlObjectStr = serialize(party);
 		if (xmlObjectStr != null) {
 			parties = (Parties) post(url, xmlObjectStr, DomainType.Parties);
 		}
 		return parties;
 	}
-	
-	public Parties getParties() {
-		String url = BASE_URL + "/member/getAllParties";
-		Parties parties = (Parties) get(url, DomainType.Parties);
-		return parties;
-	}
-	
 
-	public Parties getPartiesForUser(User u) {
+	// myParties
+	public Parties getPartiesByUser(User u) {
 		Parties p = new Parties();
 		String url = BASE_URL + "/member/getPartiesByUser";
 		String xmlObjectStr = serialize(u);
-	
+
 		if (xmlObjectStr != null) {
 			p = (Parties) post(url, xmlObjectStr, DomainType.Parties);
 		}
 		return p;
-}
+	}
+
 	public Party getParty(Long id) {
 		String url = BASE_URL + "/member/getParty/" + id;
-		Party party= (Party) get(url, DomainType.Party);
+		Party party = (Party) get(url, DomainType.Party);
 		return party;
 	}
-	
+
 }
 
 // SAMPLES

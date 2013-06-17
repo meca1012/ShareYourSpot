@@ -55,7 +55,7 @@ public class NewPost extends Activity {
 		Parties parties = new Parties();
 		this.groupList = new ArrayList();
 		try {
-			parties = restClient.getPartiesForUser(uStore.getUser(ctx));
+			parties = restClient.getPartiesByUser(uStore.getUser(ctx));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

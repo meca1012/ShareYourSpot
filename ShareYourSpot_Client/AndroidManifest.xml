@@ -51,7 +51,7 @@
         </activity>
         <activity
             android:name="de.hska.shareyourspot.android.activites.PostList"
-            android:label="@string/title_activity_post_list"        
+            android:label="@string/title_activity_post_list"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -142,11 +142,15 @@
         <activity
             android:name="de.hska.shareyourspot.android.activites.Group_Detail"
             android:label="@string/title_activity_group__detail"
-             android:parentActivityName="de.hska.shareyourspot.android.activites.Groups"
+            android:parentActivityName="de.hska.shareyourspot.android.activites.Groups"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="de.hska.shareyourspot.android.activites.Groups" />
+        </activity>
+        <activity
+            android:name="de.hska.shareyourspot.android.activites.MyGroups"
+            android:label="@string/title_activity_my_groups" >
         </activity>
     </application>
 

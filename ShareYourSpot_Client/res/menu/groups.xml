@@ -1,26 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+     <item
+        android:id="@+id/action_new_group"
+        android:icon="@drawable/newgroup"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/new_group"/>
+    
     <item
         android:id="@+id/action_postlist"
         android:icon="@drawable/postlist"
         android:orderInCategory="100"
         android:showAsAction="ifRoom|withText"
-        android:title="@string/postlist"/>
-    
-    <item
-        android:id="@+id/action_new_post"
-        android:icon="@drawable/camera"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/newPost"/>
-    
-    <item
-        android:id="@+id/action_newGroup"
-        android:icon="@drawable/group"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/new_group"/>
-    
+        android:title="@string/postlist"/>    
+       
    <item
         android:id="@+id/action_logout"
         android:icon="@drawable/ic_menu_logout"
