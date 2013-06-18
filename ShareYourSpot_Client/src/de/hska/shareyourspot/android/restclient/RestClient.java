@@ -5,6 +5,7 @@ import java.util.List;
 
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
+import de.hska.shareyourspot.android.domain.Posts;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.Users;
@@ -12,12 +13,9 @@ import de.hska.shareyourspot.android.restclient.HttpHandler.DomainType;
 
 public class RestClient extends HttpHandler {
 
-	// public static String BASE_URL =
-	// "http://192.168.178.63:8080/ShareYourSpot/rest";
-
 	public static String BASE_URL = "http://10.85.41.8:8080/ShareYourSpot-1/rest";
-
-//	public static String BASE_URL = "http://10.0.2.2:8080/ShareYourSpot-1/rest";
+	//public static String BASE_URL = "http://192.168.0.18:8080/ShareYourSpot-1/rest";
+	//public static String BASE_URL = "http://10.0.2.2:8080/ShareYourSpot-1/rest";
 
 	public User getBenutzerXML() {
 		String url = BASE_URL + "/member/getUserXML";
@@ -143,6 +141,17 @@ public class RestClient extends HttpHandler {
 		String url = BASE_URL + "/member/getParty/" + id;
 		Party party = (Party) get(url, DomainType.Party);
 		return party;
+	}
+
+	public Posts getPostByUser(User user) {
+		Posts p = new Posts();
+		String url = BASE_URL + "/post/getAllPosts";
+		String xmlObjectStr = serialize(user);
+
+		if (xmlObjectStr != null) {
+			p = (Posts) post(url, xmlObjectStr, DomainType.Posts);
+		}
+		return p;
 	}
 
 }

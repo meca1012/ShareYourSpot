@@ -18,6 +18,7 @@ import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Picture;
 import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.User;
+import de.hska.shareyourspot.android.helper.AlertHelper;
 import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
@@ -153,12 +154,14 @@ public class NewPost extends Activity {
 		Bitmap bitmap = bitmapDrawable .getBitmap();
 		Bitmap bitmap_thumbnail = bitmapDrawable .getBitmap();
 		
+		//Create ThumbNail
 		Float width = new Float(bitmap_thumbnail.getWidth());
 		Float height = new Float(bitmap_thumbnail.getHeight());
 		Float ratio = width/height;
 		
 		bitmap_thumbnail = Bitmap.createScaledBitmap(bitmap_thumbnail, (int)(THUMBNAIL_SIZE * ratio), THUMBNAIL_SIZE, false);
 		
+		//Create
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
 		byte[] imageInByte = stream.toByteArray();
@@ -167,6 +170,8 @@ public class NewPost extends Activity {
 		bitmap_thumbnail.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
 		byte[] thumbInByte = stream.toByteArray();
 	
+		
+		//Create Post
 		Picture pic = new Picture();
 		pic.setImgData(imageInByte);
 		pic.setImgType(Bitmap.CompressFormat.JPEG.toString());
@@ -191,26 +196,20 @@ public class NewPost extends Activity {
 		Party party = new Party();
 		party.setName(group);
 		
+		// Create Picutre on Server
+		
 		
 		// Create Post
 		// TODO GroupSeleced
-		Post post = new Post(postText, pic, party);
+		
+		Post post = new Post(postText, party);
+		post.setPicture(1L);
 		post.setCreatedByUser(uStore.getUser(ctx));
-		post.setPreviewImage(thumbInByte);
-		post.setPreviewImageType(Bitmap.CompressFormat.JPEG.toString());
 		restClient.createPost(post);
 		
-		//Test
-		Serializer serializer = new Persister();
-		String output = null;
-		ByteArrayOutputStream os = new ByteArrayOutputStream();
-		try {
-			serializer.write(post, os);
-			output = new String(os.toByteArray());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println(output.toString());
+		
+		Intent intent = new Intent(this, PostList.class);
+		startActivity(intent);
 
 
 	}

@@ -1,13 +1,12 @@
 package de.hska.shareyourspot.android.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
 import de.hska.shareyourspot.android.helper.Constants;
-import de.hska.shareyourspot.android.domain.Picture;
+
 
 @Root
 public class Post implements Constants, Serializable {
@@ -24,13 +23,7 @@ public class Post implements Constants, Serializable {
 	private Party postedInParty;
 
 	@Element(required=false)
-	private byte[] previewImage;
-
-	@Element(required=false)
-	private String previewImageType;
-
-	@Element(required=false)
-	private Picture picture;
+	private Long picture;
 
 	@Element(required=false)
 	private String text;
@@ -38,20 +31,22 @@ public class Post implements Constants, Serializable {
 	//private List<Comment> comments;
 
 	@Element(required=false)
-	private Date created;
+	private Long created;
 
 	@Element(required=false)
-	private Date modified;
+	private Long modified;
 
 	@Element(required=false)
 	// TODO: add mapping
 	private Party party;
 
-	public Post(String text, Picture pic, Party group) {
+	public Post(String text,Party group) {
 		this.text = text;
-		this.picture = pic;
 		this.party = group;
 	}
+	
+	public Post()
+	{}
 
 	public Long getPostId() {
 		return postId;
@@ -61,28 +56,20 @@ public class Post implements Constants, Serializable {
 		this.postId = postId;
 	}
 
+	public Long getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Long picture) {
+		this.picture = picture;
+	}
+
 	public User getCreatedByUser() {
 		return createdByUser;
 	}
 
 	public void setCreatedByUser(User createdByUser) {
 		this.createdByUser = createdByUser;
-	}
-
-	public byte[] getPreviewImage() {
-		return previewImage;
-	}
-
-	public void setPreviewImage(byte[] previewImage) {
-		this.previewImage = previewImage;
-	}
-
-	public String getPreviewImageType() {
-		return previewImageType;
-	}
-
-	public void setPreviewImageType(String previewImageType) {
-		this.previewImageType = previewImageType;
 	}
 
 	// public Picture getPicture() {
@@ -100,11 +87,11 @@ public class Post implements Constants, Serializable {
 		this.text = text;
 	}
 
-	public Date getCreated() {
+	public Long getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(Long created) {
 		this.created = created;
 	}
 

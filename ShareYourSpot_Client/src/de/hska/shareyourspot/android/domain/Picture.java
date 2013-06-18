@@ -32,10 +32,10 @@ public class Picture implements Serializable {
 	private Double longitude;
 
 	@Element(required=false)
-	private Date created;
+	private Long created;
 
 	@Element(required=false)
-	private Date modified;
+	private Long modified;
 	
 	public Picture() {
 	}
@@ -80,19 +80,19 @@ public class Picture implements Serializable {
 		this.longitude = longitude;
 	}
 
-	public Date getCreated() {
+	public Long getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(Long created) {
 		this.created = created;
 	}
 
-	public Date getModified() {
+	public Long getModified() {
 		return modified;
 	}
 
-	public void setModified(Date modified) {
+	public void setModified(Long modified) {
 		this.modified = modified;
 	}
 
