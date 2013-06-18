@@ -1,5 +1,7 @@
 package de.hska.shareyourspot.android.activites;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.helper.AlertHelper;
@@ -20,9 +22,10 @@ public class Post_Detail extends Activity {
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
 	private RestClient restClient = new RestClient();
-	private Post post; 
-
+	protected Post post; 
 	public final String postId = "postId";
+	public final String longitude = "longitude";
+	public final String latitude = "latitude";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +36,7 @@ public class Post_Detail extends Activity {
 		if(this.post != null)
 		{
 		TextView spotterName = (TextView) findViewById(R.id.textView_spotter);
-		spotterName.setText(this.post.getCreatedByUser().getName());
+		spotterName.setText("# Shared by " + this.post.getCreatedByUser().getName());
 		
 		TextView spotText = (TextView) findViewById(R.id.textView_spot_text);
 		spotText.setText(this.post.getText());
@@ -101,7 +104,14 @@ public class Post_Detail extends Activity {
 			startActivity(intent);
 		}
 	 
-			
+		public void startMap(View view) {
+			//TODO Karlruhe gegen Postdatenersetzen
+			LatLng test = new LatLng(49.014,  8.4043);
+			Intent intent = new Intent(this, GoogleMaps.class);
+			intent.putExtra(this.longitude, test.longitude);
+			intent.putExtra(this.latitude,  test.latitude);
+			startActivity(intent);
+		}
 	    	
 	
 	public void toGroups() {
