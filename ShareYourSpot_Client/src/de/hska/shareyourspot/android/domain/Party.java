@@ -1,6 +1,7 @@
 package de.hska.shareyourspot.android.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,8 +23,19 @@ public class Party implements Serializable{
 	@Element(required=false)
 	private String name;
 
-	@ElementList(required=false)
-	private List<User> usersInParty;
+	@ElementList(required=false, name="userInParty")
+	private List<User> userInParty;
+	
+	@ElementList(name = "userInParties", required=false)
+	private ArrayList<Long> userIdsInParty;
+	
+	public ArrayList<Long> getUserIdsInParty() {
+		return this.userIdsInParty;
+	}
+	
+	public void setUserIdsInParty(ArrayList<Long> userIdsInParty) {
+		this.userIdsInParty = userIdsInParty;
+	}
 
 	@ElementList(required=false)
 	private List<Post> postsOfParty;
@@ -53,12 +65,12 @@ public class Party implements Serializable{
 		this.name = name;
 	}
 
-	public List<User> getUsersInParty() {
-		return usersInParty;
+	public List<User> getUserInParty() {
+		return userInParty;
 	}
 
-	public void setUsersInParty(List<User> usersInParty) {
-		this.usersInParty = usersInParty;
+	public void setUserInParty(List<User> userInParty) {
+		this.userInParty = userInParty;
 	}
 
 	public List<Post> getPostsOfParty() {

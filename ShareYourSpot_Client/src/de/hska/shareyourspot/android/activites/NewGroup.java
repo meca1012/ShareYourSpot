@@ -27,7 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class NewGroup extends Activity {
-	
+
 	private RestClient restClient = new RestClient();
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
@@ -42,20 +42,24 @@ public class NewGroup extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newgroup);
-
+		this.meineListe = new ArrayList<String>();
+		this.foundParties = new ArrayList<Party>();
 		this.lookForParty = new Party();
+		this.listGroups = (ListView) findViewById(R.id.list_FriendsToGroup);
 		EditText editText = (EditText) findViewById(R.id.editText2);
 		this.lookForParty.setName(editText.getText().toString());
 
 		Parties parties = this.restClient.getAllParties();
+		if (parties != null) {
+			this.foundParties.addAll(parties.getAllParties());
 
-		this.foundParties.addAll(parties.getAllParties());
-
-		for (Party party : foundParties) {
-			if (party.getName() != null || party.getName().isEmpty()) {
-				this.meineListe.add(party.getName());
+			for (Party party : foundParties) {
+				if (party.getName() != null || party.getName().isEmpty()) {
+					this.meineListe.add(party.getName());
+				}
 			}
 		}
+		this.meineListe.add("");
 		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, meineListe);
 
@@ -85,7 +89,8 @@ public class NewGroup extends Activity {
 	}
 
 	public void onClickSearch(View view) {
-
+		this.meineListe = new ArrayList<String>();
+		this.foundParties = new ArrayList<Party>();
 		this.lookForParty = new Party();
 		EditText editText = (EditText) findViewById(R.id.editText2);
 		this.lookForParty.setName(editText.getText().toString());
@@ -178,7 +183,7 @@ public class NewGroup extends Activity {
 		List<User> newUsers = new ArrayList<User>();
 		User user = uStore.getUser(ctx);
 		newUsers.add(user);
-		this.newParty.setUsersInParty(newUsers);
+		this.newParty.setUserInParty(newUsers);
 
 		int i = this.restClient.createGroup(this.newParty);
 		System.out.println(i);
