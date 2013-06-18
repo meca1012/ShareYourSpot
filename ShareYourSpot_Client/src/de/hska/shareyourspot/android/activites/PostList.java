@@ -65,18 +65,9 @@ public class PostList extends Activity {
 			e.printStackTrace();
 		}
 			
-			if(returnPost == null)
+			if(returnPost != null)
 			{
-				returnPost = new Posts();
-				Post emptyPost = new Post();
-				emptyPost.setCreated(System.currentTimeMillis());
-				emptyPost.setCreatedByUser(user);
-				emptyPost.setText("No Posts To Show");
-				returnPost.addPost(emptyPost);
-				
-			}
-			this.posts.addPostList(returnPost.getAllPosts());
-			this.postsTitle = new ArrayList<String>();
+				this.postsTitle = new ArrayList<String>();
 			
 			for (Post post : this.posts.getAllPosts()) {
 				Date createDate = new Date(post.getCreated());
@@ -110,6 +101,19 @@ public class PostList extends Activity {
 				}
 			});
 
+			}
+			else
+			{
+			
+			returnPost = new Posts();
+			this.postsTitle = new ArrayList<String>();
+			this.postsTitle.add("No Spots...you better start sharing!");
+			ListAdapter listenAdapter = new ArrayAdapter<String>(this,
+					android.R.layout.simple_list_item_1, this.postsTitle);
+
+			ListView listUsers = (ListView) findViewById(R.id.list);
+			listUsers.setAdapter(listenAdapter);
+			}
 			
 	}
 
