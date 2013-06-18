@@ -9,6 +9,10 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+import de.hska.shareyourspot.android.domain.lists.LongPartyIds;
+import de.hska.shareyourspot.android.domain.lists.LongPostIds;
+import de.hska.shareyourspot.android.domain.lists.LongUserIds;
+
 @Root(name = "party")
 public class Party implements Serializable{
 	
@@ -22,23 +26,12 @@ public class Party implements Serializable{
 	
 	@Element(required=false)
 	private String name;
-
-	@ElementList(required=false, name="userInParties")
-	private List<User> userInParty;
 	
-	@ElementList(name = "usersInParty", required=false)
-	private List<Long> userIdsInParty;
+	@Element(required=false)
+	private LongUserIds usersInParty;
 	
-	public List<Long> getUserIdsInParty() {
-		return this.userIdsInParty;
-	}
-	
-	public void setUserIdsInParty(List<Long> userIdsInParty) {
-		this.userIdsInParty = userIdsInParty;
-	}
-
-	@ElementList(required=false)
-	private List<Post> postsOfParty;
+	@Element(required=false)
+	private LongPostIds postsOfParty;
 	
 	@Element(required=false)
 	private Long created;
@@ -65,22 +58,6 @@ public class Party implements Serializable{
 		this.name = name;
 	}
 
-	public List<User> getUserInParty() {
-		return userInParty;
-	}
-
-	public void setUserInParty(List<User> userInParty) {
-		this.userInParty = userInParty;
-	}
-
-	public List<Post> getPostsOfParty() {
-		return postsOfParty;
-	}
-
-	public void setPostsOfParty(List<Post> postsOfParty) {
-		this.postsOfParty = postsOfParty;
-	}
-
 	public Long getCreated() {
 		return created;
 	}
@@ -95,6 +72,18 @@ public class Party implements Serializable{
 
 	public void setModified(Long modified) {
 		this.modified = modified;
+	}
+
+	public LongUserIds getUsersInParty() {
+		return usersInParty;
+	}
+
+	public void setUsersInParty(LongUserIds usersInParty) {
+		this.usersInParty = usersInParty;
+	}
+
+	public void setPostsOfParty(LongPostIds postsOfParty) {
+		this.postsOfParty = postsOfParty;
 	}
 	
 }

@@ -8,6 +8,7 @@ import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.User;
+import de.hska.shareyourspot.android.domain.lists.LongPartyIds;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.os.Bundle;
@@ -82,11 +83,11 @@ public class Group_Detail extends Activity {
 	public void joinGroup(View view) throws IOException{
 //		TODO: implement joinGroup in Rest
 		User user = uStore.getUser(ctx);
-		Parties parties = new Parties();
-		Party party = new Party();
-		party.setPartyId(Long.valueOf(this.group));
-		parties.addParty(party);	
-		user.setParties(parties);
+
+		LongPartyIds parties = new LongPartyIds();
+
+		parties.setParties(Long.valueOf(this.group));	
+		user.setPartiesOfUser(parties);
 		user = this.restClient.joinGroup(user);
 		System.out.println("implement me");
 		toGroups();

@@ -7,6 +7,8 @@ import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Transient;
 
+import de.hska.shareyourspot.android.domain.lists.LongPartyIds;
+
 @Root(name = "user")
 public class User {
 	
@@ -31,8 +33,8 @@ public class User {
 	@Element(required=false)
 	private Long modified;
 	
-	@Element(required=false, name="newParties")
-	private Parties parties;
+	@Element(required=false)
+	private LongPartyIds partiesOfUser;
 
 	public User(){}
 	
@@ -79,13 +81,13 @@ public class User {
 	public void setCreated(Long created) {
 		this.created = created;
 	}
-	
-	public Parties getParties() {
-		return parties;
+
+	public LongPartyIds getPartiesOfUser() {
+		return partiesOfUser;
 	}
 
-	public void setParties(Parties parties) {
-		this.parties = parties;
+	public void setPartiesOfUser(LongPartyIds partiesOfUser) {
+		this.partiesOfUser = partiesOfUser;
 	}
 
 	@Override

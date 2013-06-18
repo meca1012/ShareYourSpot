@@ -1,18 +1,16 @@
 package de.hska.shareyourspot.android.domain.lists;
 
-import static javax.xml.bind.annotation.XmlAccessType.FIELD;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
-@XmlRootElement(name = "LongPostIds")
-@XmlAccessorType(FIELD)
+@Root(name = "longPostIds")
 public class LongPostIds {
 
-	@XmlElement(name = "postId")
+	@Element(name = "postId")
 	private List<Long> posts;
 	
 	public LongPostIds() {
@@ -26,6 +24,14 @@ public class LongPostIds {
 	public void setPosts(List<Long> posts) {
 		this.posts = posts;
 	}
+	
+	public void setPosts(Long postId) {
+		if(this.posts == null){
+			this.posts = new ArrayList<Long>();
+		}
+		this.posts.add(postId);
+	}
+	
 }
 
 

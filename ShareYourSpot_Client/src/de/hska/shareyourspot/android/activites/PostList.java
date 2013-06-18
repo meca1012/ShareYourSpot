@@ -49,6 +49,14 @@ public class PostList extends Activity {
 		
 		setContentView(R.layout.activity_post_list);
 		this.posts = new Posts();
+		
+		User user = null;
+		try {
+			user = uStore.getUser(ctx);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 			
 		try {
 			returnPost = restclient.getPostByUser(uStore.getUser(ctx));
@@ -61,8 +69,11 @@ public class PostList extends Activity {
 			{
 				returnPost = new Posts();
 				Post emptyPost = new Post();
+				emptyPost.setCreated(System.currentTimeMillis());
+				emptyPost.setCreatedByUser(user);
 				emptyPost.setText("No Posts To Show");
 				returnPost.addPost(emptyPost);
+				
 			}
 			this.posts.addPostList(returnPost.getAllPosts());
 			this.postsTitle = new ArrayList<String>();

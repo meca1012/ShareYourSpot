@@ -74,8 +74,9 @@ public class Groups extends Activity {
 					this.meineListe.add(party.getName());
 				}
 			}
-		}else{
-		this.meineListe.add("");}
+		}
+//		else{
+//		this.meineListe.add("");}
 
 		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, meineListe);

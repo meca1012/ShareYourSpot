@@ -8,6 +8,7 @@ import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.User;
+import de.hska.shareyourspot.android.domain.lists.LongUserIds;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.app.Activity;
@@ -58,8 +59,9 @@ public class NewGroup extends Activity {
 					this.meineListe.add(party.getName());
 				}
 			}
-		}else{
-		this.meineListe.add("");}
+		}
+//		else{
+//		this.meineListe.add("");}
 		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, meineListe);
 
@@ -86,43 +88,6 @@ public class NewGroup extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.new_group, menu);
 		return true;
-	}
-
-	public void onClickSearch(View view) {
-		this.meineListe = new ArrayList<String>();
-		this.foundParties = new ArrayList<Party>();
-		this.lookForParty = new Party();
-		EditText editText = (EditText) findViewById(R.id.editText2);
-		this.lookForParty.setName(editText.getText().toString());
-
-		Parties parties = this.restClient.getAllParties();
-if(parties!=null){
-		this.foundParties.addAll(parties.getAllParties());
-
-		for (Party party : foundParties) {
-			if (party.getName() != null || party.getName().isEmpty()) {
-				this.meineListe.add(party.getName());
-			}
-		}}else{this.meineListe.add("");}
-		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, meineListe);
-
-		this.listGroups.setAdapter(listenAdapter);
-
-		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
-				String item = ((TextView) view).getText().toString();
-
-				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
-						.show();
-
-				groupDetail(item);
-			}
-		});
 	}
 
 	public void groupDetail(String name) {
@@ -179,11 +144,13 @@ if(parties!=null){
 		EditText groupname = (EditText) findViewById(R.id.editText1);
 		this.newParty = new Party();
 		this.newParty.setName(groupname.getText().toString());
-
-		ArrayList<Long> newUsers = new ArrayList<Long>();
+		
 		User user = uStore.getUser(ctx);
-		newUsers.add(user.getUserId());
-		this.newParty.setUserIdsInParty(newUsers);
+
+		LongUserIds lui = new LongUserIds();
+		lui.setUsers(user.getUserId());
+		
+		this.newParty.setUsersInParty(lui);
 
 		int i = this.restClient.createGroup(this.newParty);
 		System.out.println(i);
@@ -199,16 +166,57 @@ if(parties!=null){
 		this.newParty.setName(groupname.getText().toString());
 
 		Party party = this.restClient.getPartyByName(this.newParty);
-	if(party!=null){
-		this.meineListe.add(party.getName());
-	}else{
-	this.meineListe.add("");}
+		if (party != null) {
+			this.meineListe.add(party.getName());
+		} 
+//		else {
+//			this.meineListe.add("");
+//		}
+		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, meineListe);
+
+		this.listGroups.setAdapter(listenAdapter);
+	}
+	
+	public void onClickSearch(View view) {
+		this.meineListe = new ArrayList<String>();
+		this.foundParties = new ArrayList<Party>();
+		this.lookForParty = new Party();
+		EditText editText = (EditText) findViewById(R.id.editText2);
+		this.lookForParty.setName(editText.getText().toString());
+
+		Parties parties = this.restClient.getAllParties();
+		if (parties != null) {
+			this.foundParties.addAll(parties.getAllParties());
+
+			for (Party party : foundParties) {
+				if (party.getName() != null || party.getName().isEmpty()) {
+					this.meineListe.add(party.getName());
+				}
+			}
+		} 
+//		else {
+//			this.meineListe.add("");
+//		}
 		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, meineListe);
 
 		this.listGroups.setAdapter(listenAdapter);
 
+		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
 
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				String item = ((TextView) view).getText().toString();
+
+				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
+						.show();
+
+				groupDetail(item);
+			}
+		});
 	}
 
 }
