@@ -20,16 +20,19 @@ import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
 
 public class GoogleMaps extends FragmentActivity {
-		static final LatLng KARLSRUHE = new LatLng(49.014,  8.4043);
-
+		
 	  
 	  private GoogleMap map;
 	  private GoogleMapsHelper mapsHelper;
-	  
+	  public final String longitude = "longitude";
+	  public final String latitude = "latitude";
+	  private LatLng coordinates;
+		
 	  @Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_google_maps);
+	    coordinates = new LatLng(getIntent().getDoubleExtra(latitude, 49.014), getIntent().getDoubleExtra(longitude,  8.4043));
 	    
 //	    DefaultHttpClient httpclient = new DefaultHttpClient();
 //	    HttpHost proxy = new HttpHost("proxy.hs-karlrsuhe.de", 8888);
@@ -43,10 +46,10 @@ public class GoogleMaps extends FragmentActivity {
 			return;
 		}
 		
-	    Marker mapSpot = map.addMarker(new MarkerOptions().position(KARLSRUHE).title("Karlsruhe"));
+	    Marker mapSpot = map.addMarker(new MarkerOptions().position(coordinates).title("Spot"));
 
 	    // Move the camera instantly to hamburg with a zoom of 15.
-	    map.moveCamera(CameraUpdateFactory.newLatLngZoom(KARLSRUHE, 15));
+	    map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 15));
 
 	    // Zoom in, animating the camera.
 	    map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
