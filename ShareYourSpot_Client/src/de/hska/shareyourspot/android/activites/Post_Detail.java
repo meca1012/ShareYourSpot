@@ -1,7 +1,10 @@
 package de.hska.shareyourspot.android.activites;
 
 import de.hska.shareyourspot.android.R;
+import de.hska.shareyourspot.android.domain.Post;
+import de.hska.shareyourspot.android.helper.AlertHelper;
 import de.hska.shareyourspot.android.helper.UserStore;
+import de.hska.shareyourspot.android.restclient.RestClient;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -16,17 +19,32 @@ public class Post_Detail extends Activity {
 	
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
+	private RestClient restClient = new RestClient();
+	private Post post; 
 
 	public final String postId = "postId";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		int groupNr = getIntent().getIntExtra(postId, 0);
+		long postIdent = getIntent().getLongExtra(postId, 0);
 		setContentView(R.layout.activity_post_detail);
+		this.post = this.restClient.getPost(postIdent);
+		
+		if(this.post != null)
+		{
+		TextView spotterName = (TextView) findViewById(R.id.textView_spotter);
+		spotterName.setText(this.post.getCreatedByUser().getName());
+		
 		TextView spotText = (TextView) findViewById(R.id.textView_spot_text);
-		spotText.setText("POST NR. "  + groupNr  + " was tiped");
+		spotText.setText(this.post.getText());
+		}
+		else
+		{
+			new AlertHelper(ctx, R.string.dataLoadFailureTitle,
+					R.string.dataLoadFailureText, "Next Try").fireAlert();
+		}
+		
 	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

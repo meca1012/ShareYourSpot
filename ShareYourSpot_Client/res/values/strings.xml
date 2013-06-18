@@ -33,6 +33,8 @@
     <string name="getButtonText">Get</string>
     <string name="clearButtonText">Clear</string>
     <string name="getResultText">Get</string>
+     <string name="dataLoadFailureTitle">Data loading failed</string>
+     <string name="dataLoadFailureText">Data loading failed</string>
     <string name="loginFailureTitle">Login-Issue</string>
     <string name="loginFailureText">Please check your Logindata</string>
     <string name="passwordsNotMatchingTitle">Passwords-Issue</string>

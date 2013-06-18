@@ -2,6 +2,7 @@ package de.hska.shareyourspot.android.activites;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.android.gms.internal.em;
@@ -33,9 +34,11 @@ import android.widget.AdapterView.OnItemClickListener;
 public class PostList extends Activity {
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
-	private Posts posts;
+	protected Posts posts;
 	private Posts returnPost;
 	private List<String> postsTitle;
+	private int maxPostLength = 35;
+	private int count = 1;
 	private RestClient restclient = new RestClient();
 
 	public final String postId = "postId";
@@ -63,11 +66,24 @@ public class PostList extends Activity {
 			}
 			this.posts.addPostList(returnPost.getAllPosts());
 			this.postsTitle = new ArrayList<String>();
+			
 			for (Post post : this.posts.getAllPosts()) {
-				this.postsTitle.add(post.getText());
+				Date createDate = new Date(post.getCreated());
+				String username = post.getCreatedByUser().getName();
+				String posttext = username + " spottet: " + post.getText();
+				
+				if(posttext.length() >= this.maxPostLength)
+				{
+					posttext = count + "#- " + posttext.substring(0, maxPostLength) + "...";
 				}
-			
-			
+				else
+				{
+					posttext = count +  "#- " + posttext;
+				}
+
+				this.postsTitle.add(posttext);
+				count++;
+			}
 			ListAdapter listenAdapter = new ArrayAdapter<String>(this,
 					android.R.layout.simple_list_item_1, this.postsTitle);
 
@@ -76,17 +92,19 @@ public class PostList extends Activity {
 
 			listUsers.setOnItemClickListener(new OnItemClickListener() {
 				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-					startPostDetail(position);
+				public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+					List<Post> postList = posts.getAllPosts();
+					Long postId = postList.get(position).getPostId();
+					startPostDetail(postId);
 				}
 			});
 
 			
 	}
 
-	public void startPostDetail(int id)
+	public void startPostDetail(Long id)
 	{
+		System.out.println(this.posts.toString());
 		Intent intent = new Intent(this, Post_Detail.class);
 		intent.putExtra(postId, id);
 		startActivity(intent);

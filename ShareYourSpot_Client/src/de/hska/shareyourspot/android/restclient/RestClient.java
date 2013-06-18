@@ -144,6 +144,12 @@ public class RestClient extends HttpHandler {
 		Party party = (Party) get(url, DomainType.Party);
 		return party;
 	}
+	
+	public Post getPost(Long id) {
+		String url = BASE_URL + "/post/getPost/" + id;
+		Post post = (Post) get(url, DomainType.Post);
+		return post;
+	}
 
 	public Posts getPostByUser(User user) {
 		Posts p = new Posts();
