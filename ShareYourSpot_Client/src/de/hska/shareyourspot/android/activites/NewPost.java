@@ -191,13 +191,15 @@ public class NewPost extends Activity {
 		Party party = new Party();
 		party.setName(group);
 		
+		// Create Picutre on Server
+		
 		
 		// Create Post
 		// TODO GroupSeleced
-		Post post = new Post(postText, pic, party);
+		
+		Post post = new Post(postText, party);
+		post.setPicture(1L);
 		post.setCreatedByUser(uStore.getUser(ctx));
-		post.setPreviewImage(thumbInByte);
-		post.setPreviewImageType(Bitmap.CompressFormat.JPEG.toString());
 		restClient.createPost(post);
 		
 		//Test
