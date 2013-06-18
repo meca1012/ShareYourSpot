@@ -58,8 +58,8 @@ public class NewGroup extends Activity {
 					this.meineListe.add(party.getName());
 				}
 			}
-		}
-		this.meineListe.add("");
+		}else{
+		this.meineListe.add("");}
 		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, meineListe);
 
@@ -96,14 +96,14 @@ public class NewGroup extends Activity {
 		this.lookForParty.setName(editText.getText().toString());
 
 		Parties parties = this.restClient.getAllParties();
-
+if(parties!=null){
 		this.foundParties.addAll(parties.getAllParties());
 
 		for (Party party : foundParties) {
 			if (party.getName() != null || party.getName().isEmpty()) {
 				this.meineListe.add(party.getName());
 			}
-		}
+		}}else{this.meineListe.add("");}
 		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, meineListe);
 
@@ -180,16 +180,35 @@ public class NewGroup extends Activity {
 		this.newParty = new Party();
 		this.newParty.setName(groupname.getText().toString());
 
-		List<User> newUsers = new ArrayList<User>();
+		ArrayList<Long> newUsers = new ArrayList<Long>();
 		User user = uStore.getUser(ctx);
-		newUsers.add(user);
-		this.newParty.setUserInParty(newUsers);
+		newUsers.add(user.getUserId());
+		this.newParty.setUserIdsInParty(newUsers);
 
 		int i = this.restClient.createGroup(this.newParty);
 		System.out.println(i);
 
 		Intent intent = new Intent(this, Groups.class);
 		startActivity(intent);
+	}
+	
+	public void searchGroup(View view) {
+	
+		EditText groupname = (EditText) findViewById(R.id.editText2);
+		this.newParty = new Party();
+		this.newParty.setName(groupname.getText().toString());
+
+		Party party = this.restClient.getPartyByName(this.newParty);
+	if(party!=null){
+		this.meineListe.add(party.getName());
+	}else{
+	this.meineListe.add("");}
+		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, meineListe);
+
+		this.listGroups.setAdapter(listenAdapter);
+
+
 	}
 
 }

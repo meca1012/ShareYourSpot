@@ -9,7 +9,7 @@ import org.simpleframework.xml.Root;
 @Root(name="parties")
 public class Parties {
 
-		@ElementList(inline=true)
+		@ElementList(inline=true, name="party")
 		private ArrayList<Party> parties;
 
 		public Parties() {
