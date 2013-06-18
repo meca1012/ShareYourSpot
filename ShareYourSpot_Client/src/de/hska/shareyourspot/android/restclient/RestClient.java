@@ -13,8 +13,6 @@ import de.hska.shareyourspot.android.restclient.HttpHandler.DomainType;
 
 public class RestClient extends HttpHandler {
 
-	// public static String BASE_URL =
-	// "http://192.168.178.63:8080/ShareYourSpot/rest";
 	public static String BASE_URL = "http://10.85.41.8:8080/ShareYourSpot-1/rest";
 	//public static String BASE_URL = "http://192.168.0.18:8080/ShareYourSpot-1/rest";
 	//public static String BASE_URL = "http://10.0.2.2:8080/ShareYourSpot-1/rest";
@@ -117,14 +115,14 @@ public class RestClient extends HttpHandler {
 		return parties;
 	}
 
-	public Parties getPartiesByName(Party party) {
-		Parties parties = null;
-		String url = BASE_URL + "/member/getPartiesByName";
+	public Party getPartyByName(Party party) {
+		Party returnParty = new Party();
+		String url = BASE_URL + "/member/getPartyByName";
 		String xmlObjectStr = serialize(party);
 		if (xmlObjectStr != null) {
-			parties = (Parties) post(url, xmlObjectStr, DomainType.Parties);
+			returnParty = (Party) post(url, xmlObjectStr, DomainType.Party);
 		}
-		return parties;
+		return returnParty;
 	}
 
 	// myParties
