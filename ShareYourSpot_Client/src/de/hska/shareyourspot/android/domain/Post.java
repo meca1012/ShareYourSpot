@@ -1,13 +1,12 @@
 package de.hska.shareyourspot.android.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
 import de.hska.shareyourspot.android.helper.Constants;
-import de.hska.shareyourspot.android.domain.Picture;
+
 
 @Root
 public class Post implements Constants, Serializable {
@@ -32,10 +31,10 @@ public class Post implements Constants, Serializable {
 	//private List<Comment> comments;
 
 	@Element(required=false)
-	private Date created;
+	private Long created;
 
 	@Element(required=false)
-	private Date modified;
+	private Long modified;
 
 	@Element(required=false)
 	// TODO: add mapping
@@ -88,11 +87,11 @@ public class Post implements Constants, Serializable {
 		this.text = text;
 	}
 
-	public Date getCreated() {
+	public Long getCreated() {
 		return created;
 	}
 
-	public void setCreated(Date created) {
+	public void setCreated(Long created) {
 		this.created = created;
 	}
 

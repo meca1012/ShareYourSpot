@@ -129,6 +129,7 @@ abstract class HttpHandler {
 
 	protected Object post(String uri, String input, DomainType type) {
 		int statusCode = 0;
+
 		Object object = null;
 
 		try {
