@@ -27,13 +27,13 @@ public class Party implements Serializable{
 	private List<User> userInParty;
 	
 	@ElementList(name = "usersInParty", required=false)
-	private ArrayList<Long> userIdsInParty;
+	private List<Long> userIdsInParty;
 	
-	public ArrayList<Long> getUserIdsInParty() {
+	public List<Long> getUserIdsInParty() {
 		return this.userIdsInParty;
 	}
 	
-	public void setUserIdsInParty(ArrayList<Long> userIdsInParty) {
+	public void setUserIdsInParty(List<Long> userIdsInParty) {
 		this.userIdsInParty = userIdsInParty;
 	}
 
