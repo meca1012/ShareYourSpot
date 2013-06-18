@@ -23,10 +23,10 @@ public class Party implements Serializable{
 	@Element(required=false)
 	private String name;
 
-	@ElementList(required=false, name="userInParty")
+	@ElementList(required=false, name="userInParties")
 	private List<User> userInParty;
 	
-	@ElementList(name = "userInParties", required=false)
+	@ElementList(name = "usersInParty", required=false)
 	private ArrayList<Long> userIdsInParty;
 	
 	public ArrayList<Long> getUserIdsInParty() {
