@@ -39,6 +39,7 @@ import android.widget.TextView;
 
 public class NewPost extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+	private static final int PICTURE_COMPRESS_RATE = 50;
 	private UserStore uStore = new UserStore();
 	private RestClient restClient = new RestClient();
 	private Context ctx = this;
@@ -59,6 +60,14 @@ public class NewPost extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(parties == null)
+			{
+				Party p = new Party();
+				p.setName("No Groups joined");
+				
+				parties = new Parties();
+				parties.addParty(p);
+			}
 		for(Party party : parties.getAllParties())
 		{
 			this.groupList.add(party.getName());
@@ -151,11 +160,11 @@ public class NewPost extends Activity {
 		bitmap_thumbnail = Bitmap.createScaledBitmap(bitmap_thumbnail, (int)(THUMBNAIL_SIZE * ratio), THUMBNAIL_SIZE, false);
 		
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+		bitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
 		byte[] imageInByte = stream.toByteArray();
 
 		stream = new ByteArrayOutputStream();
-		bitmap_thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+		bitmap_thumbnail.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
 		byte[] thumbInByte = stream.toByteArray();
 	
 		Picture pic = new Picture();

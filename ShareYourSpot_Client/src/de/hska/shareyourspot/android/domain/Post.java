@@ -9,7 +9,7 @@ import org.simpleframework.xml.Root;
 import de.hska.shareyourspot.android.helper.Constants;
 import de.hska.shareyourspot.android.domain.Picture;
 
-@Root(name = "user")
+@Root
 public class Post implements Constants, Serializable {
 
 	private static final long serialVersionUID = -7769905910137170288L;
