@@ -58,6 +58,7 @@ abstract class HttpHandler {
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					(conn.getInputStream())));
 			String output = br.readLine();
+			System.out.println(output);
 			obj = deserialize(output, type);
 
 			conn.disconnect();
