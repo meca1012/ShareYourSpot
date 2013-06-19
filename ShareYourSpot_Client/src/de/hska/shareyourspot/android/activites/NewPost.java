@@ -46,13 +46,12 @@ import de.hska.shareyourspot.android.restclient.RestClient;
 
 public class NewPost extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-	private static final int PICTURE_COMPRESS_RATE = 50;
+	private static final int PICTURE_COMPRESS_RATE = 100;
 	private UserStore uStore = new UserStore();
 	private RestClient restClient = new RestClient();
 	private Parties parties = new Parties();
 	private Context ctx = this;
 	private List<String> groupList;
-	private int THUMBNAIL_SIZE = 64;
 	
 	//TODO CHANGE TO DB DATA
 	

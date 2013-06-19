@@ -35,7 +35,6 @@ public class PostList extends Activity {
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
 	protected Posts posts;
-	private Posts returnPost;
 	private List<String> postsTitle;
 	private int maxPostLength = 35;
 	private int count = 1;
@@ -59,13 +58,13 @@ public class PostList extends Activity {
 		}
 			
 		try {
-			returnPost = restclient.getPostByUser(uStore.getUser(ctx));
+			this.posts = restclient.getPostByUser(uStore.getUser(ctx));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 			
-			if(returnPost != null)
+			if(this.posts != null)
 			{
 				this.postsTitle = new ArrayList<String>();
 			
@@ -105,7 +104,7 @@ public class PostList extends Activity {
 			else
 			{
 			
-			returnPost = new Posts();
+			this.posts = new Posts();
 			this.postsTitle = new ArrayList<String>();
 			this.postsTitle.add("No Spots...you better start sharing!");
 			ListAdapter listenAdapter = new ArrayAdapter<String>(this,

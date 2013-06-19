@@ -32,7 +32,7 @@ public class User {
 	private Long modified;
 	
 	@Element(required=false)
-	private String partiesOfUser;
+	private String userInParty;
 
 	public User(){}
 	
@@ -81,11 +81,11 @@ public class User {
 	}
 
 	public List<Long> getPartiesOfUser() {
-		return IdListHelper.StringToIdList(this.partiesOfUser);
+		return IdListHelper.StringToIdList(this.userInParty);
 	}
 
 	public void setPartiesOfUser(List<Long> partiesOfUser) {
-		this.partiesOfUser = IdListHelper.ListToString(partiesOfUser);
+		this.userInParty = IdListHelper.ListToString(partiesOfUser);
 	}	
 
 	@Override
