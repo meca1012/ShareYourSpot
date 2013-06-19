@@ -167,6 +167,8 @@ public class NewGroup extends Activity {
 		this.newParty = new Party();
 		this.newParty.setName(groupname.getText().toString());
 
+		this.meineListe = new ArrayList<String>();
+		
 		Party party = this.restClient.getPartyByName(this.newParty);
 		if (party != null) {
 			this.meineListe.add(party.getName());

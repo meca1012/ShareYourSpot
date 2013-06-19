@@ -84,9 +84,9 @@ public class Group_Detail extends Activity {
 //		TODO: implement joinGroup in Rest
 		User user = uStore.getUser(ctx);
 
-		LongPartyIds parties = new LongPartyIds();
+		List<Long> parties = new ArrayList<Long>();
 
-		parties.setParties(Long.valueOf(this.group));	
+		parties.add(Long.valueOf(this.group));	
 		user.setPartiesOfUser(parties);
 		user = this.restClient.joinGroup(user.getUserId(),Long.valueOf(this.group));
 		System.out.println("implement me");
