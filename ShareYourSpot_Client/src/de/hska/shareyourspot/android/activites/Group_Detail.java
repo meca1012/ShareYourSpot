@@ -88,7 +88,7 @@ public class Group_Detail extends Activity {
 
 		parties.setParties(Long.valueOf(this.group));	
 		user.setPartiesOfUser(parties);
-		user = this.restClient.joinGroup(user);
+		user = this.restClient.joinGroup(user.getUserId(),Long.valueOf(this.group));
 		System.out.println("implement me");
 		toGroups();
 	}

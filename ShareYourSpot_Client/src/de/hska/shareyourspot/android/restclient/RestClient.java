@@ -76,7 +76,7 @@ public class RestClient extends HttpHandler {
 		return user;
 	}
 
-	public User joinGroup(User user) {
+	public User addUserToParty(User user) {
 		// Integer responseCode = -1;
 		String url = BASE_URL + "/member/addUserToParty";
 		String xmlObjectStr = serialize(user);
@@ -84,6 +84,12 @@ public class RestClient extends HttpHandler {
 			user = (User) post(url, xmlObjectStr, DomainType.User);
 		}
 		// return responseCode;
+		return user;
+	}
+	
+	public User joinGroup(Long userId, Long partyId) {
+		String url = BASE_URL + "/member/joinGroup/"+userId+"/"+partyId;
+		User user = (User) get(url, DomainType.User);
 		return user;
 	}
 
