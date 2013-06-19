@@ -33,8 +33,8 @@ public class Party implements Serializable{
 	private String usersInParty;
 	
 	@Element(required=false)
-	private LongPostIds postsOfParty;
-	
+	private String postsOfParty;
+
 	@Element(required=false)
 	private Long created;
 
@@ -84,13 +84,23 @@ public class Party implements Serializable{
 		this.usersInParty = IdListHelper.ListToString(usersInParty);;
 	}
 
-	public void addUserToPary(Long id)
+	public void addUserToParty(Long id)
 	{
 		this.usersInParty = IdListHelper.AddSingleIdToString(this.usersInParty, id);;
 	}
-	
-	public void setPostsOfParty(LongPostIds postsOfParty) {
-		this.postsOfParty = postsOfParty;
+		
+	public List<Long> getPostsOfParty() {
+		return IdListHelper.StringToIdList(this.postsOfParty);
+	}
+
+	public void setPostsOfParty(List<Long> postsOfParty) {
+		this.postsOfParty = IdListHelper.ListToString(postsOfParty);
 	}
 	
+	public void addPostToParty(Long id)
+	{
+		this.postsOfParty = IdListHelper.AddSingleIdToString(this.postsOfParty, id);;
+	}
+	
+		
 }
