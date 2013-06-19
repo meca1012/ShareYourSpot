@@ -57,7 +57,7 @@ public class NewGroup extends Activity {
 			this.foundParties.addAll(parties.getAllParties());
 
 			for (Party party : foundParties) {
-				if (party.getName() != null || party.getName().isEmpty()) {
+				if (party.getName() != null) {
 					this.meineListe.add(party.getName());
 				}
 			}
@@ -152,7 +152,7 @@ public class NewGroup extends Activity {
 		
 		User user = uStore.getUser(ctx);
 	
-		this.newParty.addUserToPary(user.getUserId());
+		this.newParty.addUserToParty(user.getUserId());
 
 		int i = this.restClient.createGroup(this.newParty);
 		System.out.println(i);

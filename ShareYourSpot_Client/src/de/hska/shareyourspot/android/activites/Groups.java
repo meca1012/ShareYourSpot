@@ -70,7 +70,7 @@ public class Groups extends Activity {
 			this.foundParties.addAll(parties.getAllParties());
 
 			for (Party party : this.foundParties) {
-				if (party.getName() != null || party.getName().isEmpty()) {
+				if (party.getName() != null) {
 					this.meineListe.add(party.getName());
 				}
 			}
