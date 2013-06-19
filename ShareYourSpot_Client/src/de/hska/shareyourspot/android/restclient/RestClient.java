@@ -159,6 +159,12 @@ public class RestClient extends HttpHandler {
 		}
 		return p;
 	}
+	
+	public boolean storeJpegOnServer(byte[] file, String Filename) throws Exception
+	{
+		executeMultipartPost(BASE_URL + "" , "spotPicture", file);
+		return true;
+	}
 
 }
 

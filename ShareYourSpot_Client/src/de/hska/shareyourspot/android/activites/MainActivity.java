@@ -8,15 +8,18 @@ import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.AlertHelper;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnClickListener{
 
 	private RestClient restClient = new RestClient();
 	final Context context = this;
@@ -25,8 +28,10 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		try {
 			User u = uStore.getUser(context);
+			
 			if (u != null && u.isUserApproved()) {
 				u.setUserApproved(true);
 				uStore.storeUser(this, u);
@@ -38,8 +43,11 @@ public class MainActivity extends Activity {
 			}
 		} catch (IOException e) {
 			setContentView(R.layout.activity_main);
+			findViewById(R.id.loginBtnLogin).setOnClickListener(this);
 		}
+		
 		setContentView(R.layout.activity_main);
+		findViewById(R.id.loginBtnLogin).setOnClickListener(this);
 	}
 
 	@Override
@@ -53,8 +61,8 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, Register.class);
 		startActivity(intent);
 	}
-
-	public void loginAction(View view) {
+	
+	public void loginAction() {
 		User u = new User();
 
 		EditText username = (EditText) findViewById(R.id.loginUsername);
@@ -102,5 +110,35 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 
+	@Override
+	public void onClick(View v) {
+	        v.setEnabled(false);
+	        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+	                private ProgressDialog pd;
+	                @Override
+	                protected void onPreExecute() {
+	                         pd = new ProgressDialog(context);
+	                         pd.setTitle("Login processing...");
+	                         pd.setMessage("Please wait.");
+	                         pd.setCancelable(false);
+	                         pd.setIndeterminate(true);
+	                         pd.show();
+	                }
+	                @Override
+	                protected Void doInBackground(Void... arg0) {
+	                        loginAction();
+	                        return null;
+	                 }
+	                 @Override
+	                 protected void onPostExecute(Void result) {
+	                         pd.dismiss();
+	                 }
+	        };
+	        task.execute((Void[])null);
+	}
+	
+	
+	
+	
 
 }

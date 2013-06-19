@@ -10,6 +10,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 
@@ -25,6 +33,7 @@ import de.hska.shareyourspot.android.domain.Users;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap.CompressFormat;
 import android.os.StrictMode;
 import android.provider.Settings;
 
@@ -234,5 +243,33 @@ abstract class HttpHandler {
 		}
 		return null;
 	}
+    public boolean executeMultipartPost(String url, String filename, byte[] data) throws Exception {
+    	    // TODO Auto-generated method stub
+    	    try {
+    	        HttpClient httpClient = new DefaultHttpClient();
+    	        HttpPost postRequest = 
+    	            new HttpPost(url);
+    	        ByteArrayBody bab = new ByteArrayBody(data, filename);
+    	        MultipartEntity reqEntity = new MultipartEntity(
+    	                HttpMultipartMode.BROWSER_COMPATIBLE);
+    	        reqEntity.addPart("image", bab);
+    	        postRequest.setEntity(reqEntity);
+    	        HttpResponse response = httpClient.execute(postRequest);
+    	        System.out.println("Status is "+response.getStatusLine());
+    	        BufferedReader reader = new BufferedReader(new InputStreamReader(
+    	                response.getEntity().getContent(), "UTF-8"));
+    	        String sResponse;
+    	        StringBuilder s = new StringBuilder();
+    	        while ((sResponse = reader.readLine()) != null) {
+    	            s = s.append(sResponse);
+    	        }
+    	        System.out.println("Response: " + s);
+    	    } catch (Exception e) {
+    	        // handle exception here
+    	        e.printStackTrace();
+    	        return false;
+    	    }
+    	    return true;
+    	}            
+    }
 
-}
