@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +43,8 @@ public class NewGroup extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newgroup);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		this.meineListe = new ArrayList<String>();
 		this.foundParties = new ArrayList<Party>();
 		this.lookForParty = new Party();
@@ -119,12 +122,15 @@ public class NewGroup extends Activity {
 			showGroups();
 			finish();
 			break;
-
+			
 		default:
-			break;
+		    break;
+			
+		case android.R.id.home:
+	        NavUtils.navigateUpFromSameTask(this);
+	        return true;	    
 		}
-
-		return true;
+	    return super.onOptionsItemSelected(item);
 	}
 
 	public void toPostList() {
