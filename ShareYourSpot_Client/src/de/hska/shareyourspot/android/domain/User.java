@@ -1,9 +1,11 @@
 package de.hska.shareyourspot.android.domain;
 
+import java.util.List;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import de.hska.shareyourspot.android.domain.lists.LongPartyIds;
+import de.hska.shareyourspot.android.helper.IdListHelper;
 
 @Root(name = "user")
 public class User {
@@ -30,7 +32,7 @@ public class User {
 	private Long modified;
 	
 	@Element(required=false)
-	private LongPartyIds partiesOfUser;
+	private String partiesOfUser;
 
 	public User(){}
 	
@@ -78,13 +80,13 @@ public class User {
 		this.created = created;
 	}
 
-	public LongPartyIds getPartiesOfUser() {
-		return partiesOfUser;
+	public List<Long> getPartiesOfUser() {
+		return IdListHelper.StringToIdList(this.partiesOfUser);
 	}
 
-	public void setPartiesOfUser(LongPartyIds partiesOfUser) {
-		this.partiesOfUser = partiesOfUser;
-	}
+	public void setPartiesOfUser(List<Long> partiesOfUser) {
+		this.partiesOfUser = IdListHelper.ListToString(partiesOfUser);
+	}	
 
 	@Override
 	public String toString() {
