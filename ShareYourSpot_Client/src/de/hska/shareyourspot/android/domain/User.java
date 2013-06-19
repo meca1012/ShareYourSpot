@@ -1,11 +1,7 @@
 package de.hska.shareyourspot.android.domain;
 
-
-import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
-import org.simpleframework.xml.Transient;
 
 import de.hska.shareyourspot.android.domain.lists.LongPartyIds;
 

@@ -4,14 +4,13 @@ package de.hska.shareyourspot.android.domain.lists;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root(name="longPartyIds")
 public class LongPartyIds {
 
-	@Element(name = "partyId")
+	@ElementList(name = "partyId")
 	private List<Long> parties;
 	
 	public LongPartyIds() {

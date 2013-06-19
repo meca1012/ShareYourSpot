@@ -1,8 +1,9 @@
 package de.hska.shareyourspot.android.domain;
 
-import java.io.Serializable;
-import java.util.Date;
 import static de.hska.shareyourspot.android.helper.Constants.KEINE_ID;
+
+import java.io.Serializable;
+
 import org.simpleframework.xml.Element;
 
 public class Picture implements Serializable {
@@ -12,11 +13,6 @@ public class Picture implements Serializable {
 	 */
 	private static final long serialVersionUID = -4118518519877132454L;
 	
-	public static final String PREFIX = "Picture.";
-	public static final String PICTURE = "findPicture";
-	public static final String PICTURE_BY_ID = PREFIX
-			+ "Picture.findPictureById";
-
 	private Long pictureId = KEINE_ID;
 
 	@Element(required=false)

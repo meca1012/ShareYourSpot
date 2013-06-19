@@ -4,13 +4,13 @@ package de.hska.shareyourspot.android.domain.lists;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root(name = "longPostIds")
 public class LongPostIds {
 
-	@Element(name = "postId")
+	@ElementList(name = "postId")
 	private List<Long> posts;
 	
 	public LongPostIds() {

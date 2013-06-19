@@ -52,14 +52,14 @@
         android:layout_toLeftOf="@+id/imageView_load_picture"
         android:text="@string/spot_text" />
 
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_spot_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:onClick="startMap"
-        android:src="@drawable/common_signin_btn_icon_disabled_light" />
+<!--     <ImageButton -->
+<!--         android:id="@+id/imageButton1" -->
+<!--         android:layout_width="wrap_content" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:layout_below="@+id/textView_spot_text" -->
+<!--         android:layout_centerHorizontal="true" -->
+<!--         android:layout_marginTop="30dp" -->
+<!--         android:onClick="startMap" -->
+<!--         android:src="@drawable/common_signin_btn_icon_disabled_light" /> -->
 
 </RelativeLayout>

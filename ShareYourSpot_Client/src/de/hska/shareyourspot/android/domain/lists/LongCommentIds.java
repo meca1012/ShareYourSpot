@@ -3,13 +3,13 @@ package de.hska.shareyourspot.android.domain.lists;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 @Root(name = "longCommentIds")
 public class LongCommentIds {
 
-	@Element(name = "commentId")
+	@ElementList(name = "commentId")
 	private List<Long> comments;
 	
 	public LongCommentIds() {
