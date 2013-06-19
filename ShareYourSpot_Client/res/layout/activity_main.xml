@@ -46,7 +46,6 @@
         android:layout_alignLeft="@+id/loginPassword"
         android:layout_below="@+id/loginPassword"
         android:layout_marginTop="29dp"
-        android:onClick="loginAction"
         android:text="@string/login" />
 
     <EditText

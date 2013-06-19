@@ -1,35 +1,32 @@
 package de.hska.shareyourspot.android.activites;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-
-
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.core.Persister;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 
-import de.hska.shareyourspot.android.R;
-import de.hska.shareyourspot.android.domain.Parties;
-import de.hska.shareyourspot.android.domain.Party;
-import de.hska.shareyourspot.android.domain.Picture;
-import de.hska.shareyourspot.android.domain.Post;
-import de.hska.shareyourspot.android.domain.User;
-import de.hska.shareyourspot.android.helper.AlertHelper;
-import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
-import de.hska.shareyourspot.android.helper.UserStore;
-import de.hska.shareyourspot.android.restclient.RestClient;
-import android.location.Location;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +34,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import de.hska.shareyourspot.android.R;
+import de.hska.shareyourspot.android.domain.Parties;
+import de.hska.shareyourspot.android.domain.Party;
+import de.hska.shareyourspot.android.domain.Post;
+import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
+import de.hska.shareyourspot.android.helper.UserStore;
+import de.hska.shareyourspot.android.restclient.RestClient;
 
 public class NewPost extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
@@ -144,7 +148,6 @@ public class NewPost extends Activity {
 		TextView txtview = (TextView) findViewById(R.id.postText);
 		String postText = txtview.getText().toString();
 
-		
 		//Build of PictureObject
 		// First get ImageDate from ImageView
 		ImageView imageView = (ImageView)findViewById(R.id.newImagePost);
@@ -152,62 +155,53 @@ public class NewPost extends Activity {
 		
 		BitmapDrawable bitmapDrawable = ((BitmapDrawable) drawable);
 		Bitmap bitmap = bitmapDrawable .getBitmap();
-		Bitmap bitmap_thumbnail = bitmapDrawable .getBitmap();
-		
-		//Create ThumbNail
-		Float width = new Float(bitmap_thumbnail.getWidth());
-		Float height = new Float(bitmap_thumbnail.getHeight());
-		Float ratio = width/height;
-		
-		bitmap_thumbnail = Bitmap.createScaledBitmap(bitmap_thumbnail, (int)(THUMBNAIL_SIZE * ratio), THUMBNAIL_SIZE, false);
+				
+
+		//Get PossitionData
+		Location location = locationHelper.getLocation();
+				
+				//Get selected Group
+				Spinner spinner = (Spinner) findViewById(R.id.groupSpinner);
+				String group = spinner.getSelectedItem().toString();
+				Party party = new Party();
+				party.setName(group);
+				Post post = new Post(postText, party);
+				post.setCreatedByUser(uStore.getUser(ctx));
+				post.setLatitude(location.getLatitude());
+				post.setLongitude(location.getLongitude());
+				Post newPost = restClient.createPost(post);	
 		
 		//Create
+		String path = getCacheDir().toString();
+		File outputDir = new File(path);
+		File f = new File(path+File.separator+ newPost.getPostId() +".jpg");
+
+		        if (!outputDir.exists()) {
+		             outputDir.mkdir();
+
+		        }
+		       
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
 		byte[] imageInByte = stream.toByteArray();
 
-		stream = new ByteArrayOutputStream();
-		bitmap_thumbnail.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
-		byte[] thumbInByte = stream.toByteArray();
-	
-		
-		//Create Post
-		Picture pic = new Picture();
-		pic.setImgData(imageInByte);
-		pic.setImgType(Bitmap.CompressFormat.JPEG.toString());
-		
-		//Get PossitionData
-		Location location = locationHelper.getLocation();
-		
-		if(location == null)
-		{
-			//TODO pic.setLongitude(null);
-			//TODO pic.setLatitude(null);
+        //write the bytes in file
+        FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(f);
+		} catch (FileNotFoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
 		}
-		else
-		{
-			pic.setLongitude(location.getLongitude());
-			pic.setLatitude(location.getLatitude());
+        try {
+			fos.write(imageInByte);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		
-		//Get selected Group
-		Spinner spinner = (Spinner) findViewById(R.id.groupSpinner);
-		String group = spinner.getSelectedItem().toString();
-		Party party = new Party();
-		party.setName(group);
-		
-		// Create Picutre on Server
-		
-		
-		// Create Post
-		// TODO GroupSeleced
-		
-		Post post = new Post(postText, party);
-		post.setPicture(1L);
-		post.setCreatedByUser(uStore.getUser(ctx));
-		restClient.createPost(post);
-		
-		
+
+        new uploadImageAsyncTask().execute(f);	
+				
 		Intent intent = new Intent(this, PostList.class);
 		startActivity(intent);
 
@@ -239,5 +233,156 @@ public class NewPost extends Activity {
 		}
 	}
 	
-	
+	public class ProgressInputStream extends InputStream {
+
+	    /* Key to retrieve progress value from message bundle passed to handler */
+	    public static final String PROGRESS_UPDATE = "progress_update";
+
+	    private static final int TEN_KILOBYTES = 1024 * 40;
+
+	    private InputStream inputStream;
+	    //private Handler handler;
+
+	    private long progress;
+	    private long lastUpdate;
+
+	    private boolean closed;
+
+	    public ProgressInputStream(InputStream inputStream) {
+	        this.inputStream = inputStream;
+
+	        this.progress = 0;
+	        this.lastUpdate = 0;
+
+	        this.closed = false;
+	    }
+
+	    @Override
+	    public int read() throws IOException {
+	        int count = inputStream.read();
+	        return incrementCounterAndUpdateDisplay(count);
+	    }
+
+	    @Override
+	    public int read(byte[] b, int off, int len) throws IOException {
+	        int count = inputStream.read(b, off, len);
+	        return incrementCounterAndUpdateDisplay(count);
+	    }
+
+	    @Override
+	    public void close() throws IOException {
+	        super.close();
+	        if (closed)
+	            throw new IOException("already closed");
+	        closed = true;
+	    }
+
+	    private int incrementCounterAndUpdateDisplay(int count) {
+	        if (count < 0)
+	            progress += count;
+	        lastUpdate = maybeUpdateDisplay(progress, lastUpdate);
+	        return count;
+	    }
+
+	    private long maybeUpdateDisplay(long progress, long lastUpdate) {
+	        if (progress - lastUpdate < TEN_KILOBYTES) {
+	            lastUpdate = progress;
+	            sendLong(PROGRESS_UPDATE, progress);
+	        }
+	        return lastUpdate;
+	    }
+
+	    public void sendLong(String key, long value) {
+	        Bundle data = new Bundle();
+	        data.putLong(key, value);
+
+	        Message message = Message.obtain();
+	        message.setData(data);
+	    }
+	}
+
+	private class uploadImageAsyncTask extends AsyncTask<File, Void, Void> {
+
+		@Override
+		protected Void doInBackground(File... params) {
+	            FTPClient ftpClient = new FTPClient();
+
+	            try {
+					ftpClient.connect(InetAddress
+					        .getByName("hskafeteria.square7.ch"));
+				} catch (SocketException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (UnknownHostException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            try {
+					ftpClient.login("hskafeteria", "hskafeteria");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            try {
+					System.out.println("status :: " + ftpClient.getStatus());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+	            try {
+					ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	                        //Your File path set here 
+//	                        File file = new File("/sdcard/my pictures/image.png");  
+	            BufferedInputStream buffIn = null;
+				try {
+					buffIn = new BufferedInputStream(
+					        new FileInputStream(params[0]));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            ftpClient.enterLocalPassiveMode();
+	            ProgressInputStream progressInput = new ProgressInputStream(
+	                    buffIn);
+
+	            boolean result = false;
+				try {
+					result = ftpClient.storeFile(params[0].getName(),
+					        progressInput);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+	            System.out.println("result is  :: " + result);
+	            try {
+					buffIn.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            try {
+					ftpClient.logout();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	            try {
+					ftpClient.disconnect();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+	            return null;
+		}
+	}
 }

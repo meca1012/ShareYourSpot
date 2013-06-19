@@ -28,6 +28,11 @@ public class Post implements Constants, Serializable {
 	@Element(required=false)
 	private String text;
 	
+	@Element(required=false)
+	private double longitude;
+	
+	@Element(required=false)
+	private double latitude;
 	//private List<Comment> comments;
 
 	@Element(required=false)
@@ -72,19 +77,28 @@ public class Post implements Constants, Serializable {
 		this.createdByUser = createdByUser;
 	}
 
-	// public Picture getPicture() {
-	// return picture;
-	// }
-	// public void setPicture(Picture picture) {
-	// this.picture = picture;
-	// }
-
 	public String getText() {
 		return text;
 	}
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
 	public Long getCreated() {
