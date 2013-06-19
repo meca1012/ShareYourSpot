@@ -62,7 +62,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		startActivity(intent);
 	}
 	
-	public void loginAction() {
+	public boolean loginAction() {
 		User u = new User();
 
 		EditText username = (EditText) findViewById(R.id.loginUsername);
@@ -91,18 +91,21 @@ public class MainActivity extends Activity implements OnClickListener{
 			        intent.putExtra("finish", true);
 			        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
 			        startActivity(intent);
-			        finish();		
+			        finish();	
+			        return true;
 					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 
 			} else {
-				new AlertHelper(context, R.string.loginFailureTitle,
-						R.string.loginFailureText, "Retry").fireAlert();
-			}
-		}
 
+				return false;
+				
+			}
+			return false;
+		}
+		return false;
 	}
 
 	public void restTester(View view) {
@@ -126,8 +129,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	                }
 	                @Override
 	                protected Void doInBackground(Void... arg0) {
-	                        loginAction();
-	                        return null;
+	                       boolean returnval =  loginAction();
+	                       return null;
+	                       
 	                 }
 	                 @Override
 	                 protected void onPostExecute(Void result) {

@@ -156,7 +156,8 @@ abstract class HttpHandler {
 			try {
 				if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED
 						&& conn.getResponseCode() != HttpURLConnection.HTTP_ACCEPTED
-						&& conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
+						&& conn.getResponseCode() != HttpURLConnection.HTTP_OK
+						&& conn.getResponseCode() != HttpURLConnection.HTTP_NO_CONTENT) {
 					throw new RuntimeException("Failed : HTTP error code : "
 							+ conn.getResponseCode());
 				}

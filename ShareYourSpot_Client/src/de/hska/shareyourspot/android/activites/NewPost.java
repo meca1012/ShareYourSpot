@@ -38,6 +38,7 @@ import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
+import de.hska.shareyourspot.android.domain.Posts;
 import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
@@ -47,6 +48,7 @@ public class NewPost extends Activity {
 	private static final int PICTURE_COMPRESS_RATE = 50;
 	private UserStore uStore = new UserStore();
 	private RestClient restClient = new RestClient();
+	private Parties parties = new Parties();
 	private Context ctx = this;
 	private List<String> groupList;
 	private int THUMBNAIL_SIZE = 64;
@@ -57,7 +59,7 @@ public class NewPost extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Parties parties = new Parties();
+		this.parties = new Parties();
 		this.groupList = new ArrayList();
 		try {
 			parties = restClient.getPartiesByUser(uStore.getUser(ctx));
@@ -137,7 +139,23 @@ public class NewPost extends Activity {
 	public void pushPost(View view) throws IOException {
 		
 		//Get LocationHelper
-				
+		Party selectedParty = new Party();
+		if(this.parties == null)
+		{
+			//Hier müssen die parties nachgeladen werden
+		}
+		else
+		{
+			Spinner spinnerView = (Spinner) findViewById(R.id.groupSpinner);
+			String groupSpinnertext = spinnerView.getSelectedItem().toString();
+			for(Party p : this.parties.getAllParties())
+			{
+				if(p.getName() == groupSpinnertext)
+				{
+					selectedParty = p;
+				}
+			}
+		}
 		GoogleMapsHelper locationHelper = new GoogleMapsHelper(this);
 		if(!locationHelper.canGetLocation())
 		{
@@ -160,12 +178,7 @@ public class NewPost extends Activity {
 		//Get PossitionData
 		Location location = locationHelper.getLocation();
 				
-				//Get selected Group
-				Spinner spinner = (Spinner) findViewById(R.id.groupSpinner);
-				String group = spinner.getSelectedItem().toString();
-				Party party = new Party();
-				party.setName(group);
-				Post post = new Post(postText, party);
+				Post post = new Post(postText, selectedParty);
 				post.setCreatedByUser(uStore.getUser(ctx));
 				post.setLatitude(location.getLatitude());
 				post.setLongitude(location.getLongitude());
