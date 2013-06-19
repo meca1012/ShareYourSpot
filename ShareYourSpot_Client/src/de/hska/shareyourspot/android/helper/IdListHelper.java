@@ -7,7 +7,7 @@ public class IdListHelper {
 	
 	public static String addIdtoIdString(String idList, Long id)
 	{
-		return idList += idList + ";"+ id.toString();
+		return idList += ";"+ id.toString();
 	}
 	
 	public static List<Long> StringToIdList(String list)
