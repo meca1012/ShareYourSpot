@@ -329,7 +329,7 @@ public class NewPost extends Activity {
 
 	            try {
 					ftpClient.connect(InetAddress
-					        .getByName("domain"));
+					        .getByName("hskaebusiness.square7.ch"));
 				} catch (SocketException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -341,7 +341,7 @@ public class NewPost extends Activity {
 					e.printStackTrace();
 				}
 	            try {
-					ftpClient.login("user", "pw");
+					ftpClient.login("hskaebusiness_AndroidApp", "123123123");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
