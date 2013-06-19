@@ -39,6 +39,7 @@ import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.Posts;
+import de.hska.shareyourspot.android.helper.AlertHelper;
 import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
@@ -185,6 +186,13 @@ public class NewPost extends Activity {
 				Post newPost = restClient.createPost(post);	
 		
 		//Create
+		if(newPost == null)
+			{
+			new AlertHelper(ctx, R.string.loginFailureTitle,
+					R.string.loginFailureText, "Retry").fireAlert();
+			return;
+			}
+				
 		String path = getCacheDir().toString();
 		File outputDir = new File(path);
 		File f = new File(path+File.separator+ newPost.getPostId() +".jpg");
@@ -322,7 +330,7 @@ public class NewPost extends Activity {
 
 	            try {
 					ftpClient.connect(InetAddress
-					        .getByName("hskafeteria.square7.ch"));
+					        .getByName("domain"));
 				} catch (SocketException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -334,7 +342,7 @@ public class NewPost extends Activity {
 					e.printStackTrace();
 				}
 	            try {
-					ftpClient.login("hskafeteria", "hskafeteria");
+					ftpClient.login("user", "pw");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
