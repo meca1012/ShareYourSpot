@@ -9,9 +9,11 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+import android.provider.SyncStateContract.Helpers;
+
 import de.hska.shareyourspot.android.domain.lists.LongPartyIds;
 import de.hska.shareyourspot.android.domain.lists.LongPostIds;
-import de.hska.shareyourspot.android.domain.lists.LongUserIds;
+import de.hska.shareyourspot.android.helper.IdListHelper;
 
 @Root(name = "party")
 public class Party implements Serializable{
@@ -28,7 +30,7 @@ public class Party implements Serializable{
 	private String name;
 	
 	@Element(required=false)
-	private LongUserIds usersInParty;
+	private String usersInParty;
 	
 	@Element(required=false)
 	private LongPostIds postsOfParty;
@@ -74,14 +76,19 @@ public class Party implements Serializable{
 		this.modified = modified;
 	}
 
-	public LongUserIds getUsersInParty() {
-		return usersInParty;
+	public List<Long> getUsersInParty() {
+		return IdListHelper.StringToIdList(this.usersInParty);
 	}
 
-	public void setUsersInParty(LongUserIds usersInParty) {
-		this.usersInParty = usersInParty;
+	public void setUsersInParty(List<Long> usersInParty) {
+		this.usersInParty = IdListHelper.ListToString(usersInParty);;
 	}
 
+	public void addUserToPary(Long id)
+	{
+		this.usersInParty = IdListHelper.AddSingleIdToString(this.usersInParty, id);;
+	}
+	
 	public void setPostsOfParty(LongPostIds postsOfParty) {
 		this.postsOfParty = postsOfParty;
 	}

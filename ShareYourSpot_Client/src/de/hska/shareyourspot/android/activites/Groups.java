@@ -53,7 +53,7 @@ public class Groups extends Activity {
 		this.meineListe = new ArrayList<String>();
 		this.listGroups = (ListView) findViewById(R.id.list_groups);
 
-		// Parties parties = this.restClient.getAllParties();
+		//Parties parties = this.restClient.getAllParties();
 		User u = null;
 		try {
 			u = uStore.getUser(ctx);

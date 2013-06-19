@@ -8,7 +8,6 @@ import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.User;
-import de.hska.shareyourspot.android.domain.lists.LongUserIds;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.app.Activity;
@@ -146,11 +145,8 @@ public class NewGroup extends Activity {
 		this.newParty.setName(groupname.getText().toString());
 		
 		User user = uStore.getUser(ctx);
-
-		LongUserIds lui = new LongUserIds();
-		lui.setUsers(user.getUserId());
-		
-		this.newParty.setUsersInParty(lui);
+	
+		this.newParty.addUserToPary(user.getUserId());
 
 		int i = this.restClient.createGroup(this.newParty);
 		System.out.println(i);
