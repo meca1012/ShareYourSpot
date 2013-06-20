@@ -1,18 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-     <item
-        android:id="@+id/action_new_group"
-        android:icon="@drawable/newgroup"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/new_group"/>
-    
-    <item
-        android:id="@+id/action_postlist"
-        android:icon="@drawable/postlist"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom|withText"
-        android:title="@string/postlist"/>    
+      
        
    <item
         android:id="@+id/action_logout"

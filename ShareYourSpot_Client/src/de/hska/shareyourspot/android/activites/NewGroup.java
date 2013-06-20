@@ -112,17 +112,7 @@ public class NewGroup extends Activity {
 			finish();
 			break;
 
-		case R.id.action_postlist:
-			toPostList();
-			finish();
-			break;
-
-		
-		case R.id.action_groups:
-			showGroups();
-			finish();
-			break;
-			
+				
 		default:
 		    break;
 			

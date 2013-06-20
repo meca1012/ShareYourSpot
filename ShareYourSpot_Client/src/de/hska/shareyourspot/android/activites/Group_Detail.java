@@ -57,20 +57,10 @@ public class Group_Detail extends Activity {
 			finish();
 			break;
 
-		case R.id.action_postlist:
-			toPostList();
-			finish();
-			break;
-
-		case R.id.action_groups:
-			toGroups();
-			finish();
-			break;
-			
-		case R.id.action_new_post:
-			toNewPost();
-			finish();
-			break;
+		 case android.R.id.home:
+			  	onBackPressed();
+		        finish();
+		    break;
 
 
 	  default:

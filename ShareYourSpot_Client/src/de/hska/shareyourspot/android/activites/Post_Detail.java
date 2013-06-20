@@ -80,22 +80,11 @@ public class Post_Detail extends Activity {
 	        finish();
 	    break;
 	    
-	  case R.id.action_groups:
-		  	toGroups();
+	  case android.R.id.home:
+		  	onBackPressed();
 	        finish();
 	    break;
-	    
-	  case R.id.action_postlist:
-			toPostList();
-			finish();
-			break;
-	    
-	  			
-		case R.id.action_new_post:
-			toNewPost();
-			finish();
-			break;
-	   
+	  
 	  default:
 	    break;
 	  }
@@ -104,15 +93,7 @@ public class Post_Detail extends Activity {
 	} 
 	
 		
-	public void toNewPost() {
-		Intent intent = new Intent(this, NewPost.class);
-		startActivity(intent);
-	}
 	
-	 public void toPostList() {
-			Intent intent = new Intent(this, PostList.class);
-			startActivity(intent);
-		}
 	 
 		public void startMap(View view) {
 			//TODO Karlruhe gegen Postdatenersetzen
@@ -124,10 +105,7 @@ public class Post_Detail extends Activity {
 		}
 	    	
 	
-	public void toGroups() {
-		Intent intent = new Intent(this, Groups.class);
-		startActivity(intent);
-	}
+	
 	
 	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 	    ImageView bmImage;

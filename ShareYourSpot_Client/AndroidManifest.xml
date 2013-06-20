@@ -152,6 +152,10 @@
             android:name="de.hska.shareyourspot.android.activites.MyGroups"
             android:label="@string/title_activity_my_groups" >
         </activity>
+        <activity
+            android:name="de.hska.shareyourspot.android.activites.AndroidTabLayoutActivity"
+            android:label="@string/title_activity_android_tab_layout" >
+        </activity>
     </application>
 
 </manifest>

@@ -47,7 +47,7 @@ public class Groups extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.groups);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+//		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		this.foundParties = new ArrayList<Party>();
 		this.meineListe = new ArrayList<String>();
@@ -163,15 +163,7 @@ public class Groups extends Activity {
 			finish();
 			break;
 
-		case R.id.action_postlist:
-			toPostList();
-			finish();
-			break;
-
-		case R.id.action_new_group:
-			toNewGroup();
-			finish();
-			break;
+		
 
 		// Respond to the action bar's Up/Home button
 		// case android.R.id.home:
@@ -204,7 +196,7 @@ public class Groups extends Activity {
 		startActivity(intent);
 	}
 
-	public void toNewGroup() {
+	public void toNewGroup(View view) {
 		Intent intent = new Intent(this, NewGroup.class);
 		startActivity(intent);
 	}

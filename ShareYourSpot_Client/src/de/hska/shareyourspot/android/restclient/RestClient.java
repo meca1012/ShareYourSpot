@@ -13,8 +13,8 @@ import de.hska.shareyourspot.android.restclient.HttpHandler.DomainType;
 
 public class RestClient extends HttpHandler {
 
-	//public static String BASE_URL = "http://10.85.41.8:8080/ShareYourSpot-1/rest";
-	public static String BASE_URL = "http://192.168.0.27:8080/ShareYourSpot-1/rest";
+	public static String BASE_URL = "http://10.85.41.8:8080/ShareYourSpot-1/rest";
+	//public static String BASE_URL = "http://192.168.0.27:8080/ShareYourSpot-1/rest";
 	//public static String BASE_URL = "http://10.0.2.2:8080/ShareYourSpot-1/rest";
 
 	public User getBenutzerXML() {

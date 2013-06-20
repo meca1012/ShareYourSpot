@@ -94,16 +94,7 @@ public class NewPost extends Activity {
 	        finish();
 	    break;
 
-	  case R.id.action_postlist:
-			toPostList();
-			finish();
-			break;
-
-		case R.id.action_newGroup:
-			toNewGroup();
-			finish();
-			break;
-
+	 
 	  default:
 	    break;
 	  }
@@ -111,16 +102,7 @@ public class NewPost extends Activity {
 	  return true;
 	} 
 	
-	public void toPostList() {
-		Intent intent = new Intent(this, PostList.class);
-		startActivity(intent);
-	}
-	
-	public void toNewGroup() {
-		Intent intent = new Intent(this, NewGroup.class);
-		startActivity(intent);
-	}
-	
+		
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -222,7 +204,7 @@ public class NewPost extends Activity {
 
         new uploadImageAsyncTask().execute(f);	
 				
-		Intent intent = new Intent(this, PostList.class);
+		Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
 		startActivity(intent);
 
 
@@ -244,7 +226,7 @@ public class NewPost extends Activity {
 //				startActivity(intent);
 
 			} else if (resultCode == Activity.RESULT_CANCELED) {
-				Intent intent = new Intent(this, NewPost.class);
+				Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
 				startActivity(intent);
 			} else {
 				Intent intent = new Intent(this, NewPost.class);

@@ -1,5 +1,6 @@
 package de.hska.shareyourspot.android.activites;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -138,16 +139,7 @@ public class PostList extends Activity {
 		  	uStore.logout(ctx);
 	        finish();       
 	        break;
-	        
-	  case R.id.action_groups:
-		  showGroups();
-	        finish();
-	    break;
-	    
-	  case R.id.action_new_post:
-		  newPostCreate();
-	        finish();
-	    break;
+	 
 
 	  default:
 	    break;
@@ -156,14 +148,5 @@ public class PostList extends Activity {
 	  return true;
 	} 
 	
-	public void newPostCreate() {
-		Intent intent = new Intent(this, NewPost.class);
-		startActivity(intent);
-	}
-	
-	public void showGroups() {
-		Intent intent = new Intent(this, Groups.class);
-		startActivity(intent);
-	}
-	
+		
 }
