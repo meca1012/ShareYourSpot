@@ -123,17 +123,7 @@ public class NewGroup extends Activity {
 	    return super.onOptionsItemSelected(item);
 	}
 
-	public void toPostList() {
-		Intent intent = new Intent(this, PostList.class);
-		startActivity(intent);
-	}
-
 	
-	public void showGroups() {
-		Intent intent = new Intent(this, Groups.class);
-		startActivity(intent);
-	}
-
 	public void createNewGroup(View view) throws IOException {
 
 		EditText groupname = (EditText) findViewById(R.id.editText1);
