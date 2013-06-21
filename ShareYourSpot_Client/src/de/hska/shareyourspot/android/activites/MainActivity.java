@@ -62,7 +62,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		startActivity(intent);
 	}
 	
-	public void loginAction() {
+	public boolean loginAction() {
 		User u = new User();
 
 		EditText username = (EditText) findViewById(R.id.loginUsername);
@@ -73,8 +73,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
 		if (u.getName() == null || u.getName().isEmpty()
 				|| u.getPassword() == null || u.getPassword().isEmpty()) {
-			new AlertHelper(context, R.string.loginFailureTitle,
-					R.string.loginFailureText, "Retry").fireAlert();
+				return false;
 		} else {
 			
 			User responseUser = null;
@@ -83,25 +82,30 @@ public class MainActivity extends Activity implements OnClickListener{
 			}
 			catch(Exception e){}
 			
-			if (responseUser != null) {
-				try {
-					responseUser.setUserApproved(true);
-					uStore.storeUser(this, responseUser);
-					Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
-			        intent.putExtra("finish", true);
-			        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
-			        startActivity(intent);
-			        finish();		
-					
-				} catch (IOException e) {
-					e.printStackTrace();
+			if (responseUser != null && responseUser.getPassword() != null)
+			{
+				if (responseUser.getPassword().endsWith(u.getPassword())) {
+					try {
+						responseUser.setUserApproved(true);
+						uStore.storeUser(this, responseUser);
+						Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
+				        intent.putExtra("finish", true);
+				        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
+				        startActivity(intent);
+				        finish();		
+						
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else {
+						return false;
 				}
-
+			
 			} else {
-				new AlertHelper(context, R.string.loginFailureTitle,
-						R.string.loginFailureText, "Retry").fireAlert();
+					return false;
 			}
 		}
+		return false;
 
 	}
 
@@ -112,7 +116,7 @@ public class MainActivity extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-	        v.setEnabled(false);
+		v.setEnabled(false);
 	        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
 	                private ProgressDialog pd;
 	                @Override
@@ -126,12 +130,15 @@ public class MainActivity extends Activity implements OnClickListener{
 	                }
 	                @Override
 	                protected Void doInBackground(Void... arg0) {
-	                        loginAction();
-	                        return null;
+	                 boolean test = loginAction();
+		             return null;
 	                 }
 	                 @Override
 	                 protected void onPostExecute(Void result) {
-	                         pd.dismiss();
+	                      pd.dismiss();
+	                         findViewById(R.id.loginBtnLogin).setEnabled(true);
+	             			new AlertHelper(context, R.string.loginFailureTitle,
+	            					R.string.loginFailureText, "Retry").fireAlert();
 	                 }
 	        };
 	        task.execute((Void[])null);

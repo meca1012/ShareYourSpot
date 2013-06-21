@@ -80,7 +80,7 @@
         android:layout_below="@+id/loginLabel"
         android:layout_marginTop="18dp"
         android:ems="10"
-        android:hint="@string/username" >
+        android:hint="@string/emailorusername" >
 
         <requestFocus />
     </EditText>
