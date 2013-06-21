@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.AlertHelper;
+import de.hska.shareyourspot.android.helper.AsyncBooleanResult;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.os.AsyncTask;
@@ -64,7 +65,8 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	public boolean loginAction() {
 		User u = new User();
-
+		boolean loggedIn = false;
+		
 		EditText username = (EditText) findViewById(R.id.loginUsername);
 		u.setName(username.getText().toString());
 
@@ -92,7 +94,8 @@ public class MainActivity extends Activity implements OnClickListener{
 				        intent.putExtra("finish", true);
 				        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
 				        startActivity(intent);
-				        finish();		
+				        loggedIn = true;
+				        finish();
 						
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -105,7 +108,7 @@ public class MainActivity extends Activity implements OnClickListener{
 					return false;
 			}
 		}
-		return false;
+		return loggedIn;
 
 	}
 
@@ -117,7 +120,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		v.setEnabled(false);
-	        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+	        AsyncTask<Void, Void, AsyncBooleanResult> task = new AsyncTask<Void, Void, AsyncBooleanResult>() {
 	                private ProgressDialog pd;
 	                @Override
 	                protected void onPreExecute() {
@@ -129,16 +132,23 @@ public class MainActivity extends Activity implements OnClickListener{
 	                         pd.show();
 	                }
 	                @Override
-	                protected Void doInBackground(Void... arg0) {
-	                 boolean test = loginAction();
-		             return null;
+	                protected AsyncBooleanResult doInBackground(Void... arg0) {
+	                 boolean logedIn = loginAction();
+	                 return new AsyncBooleanResult(logedIn);
 	                 }
 	                 @Override
-	                 protected void onPostExecute(Void result) {
+	                 protected void onPostExecute(AsyncBooleanResult result) {
+	                	 if(result.isResult())
+	                	 {
+	                	 
 	                      pd.dismiss();
-	                         findViewById(R.id.loginBtnLogin).setEnabled(true);
-	             			new AlertHelper(context, R.string.loginFailureTitle,
-	            					R.string.loginFailureText, "Retry").fireAlert();
+	                	 }
+	                	 else
+	                	 {
+	                		 pd.dismiss();
+	                		 findViewById(R.id.loginBtnLogin).setEnabled(true);
+	                		 new AlertHelper(context, R.string.loginFailureTitle, R.string.loginFailureText, "Try Again").fireAlert();
+	                	 }
 	                 }
 	        };
 	        task.execute((Void[])null);

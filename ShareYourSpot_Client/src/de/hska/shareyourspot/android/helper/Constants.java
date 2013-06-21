@@ -9,3 +9,4 @@ public interface Constants {
 	public static final int LONG_ANZ_ZIFFERN = 20;
 
 }
+
