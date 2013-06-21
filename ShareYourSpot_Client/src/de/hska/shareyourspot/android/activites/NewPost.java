@@ -19,6 +19,7 @@ import org.apache.commons.net.ftp.FTPClient;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -59,6 +60,7 @@ public class NewPost extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		this.parties = new Parties();
 		this.groupList = new ArrayList();
 		try {
@@ -69,12 +71,26 @@ public class NewPost extends Activity {
 		}
 		if(parties == null)
 			{
-				Party p = new Party();
-				p.setName("No Groups joined");
+			
+				AlertHelper alert = new AlertHelper(ctx, R.string.ShareFailureTitle, R.string.ShareFailureText);
+				alert.alertDialogBuilder.setCancelable(false);
+				alert.alertDialogBuilder.setNeutralButton("Go to groups", new DialogInterface.OnClickListener() {          
+			        @Override
+			        public void onClick(DialogInterface dialog, int which) {
+			            dialog.dismiss();
+			            startGroupCreate();
+			            
+			        }
+			    });
+				alert.fireAlert();
 				
-				parties = new Parties();
-				parties.addParty(p);
+	        
+			
+				
+			
+			return;
 			}
+		
 		for(Party party : parties.getAllParties())
 		{
 			this.groupList.add(party.getName());
@@ -85,6 +101,13 @@ public class NewPost extends Activity {
 		ArrayAdapter<String> adp2=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,this.groupList);
 		spinner.setAdapter(adp2);
 	}
+	
+	public void startGroupCreate()
+	{
+		Intent intent = new Intent(this, NewGroup.class);
+		startActivity(intent);
+	}
+	
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
