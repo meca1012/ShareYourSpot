@@ -72,7 +72,7 @@ public class PostList extends Activity {
 			for (Post post : this.posts.getAllPosts()) {
 				Date createDate = new Date(post.getCreated());
 				String username = post.getCreatedByUser().getName();
-				String posttext = username + " spottet: " + post.getText();
+				String posttext = username + " spotted: " + post.getText();
 				
 				if(posttext.length() >= this.maxPostLength)
 				{

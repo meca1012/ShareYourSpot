@@ -44,8 +44,6 @@
         android:layout_alignLeft="@+id/newImagePost"
         android:layout_alignRight="@+id/newImagePost"
         android:ems="10"
-        android:hint="@string/enter_text"
-        android:inputType="textMultiLine"
-        android:lines="4" />
+        android:hint="@string/enter_text"/>
     
     </RelativeLayout>
