@@ -8,7 +8,7 @@ public class AlertHelper
 {
 	private int title;
 	private int message;
-	private AlertDialog.Builder alertDialogBuilder;
+	public AlertDialog.Builder alertDialogBuilder;
 	
 	public AlertHelper(Context context,int passwordsnotmatchingtitle, int passwordsnotmatchingtext)
 	{

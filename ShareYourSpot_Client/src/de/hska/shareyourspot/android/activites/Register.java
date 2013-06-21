@@ -4,6 +4,7 @@ import java.net.HttpURLConnection;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -60,8 +61,16 @@ public class Register extends Activity {
 					int code = restClient.registerUser(newUser);
 					if(code ==  HttpURLConnection.HTTP_CREATED)
 					{
-					new AlertHelper(context, R.string.registerDoneTitle, R.string.registerDoneText, "Go to Login").fireAlert();
-					startLoginIntent();
+						AlertHelper alert = new AlertHelper(context, R.string.registerDoneTitle, R.string.registerDoneText);
+						alert.alertDialogBuilder.setCancelable(false);
+						alert.alertDialogBuilder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {          
+					        @Override
+					        public void onClick(DialogInterface dialog, int which) {
+					            dialog.dismiss();
+					            startLoginIntent();
+					        }
+					    });
+						alert.fireAlert();
 					}
 					else
 					{
