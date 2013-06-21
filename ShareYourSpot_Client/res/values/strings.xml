@@ -71,5 +71,7 @@
     <string name="title_activity_my_groups">MyGroups</string>
     <string name="all_groups">All Groups</string>
     <string name="title_activity_android_tab_layout">ShareYourSpot</string>
+    <string name="ShareFailureTitle">Failure!</string>
+    <string name="ShareFailureText">No Group selected, create one!</string>
 
 </resources>

@@ -43,7 +43,7 @@ public class NewGroup extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newgroup);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		
 		this.meineListe = new ArrayList<String>();
 		this.foundParties = new ArrayList<Party>();
@@ -111,16 +111,18 @@ public class NewGroup extends Activity {
 			uStore.logout(ctx);
 			finish();
 			break;
+			
+		case android.R.id.home:
+		  	onBackPressed();
+	        finish();
+	    break;
 
 				
 		default:
 		    break;
 			
-		case android.R.id.home:
-	        NavUtils.navigateUpFromSameTask(this);
-	        return true;	    
 		}
-	    return super.onOptionsItemSelected(item);
+		return true;
 	}
 
 	
@@ -137,7 +139,7 @@ public class NewGroup extends Activity {
 		int i = this.restClient.createGroup(this.newParty);
 		System.out.println(i);
 
-		Intent intent = new Intent(this, Groups.class);
+		Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
 		startActivity(intent);
 	}
 	
