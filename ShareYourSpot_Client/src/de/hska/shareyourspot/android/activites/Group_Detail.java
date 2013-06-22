@@ -83,6 +83,15 @@ public class Group_Detail extends Activity {
 		toStart();
 	}
 	
+	public void leaveGroup(View view) throws IOException{
+//		TODO: implement joinGroup in Rest
+		User user = uStore.getUser(ctx);
+
+		user = this.restClient.leaveGroup(user.getUserId(),Long.valueOf(this.group));
+		System.out.println("implement me");
+		toStart();
+	}
+	
 	public void showSpots(View view) {
 		Intent intent = new Intent(this, PostList.class);
 		startActivity(intent);
