@@ -102,5 +102,4 @@ public class Party implements Serializable{
 		this.postsOfParty = IdListHelper.AddSingleIdToString(this.postsOfParty, id);;
 	}
 	
-		
 }

@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/editText_enter_text"
         android:layout_toRightOf="@+id/editText_enter_text"
+        android:onClick="addComment"
         android:text="@string/comment" />
 
     <RatingBar

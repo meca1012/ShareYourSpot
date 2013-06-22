@@ -1,11 +1,14 @@
 package de.hska.shareyourspot.android.activites;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import de.hska.shareyourspot.android.R;
+import de.hska.shareyourspot.android.domain.Comment;
 import de.hska.shareyourspot.android.domain.Post;
+import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.AlertHelper;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
@@ -21,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class Post_Detail extends Activity {
@@ -129,6 +133,29 @@ public class Post_Detail extends Activity {
 	    protected void onPostExecute(Bitmap result) {
 	        bmImage.setImageBitmap(result);
 	    }
+	}
+	
+	public void addComment(View view){
+		EditText editText = (EditText) findViewById(R.id.editText_enter_text);
+		Comment comment = new Comment();
+		comment.setText(editText.getText().toString());
+		comment.setPostId(Long.valueOf(postId));
+		
+		RatingBar ratingBar= (RatingBar)findViewById(R.id.ratingBar_post_detail);
+		Double dbl = (double) ratingBar.getRating();
+		comment.setRating(dbl);
+		
+		User user = null;
+		try {
+			user = uStore.getUser(ctx);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		comment.setCreatedByUsername(user.getName());
+		
+		this.restClient.addComment(comment);
+		
 	}
 
 }

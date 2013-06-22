@@ -1,6 +1,5 @@
 package de.hska.shareyourspot.android.activites;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;

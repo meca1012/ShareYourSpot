@@ -1,14 +1,16 @@
 package de.hska.shareyourspot.android.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 import de.hska.shareyourspot.android.helper.Constants;
+import de.hska.shareyourspot.android.helper.IdListHelper;
 
 
-@Root
+@Root(name="post")
 public class Post implements Constants, Serializable {
 
 	private static final long serialVersionUID = -7769905910137170288L;
@@ -33,16 +35,21 @@ public class Post implements Constants, Serializable {
 	
 	@Element(required=false)
 	private double latitude;
-	//private List<Comment> comments;
+	
+	@Element(required=false)
+	private String commentsOfPost;
 
 	@Element(required=false)
 	private Long created;
 
 	@Element(required=false)
 	private Long modified;
+	
+	@Element(required=false)
+	private Double totalRating;
 
 	@Element(required=false)
-	// TODO: add mapping
+	// TODO: add mapping - 22.06.2013 is this really needed here?
 	private Party party;
 
 	public Post(String text,Party group) {
@@ -107,6 +114,27 @@ public class Post implements Constants, Serializable {
 
 	public void setCreated(Long created) {
 		this.created = created;
+	}
+	
+	public List<Long> getCommentsOfPost() {
+		return IdListHelper.StringToIdList(this.commentsOfPost);
+	}
+
+	public void setCommentsOfPost(List<Long> commentsOfPost) {
+		this.commentsOfPost = IdListHelper.ListToString(commentsOfPost);
+	}
+	
+	public void addCommentToPost(Long id)
+	{
+		this.commentsOfPost = IdListHelper.AddSingleIdToString(this.commentsOfPost, id);
+	}
+
+	public Double getTotalRating() {
+		return totalRating;
+	}
+
+	public void setTotalRating(Double totalRating) {
+		this.totalRating = totalRating;
 	}
 
 }

@@ -23,6 +23,8 @@ import org.simpleframework.xml.core.Persister;
 
 import de.hska.shareyourspot.android.activites.GoogleMaps;
 import de.hska.shareyourspot.android.activites.MainActivity;
+import de.hska.shareyourspot.android.domain.Comment;
+import de.hska.shareyourspot.android.domain.Comments;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
@@ -50,7 +52,7 @@ abstract class HttpHandler {
 	}
 
 	public static enum DomainType {
-		User, Party, Post, Users, Parties, Posts
+		User, Party, Post, Comment, Users, Parties, Posts, Comments
 	};
 
 	protected Object get(String uri, DomainType type) {
@@ -236,6 +238,10 @@ abstract class HttpHandler {
 				return serializer.read(Party.class, xmlStr);
 			case Parties:
 				return serializer.read(Parties.class, xmlStr);
+			case Comment:
+				return serializer.read(Comment.class, xmlStr);
+			case Comments:
+				return serializer.read(Comments.class, xmlStr);
 			default:
 				return null;
 			}

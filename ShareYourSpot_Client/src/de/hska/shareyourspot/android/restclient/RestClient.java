@@ -3,6 +3,8 @@ package de.hska.shareyourspot.android.restclient;
 import java.net.HttpURLConnection;
 import java.util.List;
 
+import de.hska.shareyourspot.android.domain.Comment;
+import de.hska.shareyourspot.android.domain.Comments;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Posts;
@@ -42,17 +44,6 @@ public class RestClient extends HttpHandler {
 			post = (Post) post(url, xmlObjectStr, DomainType.Post);
 		}
 		return post;
-	}
-
-	// TODO: Comment.java from Backend
-	public int addComment(Post post) {
-		Integer responseCode = -1;
-		String url = BASE_URL + "/post/createPost";
-		String xmlObjectStr = serialize(post);
-		if (xmlObjectStr != null) {
-			responseCode = post(url, xmlObjectStr);
-		}
-		return responseCode;
 	}
 
 	public int createGroup(Party party) {
@@ -153,6 +144,34 @@ public class RestClient extends HttpHandler {
 		String url = BASE_URL + "/post/getPost/" + id;
 		Post post = (Post) get(url, DomainType.Post);
 		return post;
+	}
+	
+	public User leaveGroup(Long userId, Long groupId) {
+		String url = BASE_URL + "/post/leaveGroup/" + userId +"/"+groupId;
+		User user = (User) get(url, DomainType.User);
+		return user;
+	}
+
+	public int addComment(Comment comment) {
+		Integer responseCode = -1;
+		String url = BASE_URL + "/post/addComment";
+		String xmlObjectStr = serialize(comment);
+		if (xmlObjectStr != null) {
+			responseCode = post(url, xmlObjectStr);
+		}
+		return responseCode;
+	}
+	
+	public Comment getComment(Long id) {
+		String url = BASE_URL + "/post/getComment/" + id;
+		Comment comment = (Comment) get(url, DomainType.Comment);
+		return comment;
+	}
+	
+	public Comments getCommentsToPost(Long id){
+		String url = BASE_URL + "/post/getCommentsToPost/" + id;
+		Comments comments = (Comments) get(url, DomainType.Comments);
+		return comments;
 	}
 
 	public Posts getPostByUser(User user) {
