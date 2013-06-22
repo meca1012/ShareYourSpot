@@ -73,5 +73,6 @@
     <string name="title_activity_android_tab_layout">ShareYourSpot</string>
     <string name="ShareFailureTitle">Failure</string>
     <string name="ShareFailureText">You must join or create a group before you can post!</string>
+    <string name="leave">leave</string>
 
 </resources>

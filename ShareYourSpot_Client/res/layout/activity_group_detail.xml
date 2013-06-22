@@ -8,15 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".Group_Detail" >
 
-    <Button
-        android:id="@+id/btn_JoinGroup"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:onClick="joinGroup"
-        android:text="@string/join_group" />
-
     <TextView
         android:id="@+id/textView_groupname"
         android:layout_width="wrap_content"
@@ -26,5 +17,26 @@
         android:layout_marginTop="40dp"
         android:text="@string/groupname"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/btn_JoinGroup"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView_groupname"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="84dp"
+        android:onClick="joinGroup"
+        android:text="@string/join_group" />
+
+    <Button
+        android:id="@+id/btn_LeaveGroup"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btn_JoinGroup"
+        android:layout_toRightOf="@+id/textView_groupname"
+        android:text="@string/leave" />
 
 </RelativeLayout>
