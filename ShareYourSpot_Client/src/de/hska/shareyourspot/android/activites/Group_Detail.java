@@ -80,7 +80,7 @@ public class Group_Detail extends Activity {
 		user.setPartiesOfUser(parties);
 		user = this.restClient.joinGroup(user.getUserId(),Long.valueOf(this.group));
 		System.out.println("implement me");
-		toGroups();
+		toStart();
 	}
 	
 	public void showSpots(View view) {
@@ -108,8 +108,8 @@ public class Group_Detail extends Activity {
 		startActivity(intent);
 	}
 	
-	public void toGroups() {
-		Intent intent = new Intent(this, Groups.class);
+	public void toStart() {
+		Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
 		startActivity(intent);
 	}
 }
