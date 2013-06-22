@@ -20,14 +20,6 @@ public class Comment implements Constants, Serializable {
 	@Element(required = false)
 	private Long commentId = KEINE_ID;
 
-	public Long getPostId() {
-		return postId;
-	}
-
-	public void setPostId(Long postId) {
-		this.postId = postId;
-	}
-
 	@Element(required = false)
 	private Long postId;
 
@@ -52,6 +44,14 @@ public class Comment implements Constants, Serializable {
 
 	public void setCommentId(Long commentId) {
 		this.commentId = commentId;
+	}
+	
+	public Long getPostId() {
+		return postId;
+	}
+
+	public void setPostId(Long postId) {
+		this.postId = postId;
 	}
 
 	public String getText() {
