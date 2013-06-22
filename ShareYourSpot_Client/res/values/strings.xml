@@ -65,7 +65,7 @@
     <string name="title_activity_groups">Groups</string>
     <string name="spot_text">Spot Text</string>
     <string name="title_activity_group__detail">Details</string>
-    <string name="join_group">join</string>
+    <string name="join_group">Join</string>
     <string name="description">Description</string>
     <string name="postlist">Post List</string>
     <string name="title_activity_my_groups">MyGroups</string>
@@ -73,5 +73,6 @@
     <string name="title_activity_android_tab_layout">ShareYourSpot</string>
     <string name="ShareFailureTitle">Failure</string>
     <string name="ShareFailureText">You must join or create a group before you can post!</string>
+    <string name="leave">Leave</string>
 
 </resources>
