@@ -3,19 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <EditText
-        android:id="@+id/editText_enter_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="79dp"
-        android:layout_marginLeft="30dp"
-        android:ems="10"
-        android:hint="@string/enter_text" >
-
-        <requestFocus />
-    </EditText>
-
     <Button
         android:id="@+id/btn_comment"
         style="?android:attr/buttonStyleSmall"
@@ -32,13 +19,12 @@
         android:layout_alignLeft="@+id/editText_enter_text"
         android:layout_below="@+id/btn_comment" />
 
-
     <TextView
         android:id="@+id/textView_spotter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="59dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
         android:text="@string/spotter"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -62,15 +48,36 @@
 <!--         android:onClick="startMap" -->
 <!--         android:src="@drawable/common_signin_btn_icon_disabled_light" /> -->
 
+    <EditText
+        android:id="@+id/editText_enter_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView_spot_text"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="78dp"
+        android:ems="10"
+        android:hint="@string/enter_text" />
+
     <ImageView
         android:id="@+id/imageViewPostDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_spot_text"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="69dp"
+        android:layout_margin="50dp"
+        android:layout_marginTop="31dp"
         android:onClick="startMap"
         android:src="@drawable/postlist" />
+
+    <ListView
+        android:id="@+id/listView_comments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageViewPostDetail"
+        android:layout_marginBottom="400dp"
+        android:layout_marginTop="60dp" >
+
+    </ListView>
 
 </RelativeLayout>
