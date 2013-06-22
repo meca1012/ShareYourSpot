@@ -2,11 +2,16 @@ package de.hska.shareyourspot.android.activites;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Comment;
+import de.hska.shareyourspot.android.domain.Comments;
+import de.hska.shareyourspot.android.domain.Parties;
+import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.AlertHelper;
@@ -22,10 +27,16 @@ import android.graphics.BitmapFactory;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class Post_Detail extends Activity {
 	
@@ -38,6 +49,11 @@ public class Post_Detail extends Activity {
 	public final String latitude = "latitude";
 	public String imageUrl = "http://hskaebusiness.square7.ch/ShareYourSpot/";
 	public String imageEnd = ".jpg";
+	
+	private ListView listComments;
+	private ArrayList<String> shownComments;
+	private List<Comment>foundComments = new ArrayList<Comment>();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,6 +76,43 @@ public class Post_Detail extends Activity {
 			new AlertHelper(ctx, R.string.dataLoadFailureTitle,
 					R.string.dataLoadFailureText, "Next Try").fireAlert();
 		}
+		
+		this.foundComments = new ArrayList<Comment>();
+		this.shownComments = new ArrayList<String>();
+		this.listComments = (ListView) findViewById(R.id.listView_comments);
+		Comments comments = this.restClient.getCommentsToPost(postIdent);
+		
+		if (comments != null) {
+
+			this.foundComments.addAll(comments.getAllComments());
+
+			for (Comment comment : this.foundComments) {
+				if (comment.getText() != null) {
+					this.shownComments.add(comment.getCreated() + ": " + comment.getText());
+				}
+			}
+		}
+//		else{
+//		this.meineListe.add("");}
+
+		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, this.shownComments);
+
+		this.listComments.setAdapter(listenAdapter);
+
+		this.listComments.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+
+				String item = ((TextView) view).getText().toString();
+
+				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
+						.show();
+
+				
+			}
+		});
 		
 	}
 	@Override
@@ -155,7 +208,7 @@ public class Post_Detail extends Activity {
 		comment.setCreatedByUsername(user.getName());
 		
 		this.restClient.addComment(comment);
-		
+				
 	}
 
 }

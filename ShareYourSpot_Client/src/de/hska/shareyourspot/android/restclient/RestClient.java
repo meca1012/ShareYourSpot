@@ -147,19 +147,21 @@ public class RestClient extends HttpHandler {
 	}
 	
 	public User leaveGroup(Long userId, Long groupId) {
-		String url = BASE_URL + "/post/leaveGroup/" + userId +"/"+groupId;
+		String url = BASE_URL + "/member/leaveGroup/" + userId +"/"+groupId;
 		User user = (User) get(url, DomainType.User);
 		return user;
 	}
 
-	public int addComment(Comment comment) {
+	public Comment addComment(Comment comment) {
 		Integer responseCode = -1;
-		String url = BASE_URL + "/post/addComment";
+		Comment returnComment = new Comment();
+		String url = BASE_URL + "/post/addCommentToPost";
 		String xmlObjectStr = serialize(comment);
 		if (xmlObjectStr != null) {
-			responseCode = post(url, xmlObjectStr);
+			returnComment = (Comment) post(url, xmlObjectStr, DomainType.Comment);
 		}
-		return responseCode;
+		System.out.println(responseCode);
+		return returnComment;
 	}
 	
 	public Comment getComment(Long id) {
