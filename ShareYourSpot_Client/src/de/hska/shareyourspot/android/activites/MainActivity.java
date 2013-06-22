@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			if (u != null && u.isUserApproved()) {
 				u.setUserApproved(true);
 				uStore.storeUser(this, u);
-				Intent intent = new Intent(this, PostList.class);
+				Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
 		        intent.putExtra("finish", true);
 		        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // To clean up all activities
 		        startActivity(intent);

@@ -112,6 +112,13 @@ public class PostList extends Activity {
 
 			ListView listUsers = (ListView) findViewById(R.id.list);
 			listUsers.setAdapter(listenAdapter);
+			listUsers.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+					Intent intent = new Intent(ctx, NewPost.class);
+					startActivity(intent);
+				}
+			});
 			}
 			
 	}

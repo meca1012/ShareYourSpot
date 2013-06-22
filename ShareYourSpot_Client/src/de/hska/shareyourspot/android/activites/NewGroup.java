@@ -38,6 +38,7 @@ public class NewGroup extends Activity {
 	private ListView listGroups;
 	private ArrayList<String> meineListe;
 	public final String groupId = "groupId";
+	public final String tabIndex = "tabIndex";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -140,6 +141,7 @@ public class NewGroup extends Activity {
 		System.out.println(i);
 
 		Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
+		intent.putExtra(tabIndex, 1);
 		startActivity(intent);
 	}
 	

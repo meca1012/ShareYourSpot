@@ -19,6 +19,8 @@ public class AndroidTabLayoutActivity extends TabActivity{
 	
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
+	private TabHost tabHost; 
+	private String tabIndexString = "tabIndex";
 
 
 	@Override
@@ -26,7 +28,7 @@ public class AndroidTabLayoutActivity extends TabActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_android_tab_layout);
 		
-		TabHost tabHost = getTabHost();
+		tabHost = getTabHost();
         
         // Tab for Postlist
         TabSpec postspec = tabHost.newTabSpec("Post List");
@@ -51,9 +53,12 @@ public class AndroidTabLayoutActivity extends TabActivity{
         tabHost.addTab(postspec); // Adding photos tab
         tabHost.addTab(groupspec); // Adding songs tab
         tabHost.addTab(newspec); // Adding videos tab
+        
+        int tabIndexInt = getIntent().getIntExtra(tabIndexString, 0);
+        this.tabHost.setCurrentTab(tabIndexInt);
+        
     }
 
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
