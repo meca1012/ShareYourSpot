@@ -47,6 +47,7 @@
         android:layout_alignBottom="@+id/btn_JoinGroup"
         android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/textView_groupname"
+        android:onClick="leaveGroup"
         android:text="@string/leave" />
 
 </RelativeLayout>
