@@ -79,5 +79,6 @@
     <string name="groupDetailTitle">Manage Membership</string>
     <string name="result">Result: </string>
     <string name="mid_value">mid_value</string>
+    <string name="rating">Rating:</string>
 
 </resources>

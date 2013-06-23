@@ -78,7 +78,7 @@
         android:layout_alignLeft="@+id/textView_spot_text"
         android:layout_below="@+id/textView_spot_text"
         android:layout_marginTop="17dp"
-        android:text="@string/result"
+        android:text="@string/rating"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
