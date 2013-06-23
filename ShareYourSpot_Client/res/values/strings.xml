@@ -36,6 +36,8 @@
     <string name="getResultText">Get</string>
     <string name="dataLoadFailureTitle">Data loading failed</string>
     <string name="dataLoadFailureText">Data loading failed</string>
+    <string name="groupCreateFailureGroupnameTitle">Can not create group</string>
+    <string name="groupCreateFailureGroupnameText">Please ensure that your groupname is not empty</string>
     <string name="loginFailureTitle">Login-Issue</string>
     <string name="loginFailureText">Please check your Logindata</string>
     <string name="passwordsNotMatchingTitle">Passwords-Issue</string>
@@ -74,5 +76,6 @@
     <string name="ShareFailureTitle">Failure</string>
     <string name="ShareFailureText">You must join or create a group before you can post!</string>
     <string name="leave">Leave</string>
+    <string name="groupDetailTitle">Manage Membership</string>
 
 </resources>
