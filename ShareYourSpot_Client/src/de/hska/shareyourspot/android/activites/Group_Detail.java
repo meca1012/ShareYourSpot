@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Group_Detail extends Activity {
@@ -25,6 +26,8 @@ public class Group_Detail extends Activity {
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
 	public final String groupId = "groupId";
+	public final String groupMember = "groupMember";
+	public boolean groupMemberBool; 
 	private RestClient restClient = new RestClient();
 	private long group = Long.valueOf(0);
 	private Party party = new Party();
@@ -35,6 +38,13 @@ public class Group_Detail extends Activity {
 		setContentView(R.layout.activity_group_detail);
 
 		this.group = getIntent().getLongExtra(this.groupId, group);
+		this.groupMemberBool = getIntent().getBooleanExtra(this.groupMember, false);
+		
+		if(!groupMemberBool)
+		{
+			Button button = (Button) findViewById(R.id.btn_JoinGroup);
+			button.setEnabled(false);
+		}
 		
 		TextView groupN = (TextView) findViewById(R.id.textView_groupname);
 		this.party = this.restClient.getParty(this.group);

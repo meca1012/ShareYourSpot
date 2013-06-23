@@ -4,14 +4,12 @@ import java.net.HttpURLConnection;
 import java.util.List;
 
 import de.hska.shareyourspot.android.domain.Comment;
-import de.hska.shareyourspot.android.domain.Comments;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Posts;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.Users;
-import de.hska.shareyourspot.android.restclient.HttpHandler.DomainType;
 
 public class RestClient extends HttpHandler {
 
