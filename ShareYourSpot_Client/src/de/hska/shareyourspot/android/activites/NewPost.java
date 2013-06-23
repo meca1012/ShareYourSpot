@@ -53,7 +53,7 @@ public class NewPost extends Activity {
 	private Parties parties = new Parties();
 	private Context ctx = this;
 	private List<String> groupList;
-	
+	public final String tabIndex = "tabIndex";
 	//TODO CHANGE TO DB DATA
 	
 	
@@ -250,6 +250,7 @@ public class NewPost extends Activity {
 
 			} else if (resultCode == Activity.RESULT_CANCELED) {
 				Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
+				intent.putExtra(tabIndex, 2);
 				startActivity(intent);
 			} else {
 				Intent intent = new Intent(this, NewPost.class);
