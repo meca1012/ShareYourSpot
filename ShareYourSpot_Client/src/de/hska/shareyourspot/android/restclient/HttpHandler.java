@@ -68,9 +68,16 @@ abstract class HttpHandler {
 			}
 			BufferedReader br = new BufferedReader(new InputStreamReader(
 					(conn.getInputStream())));
-			String output = br.readLine();
-			System.out.println(output);
-			obj = deserialize(output, type);
+			String output;
+			System.out.println("Output from Server .... \n");
+			String xmlString = "";
+			while ((output = br.readLine()) != null) {
+				if (output != null) {
+					xmlString += output;
+					System.out.println(output);
+				}
+			}
+			obj = deserialize(xmlString, type);
 
 			conn.disconnect();
 		} catch (MalformedURLException e) {
@@ -126,9 +133,13 @@ abstract class HttpHandler {
 					(conn.getInputStream())));
 			String output;
 			System.out.println("Output from Server .... \n");
+			String xmlString = "";
 			while ((output = br.readLine()) != null) {
-				System.out.println(output);
+				if (output != null) {
+					xmlString += output;
+				}
 			}
+			System.out.println(xmlString);
 			statusCode = conn.getResponseCode();
 			conn.disconnect();
 		} catch (MalformedURLException e) {
