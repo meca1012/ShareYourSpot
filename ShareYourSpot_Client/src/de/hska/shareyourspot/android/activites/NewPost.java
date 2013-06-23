@@ -182,6 +182,10 @@ public class NewPost extends Activity {
 
 		//Get PossitionData
 		Location location = locationHelper.getLocation();
+		
+		if(location==null){
+				location = locationHelper.getKarlsruhe();
+		}
 				
 				Post post = new Post(postText, selectedParty);
 				post.setCreatedByUser(uStore.getUser(ctx));
