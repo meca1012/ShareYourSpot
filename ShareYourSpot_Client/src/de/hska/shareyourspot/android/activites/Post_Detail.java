@@ -80,9 +80,10 @@ public class Post_Detail extends Activity {
 		this.foundComments = new ArrayList<Comment>();
 		this.shownComments = new ArrayList<String>();
 		this.listComments = (ListView) findViewById(R.id.listView_comments);
-		
-		List<Comment> comments = this.post.getComments();
-		
+		List<Comment> comments = new ArrayList<Comment>();
+		if(this.post.getComments()!=null){
+		comments = this.post.getComments();
+		}
 		if (comments != null) {
 
 			this.foundComments = comments;
