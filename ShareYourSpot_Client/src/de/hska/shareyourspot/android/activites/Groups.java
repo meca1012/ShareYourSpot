@@ -34,7 +34,7 @@ public class Groups extends Activity {
 	private List<Party> foundParties;
 	private ListView listGroups;
 	private ArrayList<String> meineListe;
-
+	private final String groupMember = "groupMember";
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
 
@@ -140,7 +140,7 @@ public class Groups extends Activity {
 				intent.putExtra(this.groupId, Long.valueOf(party.getPartyId()));
 			}
 		}
-
+		intent.putExtra(this.groupMember, true);
 		startActivity(intent);
 	}
 
