@@ -212,8 +212,12 @@ public class Post_Detail extends Activity {
 		
 		this.restClient.addComment(comment);
 		
-		Intent intent = new Intent(this, Post_Detail.class);
-		startActivity(intent);
+		editText.setText("");
+		ratingBar.setRating(0);
+//		Intent intent = new Intent(this, Post_Detail.class);
+//		intent.putExtra(this.postId, postIdent);
+		recreate();
+//		startActivity(intent);
 				
 	}
 
