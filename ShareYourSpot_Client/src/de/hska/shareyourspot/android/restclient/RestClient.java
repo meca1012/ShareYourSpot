@@ -170,11 +170,11 @@ public class RestClient extends HttpHandler {
 		return comment;
 	}
 	
-	public Comments getCommentsToPost(Long id){
-		String url = BASE_URL + "/post/getCommentsToPost/" + id;
-		Comments comments = (Comments) get(url, DomainType.Comments);
-		return comments;
-	}
+//	public Comments getCommentsToPost(Long id){
+//		String url = BASE_URL + "/post/getCommentsToPost/" + id;
+//		Comments comments = (Comments) get(url, DomainType.Comments);
+//		return comments;
+//	}
 
 	public Posts getPostByUser(User user) {
 		Posts p = new Posts();
