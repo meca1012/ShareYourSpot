@@ -8,6 +8,7 @@ import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.User;
+import de.hska.shareyourspot.android.helper.AlertHelper;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.app.Activity;
@@ -130,8 +131,16 @@ public class NewGroup extends Activity {
 	public void createNewGroup(View view) throws IOException {
 
 		EditText groupname = (EditText) findViewById(R.id.editText1);
+		String groupText = groupname.getText().toString();
+		
+		if(groupText == null || groupText.isEmpty())
+		{
+			new AlertHelper(ctx, R.string.groupCreateFailureGroupnameTitle, R.string.groupCreateFailureGroupnameText, "Back").fireAlert();
+			return;
+		}
+		
 		this.newParty = new Party();
-		this.newParty.setName(groupname.getText().toString());
+		this.newParty.setName(groupText);
 		
 		User user = uStore.getUser(ctx);
 	
