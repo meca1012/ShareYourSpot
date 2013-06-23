@@ -13,9 +13,8 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:text="@string/your_groups"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -25,7 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
+        android:layout_marginBottom="50dp"
         android:layout_marginTop="22dp" >
+
     </ListView>
 
     <Button
@@ -33,10 +34,8 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_alignLeft="@+id/list_groups"
+        android:layout_alignParentBottom="true"
         android:onClick="toNewGroup"
         android:text="@string/new_group" />
 
