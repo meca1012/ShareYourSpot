@@ -80,15 +80,16 @@ public class Post_Detail extends Activity {
 		this.foundComments = new ArrayList<Comment>();
 		this.shownComments = new ArrayList<String>();
 		this.listComments = (ListView) findViewById(R.id.listView_comments);
-		Comments comments = this.restClient.getCommentsToPost(postIdent);
+		
+		List<Comment> comments = this.post.getComments();
 		
 		if (comments != null) {
 
-			this.foundComments.addAll(comments.getAllComments());
+			this.foundComments = comments;
 
 			for (Comment comment : this.foundComments) {
 				if (comment.getText() != null) {
-					this.shownComments.add(comment.getCreated() + ": " + comment.getText());
+					this.shownComments.add(comment.getCreatedByUsername() + ": " + comment.getText());
 				}
 			}
 		}
@@ -192,7 +193,8 @@ public class Post_Detail extends Activity {
 		EditText editText = (EditText) findViewById(R.id.editText_enter_text);
 		Comment comment = new Comment();
 		comment.setText(editText.getText().toString());
-		comment.setPostId(Long.valueOf(postId));
+		long postIdent = getIntent().getLongExtra(postId, 0);
+		comment.setPostId(Long.valueOf(postIdent));
 		
 		RatingBar ratingBar= (RatingBar)findViewById(R.id.ratingBar_post_detail);
 		Double dbl = (double) ratingBar.getRating();
@@ -208,6 +210,9 @@ public class Post_Detail extends Activity {
 		comment.setCreatedByUsername(user.getName());
 		
 		this.restClient.addComment(comment);
+		
+		Intent intent = new Intent(this, Post_Detail.class);
+		startActivity(intent);
 				
 	}
 

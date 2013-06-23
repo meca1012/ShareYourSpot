@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 import de.hska.shareyourspot.android.helper.Constants;
 import de.hska.shareyourspot.android.helper.IdListHelper;
@@ -38,6 +39,9 @@ public class Post implements Constants, Serializable {
 	
 	@Element(required=false)
 	private String commentsOfPost;
+	
+	@ElementList(required=false)
+	private List<Comment> comments;
 
 	@Element(required=false)
 	private Long created;
@@ -127,6 +131,14 @@ public class Post implements Constants, Serializable {
 	public void addCommentToPost(Long id)
 	{
 		this.commentsOfPost = IdListHelper.AddSingleIdToString(this.commentsOfPost, id);
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public Double getTotalRating() {
