@@ -40,7 +40,7 @@ public class Group_Detail extends Activity {
 		this.group = getIntent().getLongExtra(this.groupId, group);
 		this.groupMemberBool = getIntent().getBooleanExtra(this.groupMember, false);
 		
-		if(!groupMemberBool)
+		if(groupMemberBool)
 		{
 			Button button = (Button) findViewById(R.id.btn_JoinGroup);
 			button.setEnabled(false);
