@@ -2,6 +2,7 @@ package de.hska.shareyourspot.android.activites;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class Post_Detail extends Activity {
 	public final String latitude = "latitude";
 	public String imageUrl = "http://hskaebusiness.square7.ch/ShareYourSpot/";
 	public String imageEnd = ".jpg";
+	public double ratingResults = 0;
 	
 	private ListView listComments;
 	private ArrayList<String> shownComments;
@@ -90,9 +92,14 @@ public class Post_Detail extends Activity {
 
 			for (Comment comment : this.foundComments) {
 				if (comment.getText() != null) {
+					this.ratingResults += comment.getRating();
 					this.shownComments.add(comment.getCreatedByUsername() + ": " + comment.getText());
 				}
 			}
+			this.ratingResults = this.ratingResults/this.foundComments.size();
+			DecimalFormat df = new DecimalFormat("#0.0");			
+			TextView textView = (TextView) findViewById(R.id.textView_midvalue);
+			textView.setText(df.format(this.ratingResults));
 		}
 //		else{
 //		this.meineListe.add("");}
