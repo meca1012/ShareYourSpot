@@ -140,7 +140,7 @@ public class NewGroup extends Activity {
 
 	public void createNewGroup(View view) throws IOException {
 
-		EditText groupname = (EditText) findViewById(R.id.editText1);
+		EditText groupname = (EditText) findViewById(R.id.commentText);
 		String groupText = groupname.getText().toString();
 
 		if (groupText == null || groupText.isEmpty()) {

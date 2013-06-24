@@ -13,8 +13,8 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText1"
-        android:layout_toRightOf="@+id/editText1"
+        android:layout_alignBottom="@+id/commentText"
+        android:layout_toRightOf="@+id/commentText"
         android:onClick="createNewGroup"
         android:text="@string/create" />
 
@@ -22,8 +22,8 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
+        android:layout_alignLeft="@+id/commentText"
+        android:layout_below="@+id/commentText"
         android:layout_marginTop="37dp"
         android:text="@string/all_groups"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -60,7 +60,7 @@
         android:text="@string/search" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/commentText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"

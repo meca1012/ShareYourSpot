@@ -3,24 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
     android:focusable="true" android:focusableInTouchMode="true">
-
-    <Button
-        android:id="@+id/btn_comment"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/editText_enter_text"
-        android:layout_toRightOf="@+id/editText_enter_text"
-        android:onClick="addComment"
-        android:text="@string/comment" />
-
-    <RatingBar       
-        android:id="@+id/ratingBar_post_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_alignLeft="@+id/editText_enter_text"
-        android:layout_below="@+id/btn_comment" />
     
     <TextView
         android:id="@+id/textView_spotter"
@@ -33,31 +15,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="25sp" />
 
-<!--     <ImageButton -->
-<!--         android:id="@+id/imageButton1" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_below="@+id/textView_spot_text" -->
-<!--         android:layout_centerHorizontal="true" -->
-<!--         android:layout_marginTop="30dp" -->
-<!--         android:onClick="startMap" -->
-<!--         android:src="@drawable/common_signin_btn_icon_disabled_light" /> -->
-
-    <EditText
-        android:id="@+id/editText_enter_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_spot_text"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="78dp"
-        android:ems="10"
-        android:hint="@string/enter_text" />
-
     <ListView
         android:id="@+id/listView_comments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editText_enter_text"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/imageViewPostDetail"
         android:layout_marginLeft="15dp"
@@ -83,8 +44,9 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="50dp"
         android:layout_marginTop="86dp"
-        android:onClick="startMap"
-        android:src="@drawable/postlist" />
+        android:onClick="showFullPic"
+                android:src="@android:drawable/ic_menu_gallery" />
+
 
     <TextView
         android:id="@+id/textView_result"
@@ -105,4 +67,31 @@
         android:layout_toRightOf="@+id/textView_result"
         android:text="@string/mid_value" />
 
+      <TextView
+          android:id="@+id/btn_geo"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/textView_result"
+          android:layout_below="@+id/textView_result"
+          android:clickable="true"
+          android:onClick="startMap"
+          android:text="@string/showMap"
+          android:textAppearance="?android:attr/textAppearanceMedium"
+          android:textColor="@android:color/holo_blue_dark"
+          android:textSize="13sp" />
+
+      <TextView
+          android:id="@+id/btn_comment"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/listView_comments"
+          android:layout_below="@+id/imageViewPostDetail"
+          android:layout_marginTop="32dp"
+          android:clickable="true"
+          android:onClick="addComment"
+          android:text="@string/add_comment"
+          android:textAppearance="?android:attr/textAppearanceMedium"
+          android:textColor="@android:color/holo_blue_dark"
+          android:textSize="13sp" />
+    
 </RelativeLayout>

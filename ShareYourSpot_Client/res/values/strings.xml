@@ -20,11 +20,15 @@
     <string name="profil">Profil</string>
     <string name="rate">Rate</string>
     <string name="comment">Comment</string>
+    <string name="commentlabel">Write a comment</string>
+    <string name="showMap">Show on Map</string>
+    <string name="add_comment">Add Comment</string>
     <string name="add">add</string>
     <string name="spots">Spots</string>
     <string name="back">back</string>
     <string name="map">Map</string>
     <string name="search">Search</string>
+    <string name="commentHint">Enter your comment</string>
     <string name="post">post</string>
     <string name="name">Name</string>
     <string name="enter_name">Enter Name</string>
@@ -81,5 +85,7 @@
     <string name="result">Result: </string>
     <string name="mid_value">mid_value</string>
     <string name="rating">Rating:</string>
+    <string name="title_activity_add_comment">AddComment</string>
+    <string name="title_activity_full_screen_image">FullScreenImage</string>
 
 </resources>

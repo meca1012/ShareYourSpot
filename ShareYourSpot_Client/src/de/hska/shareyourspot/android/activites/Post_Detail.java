@@ -46,13 +46,13 @@ public class Post_Detail extends Activity {
 	private Context ctx = this;
 	private RestClient restClient = new RestClient();
 	protected Post post; 
-	public final String postId = "postId";
 	public final String longitude = "longitude";
 	public final String latitude = "latitude";
 	public String imageUrl = "http://hskaebusiness.square7.ch/ShareYourSpot/";
 	public String imageEnd = ".jpg";
 	public double ratingResults = 0;
-	
+	private long postIdent;
+	public final String postId = "postId";
 	private ListView listComments;
 	private ArrayList<String> shownComments;
 	private List<Comment>foundComments = new ArrayList<Comment>();
@@ -61,7 +61,7 @@ public class Post_Detail extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		long postIdent = getIntent().getLongExtra(postId, 0);
+		this.postIdent = getIntent().getLongExtra(postId, 0);
 		setContentView(R.layout.activity_post_detail);
 		this.post = this.restClient.getPost(postIdent);
 		
@@ -70,7 +70,7 @@ public class Post_Detail extends Activity {
 			ImageView imageView = (ImageView) findViewById(R.id.imageViewPostDetail);
 			new DownloadImageTask(imageView).execute(imageUrl + this.post.getPostId() + imageEnd);
 			TextView spotterName = (TextView) findViewById(R.id.textView_spotter);
-		spotterName.setText("# Shared by " + this.post.getCreatedByUser().getName());
+		spotterName.setText(this.post.getCreatedByUser().getName() + " wrote, ");
 		
 		TextView spotText = (TextView) findViewById(R.id.textView_spot_text);
 		spotText.setText(this.post.getText());
@@ -172,6 +172,14 @@ public class Post_Detail extends Activity {
 			startActivity(intent);
 		}
 	    	
+		
+		public void showFullPic(View view) {
+			//TODO Karlruhe gegen Postdatenersetzen
+			Intent intent = new Intent(this, FullScreenImage.class);
+			intent.putExtra(this.postId, postIdent);
+			startActivity(intent);
+		}
+	    	
 	
 	
 	
@@ -200,33 +208,10 @@ public class Post_Detail extends Activity {
 	}
 	
 	public void addComment(View view){
-		EditText editText = (EditText) findViewById(R.id.editText_enter_text);
-		Comment comment = new Comment();
-		comment.setText(editText.getText().toString());
-		long postIdent = getIntent().getLongExtra(postId, 0);
-		comment.setPostId(Long.valueOf(postIdent));
 		
-		RatingBar ratingBar= (RatingBar)findViewById(R.id.ratingBar_post_detail);
-		Double dbl = (double) ratingBar.getRating();
-		comment.setRating(dbl);
-		
-		User user = null;
-		try {
-			user = uStore.getUser(ctx);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		comment.setCreatedByUsername(user.getName());
-		
-		this.restClient.addComment(comment);
-		
-		editText.setText("");
-		ratingBar.setRating(0);
-//		Intent intent = new Intent(this, Post_Detail.class);
-//		intent.putExtra(this.postId, postIdent);
-		recreate();
-//		startActivity(intent);
+		Intent intent = new Intent(this, AddComment.class);
+		intent.putExtra(this.postId, postIdent);
+		startActivity(intent);
 				
 	}
 
