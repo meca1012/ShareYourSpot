@@ -72,25 +72,6 @@
         android:layout_marginTop="12dp"
         android:text="@string/spot_text" />
 
-    <TextView
-        android:id="@+id/textView_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_spot_text"
-        android:layout_below="@+id/textView_spot_text"
-        android:layout_marginTop="17dp"
-        android:text="@string/rating"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/textView_midvalue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_result"
-        android:layout_alignBottom="@+id/textView_result"
-        android:layout_toRightOf="@+id/textView_spot_text"
-        android:text="@string/mid_value" />
-
     <ImageView
         android:id="@+id/imageViewPostDetail"
         android:layout_width="wrap_content"
@@ -101,5 +82,24 @@
         android:layout_marginTop="86dp"
         android:onClick="startMap"
         android:src="@drawable/postlist" />
+
+    <TextView
+        android:id="@+id/textView_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView_spot_text"
+        android:layout_below="@+id/textView_spot_text"
+        android:layout_marginTop="18dp"
+        android:text="@string/rating"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView_midvalue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageViewPostDetail"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/textView_result"
+        android:text="@string/mid_value" />
 
 </RelativeLayout>
