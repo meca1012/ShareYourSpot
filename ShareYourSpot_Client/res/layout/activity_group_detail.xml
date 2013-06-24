@@ -9,15 +9,6 @@
     tools:context=".Group_Detail" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="26dp"
-        android:text="@string/groupDetailTitle"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
         android:id="@+id/textView_groupname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,6 +18,15 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="16dip" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView_groupname"
+        android:layout_alignParentTop="true"
+        android:text="@string/groupDetailTitle"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <Button
         android:id="@+id/btn_JoinGroup"
         style="?android:attr/buttonStyleSmall"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_groupname"
         android:layout_below="@+id/textView_groupname"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="34dp"
         android:onClick="joinGroup"
         android:text="@string/join_group" />
 
@@ -45,7 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btn_JoinGroup"
         android:layout_alignBottom="@+id/btn_JoinGroup"
-        android:layout_marginLeft="120dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="14dp"
         android:onClick="leaveGroup"
         android:text="@string/leave" />
 

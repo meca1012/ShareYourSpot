@@ -2,6 +2,8 @@ package de.hska.shareyourspot.android.activites;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -21,7 +23,9 @@ import android.widget.Toast;
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
+import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.User;
+import de.hska.shareyourspot.android.helper.LazyAdapterGroups;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 
@@ -37,14 +41,17 @@ public class Groups extends Activity {
 	private final String groupMember = "groupMember";
 	private UserStore uStore = new UserStore();
 	private Context ctx = this;
-
+    public static final String KEY_ID = "id";
+    public static final String KEY_TITLE = "title";
+    private LazyAdapterGroups adapter;
+    
 	public final String groupId = "groupId";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.groups);
-//		getActionBar().setDisplayHomeAsUpEnabled(true);
+		 ArrayList<HashMap<String, String>> partyList = new ArrayList<HashMap<String, String>>();
 
 		this.foundParties = new ArrayList<Party>();
 		this.meineListe = new ArrayList<String>();
@@ -61,32 +68,34 @@ public class Groups extends Activity {
 		User user = new User();
 		user.setUserId(u.getUserId());
 		Parties parties = this.restClient.getPartiesByUser(user);
-
+		this.foundParties = parties.getAllParties();
 		if (parties != null) {
+			
+			for (Party party : parties.getAllParties()) {
+	            // creating new HashMap
+	            HashMap<String, String> map = new HashMap<String, String>();
 
-			this.foundParties.addAll(parties.getAllParties());
-
-			for (Party party : this.foundParties) {
-				if (party.getName() != null) {
-					this.meineListe.add(party.getName());
-				}
+	            if(party.getName() !=  null)
+	            {
+	            map.put(KEY_ID, party.getPartyId().toString());
+	            map.put(KEY_TITLE, party.getName());
+	            }
+	            // adding HashList to ArrayList
+	            partyList.add(map);
+	        }
+	  			
+	        // Getting adapter by passing xml data ArrayList
+	        adapter=new LazyAdapterGroups(this, partyList);
+	        this.listGroups.setAdapter(adapter);
 			}
-		}
-//		else{
-//		this.meineListe.add("");}
 
-		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, meineListe);
-
-		this.listGroups.setAdapter(listenAdapter);
+		this.listGroups.setAdapter(adapter);
 
 		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-
-				String item = ((TextView) view).getText().toString();
-
+				String item  = foundParties.get(position).getName();
 				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
 						.show();
 
