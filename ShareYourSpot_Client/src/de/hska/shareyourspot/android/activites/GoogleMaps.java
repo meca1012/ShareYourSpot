@@ -31,13 +31,9 @@ public class GoogleMaps extends FragmentActivity {
 	  @Override
 	  protected void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
+	    
 	    setContentView(R.layout.activity_google_maps);
-	    coordinates = new LatLng(getIntent().getDoubleExtra(latitude, 49.014), getIntent().getDoubleExtra(longitude,  8.4043));
-	    
-//	    DefaultHttpClient httpclient = new DefaultHttpClient();
-//	    HttpHost proxy = new HttpHost("proxy.hs-karlrsuhe.de", 8888);
-//	    httpclient.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY, proxy);
-	    
+	    coordinates = new LatLng(getIntent().getDoubleExtra(latitude, 49.014), getIntent().getDoubleExtra(longitude,  8.4043)); 
 	    
 	    map = ((SupportMapFragment)  getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 	    

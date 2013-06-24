@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.Menu;
@@ -59,6 +60,7 @@ public class Post_Detail extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		long postIdent = getIntent().getLongExtra(postId, 0);
 		setContentView(R.layout.activity_post_detail);
 		this.post = this.restClient.getPost(postIdent);

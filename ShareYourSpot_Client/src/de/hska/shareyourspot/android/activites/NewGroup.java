@@ -16,6 +16,7 @@ import de.hska.shareyourspot.android.restclient.RestClient;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -49,7 +50,9 @@ public class NewGroup extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		setContentView(R.layout.newgroup);
+		
 
 		this.meineListe = new ArrayList<String>();
 		this.foundParties = new ArrayList<Party>();
