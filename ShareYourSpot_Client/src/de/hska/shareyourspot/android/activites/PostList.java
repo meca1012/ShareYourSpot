@@ -2,7 +2,9 @@ package de.hska.shareyourspot.android.activites;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.android.gms.internal.em;
@@ -13,6 +15,7 @@ import de.hska.shareyourspot.android.domain.Picture;
 import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.Posts;
 import de.hska.shareyourspot.android.domain.User;
+import de.hska.shareyourspot.android.helper.LazyAdapter;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.os.Bundle;
@@ -40,6 +43,18 @@ public class PostList extends Activity {
 	private int count = 1;
 	private RestClient restclient = new RestClient();
 
+    static final String URL = "http://api.androidhive.info/music/music.xml";
+    // XML node keys
+    public static final String KEY_SONG = "song"; // parent node
+    public static final String KEY_ID = "id";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_ARTIST = "artist";
+    public static final String KEY_DURATION = "duration";
+    public static final String KEY_THUMB_URL = "thumb_url";
+    private LazyAdapter adapter;
+	
+	
+	
 	public final String postId = "postId";
 	
 	@Override
@@ -48,6 +63,8 @@ public class PostList extends Activity {
 		
 		setContentView(R.layout.activity_post_list);
 		this.posts = new Posts();
+		
+		 ArrayList<HashMap<String, String>> postList = new ArrayList<HashMap<String, String>>();
 		
 		User user = null;
 		try {
@@ -67,29 +84,35 @@ public class PostList extends Activity {
 			if(this.posts != null)
 			{
 				this.postsTitle = new ArrayList<String>();
-			
-			for (Post post : this.posts.getAllPosts()) {
-				Date createDate = new Date(post.getCreated());
-				String username = post.getCreatedByUser().getName();
-				String posttext = username + " spotted: " + post.getText();
-				
-				if(posttext.length() >= this.maxPostLength)
-				{
-					posttext = count + "#- " + posttext.substring(0, maxPostLength) + "...";
-				}
-				else
-				{
-					posttext = count +  "#- " + posttext;
-				}
+				List<Post> postArrayList = this.posts.getAllPosts();
+				Collections.sort(postArrayList);
+				for (Post post : postArrayList) {
+			            // creating new HashMap
+			            HashMap<String, String> map = new HashMap<String, String>();
 
-				this.postsTitle.add(posttext);
-				count++;
-			}
-			ListAdapter listenAdapter = new ArrayAdapter<String>(this,
-					android.R.layout.simple_list_item_1, this.postsTitle);
-
-			ListView listUsers = (ListView) findViewById(R.id.list);
-			listUsers.setAdapter(listenAdapter);
+			            // adding each child node to HashMap key =&gt; value
+			            map.put(KEY_ID, post.getPostId().toString());
+			            String posttext = post.getText();
+			            if(posttext.length() > 15)
+			            {
+			            	posttext = posttext.substring(0,15);
+			            }
+			            Date DateObject = new Date(post.getCreated());
+			            map.put(KEY_TITLE, posttext);
+			            map.put(KEY_ARTIST, post.getCreatedByUser().getName());
+			            map.put(KEY_DURATION, DateObject.toString());
+			            map.put(KEY_THUMB_URL, post.getPostId() + ".jpg");
+			 
+			            // adding HashList to ArrayList
+			            postList.add(map);
+			        }
+			 
+					ListView listUsers = (ListView) findViewById(R.id.list);
+			 
+			        // Getting adapter by passing xml data ArrayList
+			        adapter=new LazyAdapter(this, postList);
+			        listUsers.setAdapter(adapter);
+			 
 
 			listUsers.setOnItemClickListener(new OnItemClickListener() {
 				@Override

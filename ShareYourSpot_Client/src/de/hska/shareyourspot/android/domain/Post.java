@@ -12,7 +12,7 @@ import de.hska.shareyourspot.android.helper.IdListHelper;
 
 
 @Root(name="post")
-public class Post implements Constants, Serializable {
+public class Post implements Constants, Serializable, Comparable<Post>{
 
 	private static final long serialVersionUID = -7769905910137170288L;
 
@@ -147,6 +147,12 @@ public class Post implements Constants, Serializable {
 
 	public void setTotalRating(Double totalRating) {
 		this.totalRating = totalRating;
+	}
+
+	@Override
+	public int compareTo(Post another) {
+		
+		return this.created.compareTo(another.getCreated()) * -1;
 	}
 
 }
