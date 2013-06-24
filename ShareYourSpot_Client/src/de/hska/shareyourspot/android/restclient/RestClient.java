@@ -13,10 +13,12 @@ import de.hska.shareyourspot.android.domain.Users;
 
 public class RestClient extends HttpHandler {
 
-	public static String BASE_URL = "http://10.85.41.8:8080/ShareYourSpot/rest";
+	//public static String BASE_URL = "http://10.85.41.8:80/ShareYourSpot/rest";
+	//http://www.iwi.hs-karlsruhe.de/ShareYourSpot/rest/member/getUserXML
 	//public static String BASE_URL = "http://54.229.23.113:8080/ShareYourSpot/rest";
 	//public static String BASE_URL = "http://192.168.0.27:8080/ShareYourSpot-1/rest";
 	//public static String BASE_URL = "http://10.0.2.2:8080/ShareYourSpot-1/rest";
+	public static String BASE_URL = "http://www.iwi.hs-karlsruhe.de/ShareYourSpot/rest";
 
 	public User getBenutzerXML() {
 		String url = BASE_URL + "/member/getUserXML";

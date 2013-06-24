@@ -26,9 +26,13 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Message;
+import android.provider.MediaStore;
+import android.provider.MediaStore.Images.Media;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +52,7 @@ import de.hska.shareyourspot.android.restclient.RestClient;
 
 public class NewPost extends Activity {
 	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+	private static final int TAKE_PHOTO_CODE = 1;
 	private static final int PICTURE_COMPRESS_RATE = 100;
 	private UserStore uStore = new UserStore();
 	private RestClient restClient = new RestClient();
@@ -137,11 +142,20 @@ public class NewPost extends Activity {
 
 	public void startCam(View view) {
 
-		Intent cameraIntent = new Intent(
-				android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-		startActivityForResult(cameraIntent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		  intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(getTempFile(this)) ); 
+		  startActivityForResult(intent, TAKE_PHOTO_CODE);
 
 	}
+	
+	private File getTempFile(Context context){
+		  //it will return /sdcard/image.tmp
+		  final File path = new File( Environment.getExternalStorageDirectory(), context.getPackageName() );
+		  if(!path.exists()){
+		    path.mkdir();
+		  }
+		  return new File(path, "image.tmp");
+		}
 	
 	public void pushPost(View view) throws IOException {
 		
@@ -234,26 +248,54 @@ public class NewPost extends Activity {
 
 	}
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-			if (resultCode == Activity.RESULT_OK) {
-				Bitmap bmp = (Bitmap) data.getExtras().get("data");
-				this.picture = (Bitmap) data.getExtras().get("data");
-				ImageView pictureButton = (ImageView)findViewById(R.id.newImagePost);
-				pictureButton.setImageBitmap(bmp);
-				
-			} else if (resultCode == Activity.RESULT_CANCELED) {
+//	@Override
+//	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+//			if (resultCode == Activity.RESULT_OK) {
+//				Bitmap bmp = (Bitmap) data.getExtras().get("data");
+//				this.picture = (Bitmap) data.getExtras().get("data");
+//				ImageView pictureButton = (ImageView)findViewById(R.id.newImagePost);
+//				pictureButton.setImageBitmap(bmp);
+//				
+//			} else if (resultCode == Activity.RESULT_CANCELED) {
+//				Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
+//				intent.putExtra(tabIndex, 2);
+//				startActivity(intent);
+//			} else {
+//				Intent intent = new Intent(this, NewPost.class);
+//				startActivity(intent);
+//			}
+//		}
+//	}
+	
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		  if (resultCode == RESULT_OK) {
+		    switch(requestCode){
+		      case TAKE_PHOTO_CODE:
+		        final File file = getTempFile(this);
+		        try {
+		          this.picture = Media.getBitmap(getContentResolver(), Uri.fromFile(file) );
+		          ImageView pictureButton = (ImageView)findViewById(R.id.newImagePost);
+					pictureButton.setImageBitmap(this.picture);
+		        } catch (FileNotFoundException e) {
+		          e.printStackTrace();
+		        } catch (IOException e) {
+		          e.printStackTrace();
+		        }
+		      break;
+		      
+		      case Activity.RESULT_CANCELED: {
 				Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
 				intent.putExtra(tabIndex, 2);
-				startActivity(intent);
-			} else {
+				startActivity(intent);}
+			default: {
 				Intent intent = new Intent(this, NewPost.class);
 				startActivity(intent);
 			}
-		}
+		      
+		    }
+		  }
 	}
-	
 	public class ProgressInputStream extends InputStream {
 
 	    /* Key to retrieve progress value from message bundle passed to handler */

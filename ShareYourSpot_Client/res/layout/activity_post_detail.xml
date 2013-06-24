@@ -18,17 +18,20 @@
         android:id="@+id/ratingBar_post_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="?android:attr/ratingBarStyleSmall"
         android:layout_alignLeft="@+id/editText_enter_text"
         android:layout_below="@+id/btn_comment" />
-
+    
     <TextView
         android:id="@+id/textView_spotter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
         android:text="@string/spotter"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="25sp" />
 
 <!--     <ImageButton -->
 <!--         android:id="@+id/imageButton1" -->
