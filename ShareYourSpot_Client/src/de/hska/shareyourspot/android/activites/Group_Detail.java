@@ -31,6 +31,7 @@ public class Group_Detail extends Activity {
 	private RestClient restClient = new RestClient();
 	private long group = Long.valueOf(0);
 	private Party party = new Party();
+	public final String tabIndex = "tabIndex";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +128,7 @@ public class Group_Detail extends Activity {
 	
 	public void toStart() {
 		Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
+		intent.putExtra(tabIndex, 1);
 		startActivity(intent);
 	}
 }
