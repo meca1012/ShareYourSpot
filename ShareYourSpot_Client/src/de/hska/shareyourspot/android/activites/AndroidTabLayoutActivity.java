@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
@@ -36,6 +37,7 @@ public class AndroidTabLayoutActivity extends TabActivity{
         postspec.setIndicator("Post List",getResources().getDrawable(R.drawable.postlist));
         Intent postIntent = new Intent(this, PostList.class);
         postspec.setContent(postIntent);
+        tabHost.getTabWidget().setBackgroundColor(Color.parseColor("#f7f9f6"));
          
         // Tab for Groups
         TabSpec groupspec = tabHost.newTabSpec("Groups");        

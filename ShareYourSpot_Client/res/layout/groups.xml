@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/button1"
         android:layout_below="@+id/button1"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="30dp"
         android:text="@string/your_groups"
         android:textAppearance="?android:attr/textAppearanceLarge" />
