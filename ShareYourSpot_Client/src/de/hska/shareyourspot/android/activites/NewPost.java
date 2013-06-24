@@ -51,10 +51,11 @@ public class NewPost extends Activity {
 	private UserStore uStore = new UserStore();
 	private RestClient restClient = new RestClient();
 	private Parties parties = new Parties();
+	private Bitmap picture ;
 	private Context ctx = this;
 	private List<String> groupList;
 	public final String tabIndex = "tabIndex";
-	//TODO CHANGE TO DB DATA
+
 	
 	
 	@Override
@@ -171,13 +172,7 @@ public class NewPost extends Activity {
 		TextView txtview = (TextView) findViewById(R.id.postText);
 		String postText = txtview.getText().toString();
 
-		//Build of PictureObject
-		// First get ImageDate from ImageView
-		ImageView imageView = (ImageView)findViewById(R.id.newImagePost);
-		Drawable drawable = imageView.getDrawable();
-		
-		BitmapDrawable bitmapDrawable = ((BitmapDrawable) drawable);
-		Bitmap bitmap = bitmapDrawable .getBitmap();
+
 				
 
 		//Get PossitionData
@@ -211,6 +206,7 @@ public class NewPost extends Activity {
 		        }
 		       
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		Bitmap bitmap = this.picture;
 		bitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
 		byte[] imageInByte = stream.toByteArray();
 
@@ -242,16 +238,10 @@ public class NewPost extends Activity {
 		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == Activity.RESULT_OK) {
 				Bitmap bmp = (Bitmap) data.getExtras().get("data");
-//				ByteArrayOutputStream stream = new ByteArrayOutputStream();
-//				bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-//				byte[] byteArray = stream.toByteArray();
+				this.picture = (Bitmap) data.getExtras().get("data");
 				ImageView pictureButton = (ImageView)findViewById(R.id.newImagePost);
 				pictureButton.setImageBitmap(bmp);
 				
-				// TODO DO SOMETHING WITH THE PICUTRE
-//				Intent intent = new Intent(this, NewPost.class);
-//				startActivity(intent);
-
 			} else if (resultCode == Activity.RESULT_CANCELED) {
 				Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
 				intent.putExtra(tabIndex, 2);

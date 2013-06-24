@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:onClick="startCam"
-        android:src="@android:drawable/ic_menu_camera" />
+        android:src="@drawable/camera" />
 
     <Button
         android:id="@+id/pushPost"
@@ -43,6 +43,7 @@
         android:layout_above="@+id/groupSpinner"
         android:layout_alignLeft="@+id/newImagePost"
         android:layout_alignRight="@+id/newImagePost"
+        android:layout_marginTop = "10dip"
         android:ems="10"
         android:hint="@string/enter_text"/>
     

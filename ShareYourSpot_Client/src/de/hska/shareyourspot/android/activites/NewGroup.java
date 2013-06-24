@@ -2,6 +2,7 @@ package de.hska.shareyourspot.android.activites;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import de.hska.shareyourspot.android.R;
@@ -9,6 +10,7 @@ import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.AlertHelper;
+import de.hska.shareyourspot.android.helper.LazyAdapterGroups;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.app.Activity;
@@ -40,13 +42,15 @@ public class NewGroup extends Activity {
 	private ArrayList<String> meineListe;
 	public final String groupId = "groupId";
 	public final String tabIndex = "tabIndex";
+	public static final String KEY_ID = "id";
+	public static final String KEY_TITLE = "title";
+	private LazyAdapterGroups adapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newgroup);
-		
-		
+
 		this.meineListe = new ArrayList<String>();
 		this.foundParties = new ArrayList<Party>();
 		this.lookForParty = new Party();
@@ -55,36 +59,41 @@ public class NewGroup extends Activity {
 		this.lookForParty.setName(editText.getText().toString());
 
 		Parties parties = this.restClient.getAllParties();
-		if (parties != null) {
-			this.foundParties.addAll(parties.getAllParties());
+		ArrayList<HashMap<String, String>> partyList = new ArrayList<HashMap<String, String>>();
 
+		if (parties != null && !parties.getAllParties().isEmpty()) {
+			this.foundParties = parties.getAllParties();
 			for (Party party : foundParties) {
+				// creating new HashMap
+				HashMap<String, String> map = new HashMap<String, String>();
+
 				if (party.getName() != null) {
-					this.meineListe.add(party.getName());
+					map.put(KEY_ID, party.getPartyId().toString());
+					map.put(KEY_TITLE, party.getName());
 				}
+				// adding HashList to ArrayList
+				partyList.add(map);
 			}
+
+			// Getting adapter by passing xml data ArrayList
+			adapter = new LazyAdapterGroups(this, partyList);
+			this.listGroups.setAdapter(adapter);
+
+			this.listGroups.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+
+					// String item = ((TextView) view).getText().toString();
+					String item = foundParties.get(position).getName();
+					Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
+							.show();
+
+					groupDetail(item);
+				}
+			});
 		}
-//		else{
-//		this.meineListe.add("");}
-		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, meineListe);
-
-		this.listGroups.setAdapter(listenAdapter);
-
-		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
-				String item = ((TextView) view).getText().toString();
-
-				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
-						.show();
-
-				groupDetail(item);
-			}
-		});
 	}
 
 	@Override
@@ -113,37 +122,36 @@ public class NewGroup extends Activity {
 			uStore.logout(ctx);
 			finish();
 			break;
-			
-		case android.R.id.home:
-		  	onBackPressed();
-	        finish();
-	    break;
 
-				
+		case android.R.id.home:
+			onBackPressed();
+			finish();
+			break;
+
 		default:
-		    break;
-			
+			break;
+
 		}
 		return true;
 	}
 
-	
 	public void createNewGroup(View view) throws IOException {
 
 		EditText groupname = (EditText) findViewById(R.id.editText1);
 		String groupText = groupname.getText().toString();
-		
-		if(groupText == null || groupText.isEmpty())
-		{
-			new AlertHelper(ctx, R.string.groupCreateFailureGroupnameTitle, R.string.groupCreateFailureGroupnameText, "Back").fireAlert();
+
+		if (groupText == null || groupText.isEmpty()) {
+			new AlertHelper(ctx, R.string.groupCreateFailureGroupnameTitle,
+					R.string.groupCreateFailureGroupnameText, "Back")
+					.fireAlert();
 			return;
 		}
-		
+
 		this.newParty = new Party();
 		this.newParty.setName(groupText);
-		
+
 		User user = uStore.getUser(ctx);
-	
+
 		this.newParty.addUserToParty(user.getUserId());
 
 		int i = this.restClient.createGroup(this.newParty);
@@ -153,28 +161,28 @@ public class NewGroup extends Activity {
 		intent.putExtra(tabIndex, 1);
 		startActivity(intent);
 	}
-	
+
 	public void searchGroup(View view) {
-	
+
 		EditText groupname = (EditText) findViewById(R.id.editText2);
 		this.newParty = new Party();
 		this.newParty.setName(groupname.getText().toString());
 
 		this.meineListe = new ArrayList<String>();
-		
+
 		Party party = this.restClient.getPartyByName(this.newParty);
 		if (party != null) {
 			this.meineListe.add(party.getName());
-		} 
-//		else {
-//			this.meineListe.add("");
-//		}
+		}
+		// else {
+		// this.meineListe.add("");
+		// }
 		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, meineListe);
 
 		this.listGroups.setAdapter(listenAdapter);
 	}
-	
+
 	public void onClickSearch(View view) {
 		this.meineListe = new ArrayList<String>();
 		this.foundParties = new ArrayList<Party>();
@@ -191,10 +199,10 @@ public class NewGroup extends Activity {
 					this.meineListe.add(party.getName());
 				}
 			}
-		} 
-//		else {
-//			this.meineListe.add("");
-//		}
+		}
+		// else {
+		// this.meineListe.add("");
+		// }
 		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, meineListe);
 

@@ -85,11 +85,11 @@
         <activity
             android:name="de.hska.shareyourspot.android.activites.GoogleMaps"
             android:label="@string/title_activity_google_maps"
-            android:parentActivityName="de.hska.shareyourspot.android.activites.MainActivity"
+            android:parentActivityName="de.hska.shareyourspot.android.activites.Post_Detail"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.hska.shareyourspot.android.activites.MainActivity" />
+                android:value="de.hska.shareyourspot.android.activites.Post_Detail" />
         </activity>
         <activity
             android:name="de.hska.shareyourspot.android.activites.Cam"

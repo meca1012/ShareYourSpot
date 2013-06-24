@@ -51,6 +51,9 @@ public class PostList extends Activity {
     public static final String KEY_ARTIST = "artist";
     public static final String KEY_DURATION = "duration";
     public static final String KEY_THUMB_URL = "thumb_url";
+    public String testPicPath = "http://www.hs-karlsruhe.de/fileadmin/_t3templates/images/hska_logo_RGB_small.jpg";
+    public String webSpaceBaseURL  = "http://hskaebusiness.square7.ch/ShareYourSpot/";
+    public String webSpaceEndURL = ".jpg";
     private LazyAdapter adapter;
 	
 	
@@ -93,6 +96,10 @@ public class PostList extends Activity {
 			            // adding each child node to HashMap key =&gt; value
 			            map.put(KEY_ID, post.getPostId().toString());
 			            String posttext = post.getText();
+			            if(posttext == null)
+			            {
+			            	posttext = "";
+			            }
 			            if(posttext.length() > 15)
 			            {
 			            	posttext = posttext.substring(0,15);
@@ -101,8 +108,8 @@ public class PostList extends Activity {
 			            map.put(KEY_TITLE, posttext);
 			            map.put(KEY_ARTIST, post.getCreatedByUser().getName());
 			            map.put(KEY_DURATION, DateObject.toString());
-			            map.put(KEY_THUMB_URL, post.getPostId() + ".jpg");
-			 
+			            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + webSpaceEndURL);
+			            //map.put(KEY_THUMB_URL, this.testPicPath);
 			            // adding HashList to ArrayList
 			            postList.add(map);
 			        }

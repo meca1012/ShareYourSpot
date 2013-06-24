@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ShareYourSpot</string>
+    <string name="app_name">Share     YourSpot</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="username">Username</string>
@@ -23,12 +23,12 @@
     <string name="spots">Spots</string>
     <string name="back">back</string>
     <string name="map">Map</string>
-    <string name="search">search</string>
+    <string name="search">Search</string>
     <string name="post">post</string>
     <string name="name">Name</string>
     <string name="enter_name">Enter Name</string>
-    <string name="new_group">New Group</string>
-    <string name="create">create</string>
+    <string name="new_group">Manage Groups</string>
+    <string name="create">Create</string>
     <string name="add_friends_group">Add Friends to Group</string>
     <string name="title_activity_rest_test">RestTest</string>
     <string name="getButtonText">Get</string>

@@ -24,6 +24,7 @@ import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
+import de.hska.shareyourspot.android.domain.Posts;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.LazyAdapterGroups;
 import de.hska.shareyourspot.android.helper.UserStore;
@@ -68,10 +69,11 @@ public class Groups extends Activity {
 		User user = new User();
 		user.setUserId(u.getUserId());
 		Parties parties = this.restClient.getPartiesByUser(user);
-		this.foundParties = parties.getAllParties();
-		if (parties != null) {
-			
-			for (Party party : parties.getAllParties()) {
+		
+		
+		if (parties != null && !parties.getAllParties().isEmpty()) {
+			this.foundParties = parties.getAllParties();
+			for (Party party : foundParties) {
 	            // creating new HashMap
 	            HashMap<String, String> map = new HashMap<String, String>();
 
@@ -87,9 +89,7 @@ public class Groups extends Activity {
 	        // Getting adapter by passing xml data ArrayList
 	        adapter=new LazyAdapterGroups(this, partyList);
 	        this.listGroups.setAdapter(adapter);
-			}
-
-		this.listGroups.setAdapter(adapter);
+			
 
 		this.listGroups.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -100,9 +100,28 @@ public class Groups extends Activity {
 						.show();
 
 				groupDetail(item);
+				}
+			});
+		}
+		else
+		{
+			
+			this.meineListe = new ArrayList<String>();
+			this.meineListe.add("No Groups...join or create your own group!");
+			ListAdapter listenAdapter = new ArrayAdapter<String>(this,
+					android.R.layout.simple_list_item_1, this.meineListe);
+
+	
+			this.listGroups.setAdapter(listenAdapter);
+			this.listGroups.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+					Intent intent = new Intent(ctx, NewGroup.class);
+					startActivity(intent);
+				}
+			});
 			}
-		});
-	}
+		}
 
 	// public void onClickSearch(View view) {
 	//
