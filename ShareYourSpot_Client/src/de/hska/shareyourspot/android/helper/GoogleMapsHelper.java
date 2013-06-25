@@ -47,8 +47,8 @@ public GoogleMapsHelper(Context context) {
 public Location getKarlsruhe ()
 {
 	Location loc = new Location("Karlsruhe"); 
-	loc.setLatitude(49.01);
-	loc.setLongitude(8.39);
+	loc.setLatitude(49.016103);
+	loc.setLongitude(8.390484);
 	return loc;
 }
 

@@ -18,13 +18,13 @@ import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -44,7 +44,6 @@ import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.domain.Parties;
 import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
-import de.hska.shareyourspot.android.domain.Posts;
 import de.hska.shareyourspot.android.helper.AlertHelper;
 import de.hska.shareyourspot.android.helper.GoogleMapsHelper;
 import de.hska.shareyourspot.android.helper.UserStore;
@@ -57,7 +56,8 @@ public class NewPost extends Activity {
 	private UserStore uStore = new UserStore();
 	private RestClient restClient = new RestClient();
 	private Parties parties = new Parties();
-	private Bitmap picture ;
+	private Bitmap picture;
+	private Bitmap thumbnail;
 	private Context ctx = this;
 	private List<String> groupList;
 	public final String tabIndex = "tabIndex";
@@ -143,7 +143,7 @@ public class NewPost extends Activity {
 	public void startCam(View view) {
 
 		final Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		  intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(getTempFile(this)) ); 
+		  intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(getTempFile(this))); 
 		  startActivityForResult(intent, TAKE_PHOTO_CODE);
 
 	}
@@ -214,33 +214,41 @@ public class NewPost extends Activity {
 		String path = getCacheDir().toString();
 		File outputDir = new File(path);
 		File f = new File(path+File.separator+ newPost.getPostId() +".jpg");
-
-		        if (!outputDir.exists()) {
-		             outputDir.mkdir();
-
-		        }
-		       
+		File th = new File(path+File.separator+ newPost.getPostId() +"_thumbnail.jpg");
+		
+        if (!outputDir.exists()) {
+             outputDir.mkdir();
+        }		
+        
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		ByteArrayOutputStream streamThumbnail = new ByteArrayOutputStream();
 		Bitmap bitmap = this.picture;
-		bitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
+		Bitmap thumbnailBitmap = this.thumbnail;
+		bitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, streamThumbnail);
+		thumbnailBitmap.compress(Bitmap.CompressFormat.JPEG, 100, streamThumbnail);
 		byte[] imageInByte = stream.toByteArray();
+		byte[] thumbnailInByte = streamThumbnail.toByteArray();
 
         //write the bytes in file
         FileOutputStream fos = null;
+        FileOutputStream fosThumbnail = null;
 		try {
 			fos = new FileOutputStream(f);
+			fosThumbnail = new FileOutputStream(th);
 		} catch (FileNotFoundException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
         try {
 			fos.write(imageInByte);
+			fosThumbnail.write(thumbnailInByte);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-        new uploadImageAsyncTask().execute(f);	
+        new uploadImageAsyncTask().execute(f);
+        new uploadImageAsyncTask().execute(th);
 				
 		Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
 		startActivity(intent);
@@ -268,20 +276,35 @@ public class NewPost extends Activity {
 //		}
 //	}
 	
+	public static Bitmap getThumbnail(ContentResolver cr, String path) throws Exception {
+
+	    Cursor ca = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[] { MediaStore.MediaColumns._ID }, MediaStore.MediaColumns.DATA + "=?", new String[] {path}, null);
+	    if (ca != null && ca.moveToFirst()) {
+	        int id = ca.getInt(ca.getColumnIndex(MediaStore.MediaColumns._ID));
+	        ca.close();
+	        return MediaStore.Images.Thumbnails.getThumbnail(cr, id, MediaStore.Images.Thumbnails.MICRO_KIND, null );
+	    }
+	    ca.close();
+	    return null;
+	}
+	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		  if (resultCode == RESULT_OK) {
 		    switch(requestCode){
 		      case TAKE_PHOTO_CODE:
 		        final File file = getTempFile(this);
 		        try {
-		          this.picture = Media.getBitmap(getContentResolver(), Uri.fromFile(file) );
+		          this.thumbnail = getThumbnail(getContentResolver(), file.getPath());
+		          this.picture = Media.getBitmap(getContentResolver(), Uri.fromFile(file));
 		          ImageView pictureButton = (ImageView)findViewById(R.id.newImagePost);
 					pictureButton.setImageBitmap(this.picture);
 		        } catch (FileNotFoundException e) {
 		          e.printStackTrace();
 		        } catch (IOException e) {
 		          e.printStackTrace();
-		        }
+		        } catch (Exception e) {
+					e.printStackTrace();
+				}
 		      break;
 		      
 		      case Activity.RESULT_CANCELED: {

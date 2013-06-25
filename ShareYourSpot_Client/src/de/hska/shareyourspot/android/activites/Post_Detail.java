@@ -164,8 +164,8 @@ public class Post_Detail extends Activity {
 	
 	 
 		public void startMap(View view) {
-			//TODO Karlruhe gegen Postdatenersetzen
-			LatLng test = new LatLng(49.014,  8.4043);
+			//Karlruhe 49.016103,8.390484			
+			LatLng test = new LatLng(49.016103,  8.390484);
 			Intent intent = new Intent(this, GoogleMaps.class);
 			intent.putExtra(this.longitude, test.longitude);
 			intent.putExtra(this.latitude,  test.latitude);
