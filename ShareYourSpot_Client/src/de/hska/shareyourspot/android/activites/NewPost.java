@@ -25,6 +25,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -223,11 +224,12 @@ public class NewPost extends Activity {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		ByteArrayOutputStream streamThumbnail = new ByteArrayOutputStream();
 		Bitmap bitmap = this.picture;
-		Bitmap thumbnailBitmap = this.thumbnail;
-		bitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, streamThumbnail);
+		Bitmap thumbnailBitmap = this.picture;
+		bitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
 		thumbnailBitmap.compress(Bitmap.CompressFormat.JPEG, 100, streamThumbnail);
 		byte[] imageInByte = stream.toByteArray();
-		byte[] thumbnailInByte = streamThumbnail.toByteArray();
+		byte[] thumbnailInByte = getThumbnail(streamThumbnail.toByteArray());
+		
 
         //write the bytes in file
         FileOutputStream fos = null;
@@ -256,36 +258,20 @@ public class NewPost extends Activity {
 
 	}
 
-//	@Override
-//	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-//			if (resultCode == Activity.RESULT_OK) {
-//				Bitmap bmp = (Bitmap) data.getExtras().get("data");
-//				this.picture = (Bitmap) data.getExtras().get("data");
-//				ImageView pictureButton = (ImageView)findViewById(R.id.newImagePost);
-//				pictureButton.setImageBitmap(bmp);
-//				
-//			} else if (resultCode == Activity.RESULT_CANCELED) {
-//				Intent intent = new Intent(this, AndroidTabLayoutActivity.class);
-//				intent.putExtra(tabIndex, 2);
-//				startActivity(intent);
-//			} else {
-//				Intent intent = new Intent(this, NewPost.class);
-//				startActivity(intent);
-//			}
-//		}
-//	}
 	
-	public static Bitmap getThumbnail(ContentResolver cr, String path) throws Exception {
+	public static byte[] getThumbnail(byte[] mImageData) {
+		final int THUMBNAIL_HEIGHT = 48;
+		final int THUMBNAIL_WIDTH = 66;
 
-	    Cursor ca = cr.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, new String[] { MediaStore.MediaColumns._ID }, MediaStore.MediaColumns.DATA + "=?", new String[] {path}, null);
-	    if (ca != null && ca.moveToFirst()) {
-	        int id = ca.getInt(ca.getColumnIndex(MediaStore.MediaColumns._ID));
-	        ca.close();
-	        return MediaStore.Images.Thumbnails.getThumbnail(cr, id, MediaStore.Images.Thumbnails.MICRO_KIND, null );
-	    }
-	    ca.close();
-	    return null;
+		Bitmap imageBitmap = BitmapFactory.decodeByteArray(mImageData, 0, mImageData.length);
+		Float width  = Float.valueOf(imageBitmap.getWidth());
+		Float height = Float.valueOf(imageBitmap.getHeight());
+		Float ratio = width/height;
+		imageBitmap = Bitmap.createScaledBitmap(imageBitmap, (int)(THUMBNAIL_HEIGHT*ratio), THUMBNAIL_HEIGHT, false);
+
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();  
+		imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+		return baos.toByteArray();
 	}
 	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -294,7 +280,6 @@ public class NewPost extends Activity {
 		      case TAKE_PHOTO_CODE:
 		        final File file = getTempFile(this);
 		        try {
-		          this.thumbnail = getThumbnail(getContentResolver(), file.getPath());
 		          this.picture = Media.getBitmap(getContentResolver(), Uri.fromFile(file));
 		          ImageView pictureButton = (ImageView)findViewById(R.id.newImagePost);
 					pictureButton.setImageBitmap(this.picture);

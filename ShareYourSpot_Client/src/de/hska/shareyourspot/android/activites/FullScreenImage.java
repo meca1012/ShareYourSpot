@@ -31,6 +31,7 @@ public class FullScreenImage extends Activity {
 		Intent intent = getIntent();
 		this.postIdent = getIntent().getLongExtra(postId, 0);
 		ImageView imageView = (ImageView) findViewById(R.id.fullimage);
+		String url = imageUrl + this.postIdent + imageEnd;
 		new DownloadImageTask(imageView).execute(imageUrl + this.postIdent + imageEnd);
 	}
 
