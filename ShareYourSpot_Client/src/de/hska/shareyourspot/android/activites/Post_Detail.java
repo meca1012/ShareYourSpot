@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -16,6 +17,8 @@ import de.hska.shareyourspot.android.domain.Party;
 import de.hska.shareyourspot.android.domain.Post;
 import de.hska.shareyourspot.android.domain.User;
 import de.hska.shareyourspot.android.helper.AlertHelper;
+import de.hska.shareyourspot.android.helper.LazyAdapterComments;
+import de.hska.shareyourspot.android.helper.LazyAdapterGroups;
 import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 import android.os.AsyncTask;
@@ -54,8 +57,11 @@ public class Post_Detail extends Activity {
 	private long postIdent;
 	public final String postId = "postId";
 	private ListView listComments;
-	private ArrayList<String> shownComments;
+	//private ArrayList<String> shownComments;
 	private List<Comment>foundComments = new ArrayList<Comment>();
+    public static final String KEY_ID = "id";
+    public static final String KEY_TITLE = "title";
+    private LazyAdapterComments adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +70,8 @@ public class Post_Detail extends Activity {
 		this.postIdent = getIntent().getLongExtra(postId, 0);
 		setContentView(R.layout.activity_post_detail);
 		this.post = this.restClient.getPost(postIdent);
-		
+		 ArrayList<HashMap<String, String>> commentList = new ArrayList<HashMap<String, String>>();
+		 
 		if(this.post != null)
 		{
 			ImageView imageView = (ImageView) findViewById(R.id.imageViewPostDetail);
@@ -82,7 +89,7 @@ public class Post_Detail extends Activity {
 		}
 		
 		this.foundComments = new ArrayList<Comment>();
-		this.shownComments = new ArrayList<String>();
+		//this.shownComments = new ArrayList<String>();
 		this.listComments = (ListView) findViewById(R.id.listView_comments);
 		List<Comment> comments = new ArrayList<Comment>();
 		if(this.post.getComments()!=null){
@@ -94,8 +101,19 @@ public class Post_Detail extends Activity {
 
 			for (Comment comment : this.foundComments) {
 				if (comment.getText() != null) {
+					
 					this.ratingResults += comment.getRating();
-					this.shownComments.add(comment.getCreatedByUsername() + ": " + comment.getText());
+					//this.shownComments.add(comment.getCreatedByUsername() + ": " + comment.getText());
+					
+					 HashMap<String, String> map = new HashMap<String, String>();
+
+			            if(comment.getText() !=  null)
+			            {
+			            map.put(KEY_ID, comment.getCommentId().toString());
+			            map.put(KEY_TITLE,comment.getCreatedByUsername() + ": " + comment.getText());
+			            }
+			            // adding HashList to ArrayList
+			            commentList.add(map);					
 				}
 			}
 			this.ratingResults = this.ratingResults/this.foundComments.size();
@@ -106,24 +124,8 @@ public class Post_Detail extends Activity {
 //		else{
 //		this.meineListe.add("");}
 
-		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, this.shownComments);
-
-		this.listComments.setAdapter(listenAdapter);
-
-		this.listComments.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
-				String item = ((TextView) view).getText().toString();
-
-				Toast.makeText(getBaseContext(), item, Toast.LENGTH_LONG)
-						.show();
-
-				
-			}
-		});
+        adapter=new LazyAdapterComments(this, commentList);
+        this.listComments.setAdapter(adapter);
 		
 	}
 	@Override
