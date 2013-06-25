@@ -55,6 +55,7 @@ public class PostList extends Activity {
     public String testPicPath = "http://www.hs-karlsruhe.de/fileadmin/_t3templates/images/hska_logo_RGB_small.jpg";
     public String webSpaceBaseURL  = "http://hskaebusiness.square7.ch/ShareYourSpot/";
     public String webSpaceEndURL = ".jpg";
+    public String thumbnailWebSpaceEndURL = "_thumbnail.jpg";
     private LazyAdapter adapter;
 	
 	
@@ -109,7 +110,8 @@ public class PostList extends Activity {
 			            map.put(KEY_TITLE, posttext);
 			            map.put(KEY_ARTIST, post.getCreatedByUser().getName());
 			            map.put(KEY_DURATION, DateObject.toString());
-			            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + webSpaceEndURL);
+//			            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + webSpaceEndURL);
+			            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + thumbnailWebSpaceEndURL);
 			            //map.put(KEY_THUMB_URL, this.testPicPath);
 			            // adding HashList to ArrayList
 			            postList.add(map);
