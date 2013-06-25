@@ -9,6 +9,8 @@ import de.hska.shareyourspot.android.imageLoader.ImageLoader;
  
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,10 @@ public class LazyAdapter extends BaseAdapter {
     private ArrayList<HashMap<String, String>> data;
     private static LayoutInflater inflater=null;
     public ImageLoader imageLoader; 
+    public String webSpaceBaseURL  = "http://hskaebusiness.square7.ch/ShareYourSpot/";
+    public String webSpaceEndURL = ".jpg";
+    public Long PostIdent;
+    public Context ctx; 
  
     public LazyAdapter(Activity a, ArrayList<HashMap<String, String>> d) {
         activity = a;
@@ -59,7 +65,30 @@ public class LazyAdapter extends BaseAdapter {
         title.setText(song.get(PostList.KEY_TITLE));
         artist.setText(song.get(PostList.KEY_ARTIST));
         duration.setText(song.get(PostList.KEY_DURATION));
-        imageLoader.DisplayImage(song.get(PostList.KEY_THUMB_URL), thumb_image);
+        new DownloadImageTask(thumb_image).execute(song.get(PostList.KEY_THUMB_URL));
         return vi;
     }
+	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+	    ImageView bmImage;
+
+	    public DownloadImageTask(ImageView bmImage) {
+	        this.bmImage = bmImage;
+	    }
+
+	    protected Bitmap doInBackground(String... urls) {
+	        String urldisplay = urls[0];
+	        Bitmap mIcon11 = null;
+	        try {
+				imageLoader = new ImageLoader(ctx);
+				imageLoader.DisplayImage(urldisplay, bmImage);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return mIcon11;
+	    }
+
+	    protected void onPostExecute(Bitmap result) {
+	        bmImage.setImageBitmap(result);
+	    }
+	}
 }

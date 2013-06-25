@@ -76,9 +76,9 @@ public class Post_Detail extends Activity {
 		if(this.post != null)
 		{
 			ImageView imageView = (ImageView) findViewById(R.id.imageViewPostDetail);
-			imageLoader = new ImageLoader(ctx);
-			imageLoader.DisplayImage(imageUrl + this.post.getPostId() + imageEnd, imageView);
-			//new DownloadImageTask(imageView).execute(imageUrl + this.post.getPostId() + imageEnd);
+			//imageLoader = new ImageLoader(ctx);
+			//imageLoader.DisplayImage(imageUrl + this.post.getPostId() + imageEnd, imageView);
+			new DownloadImageTask(imageView).execute(imageUrl + this.post.getPostId() + imageEnd);
 			TextView spotterName = (TextView) findViewById(R.id.textView_spotter);
 		spotterName.setText(this.post.getCreatedByUser().getName() + " wrote, ");
 		
@@ -188,29 +188,29 @@ public class Post_Detail extends Activity {
 	
 	
 	
-//	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-//	    ImageView bmImage;
-//
-//	    public DownloadImageTask(ImageView bmImage) {
-//	        this.bmImage = bmImage;
-//	    }
-//
-//	    protected Bitmap doInBackground(String... urls) {
-//	        String urldisplay = urls[0];
-//	        Bitmap mIcon11 = null;
-//	        try {
-//	            InputStream in = new java.net.URL(urldisplay).openStream();
-//	            mIcon11 = BitmapFactory.decodeStream(in);
-//	        } catch (Exception e) {
-//	            e.printStackTrace();
-//	        }
-//	        return mIcon11;
-//	    }
-//
-//	    protected void onPostExecute(Bitmap result) {
-//	        bmImage.setImageBitmap(result);
-//	    }
-//	}
+		private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+		    ImageView bmImage;
+
+		    public DownloadImageTask(ImageView bmImage) {
+		        this.bmImage = bmImage;
+		    }
+
+		    protected Bitmap doInBackground(String... urls) {
+		        String urldisplay = urls[0];
+		        Bitmap mIcon11 = null;
+		        try {
+					imageLoader = new ImageLoader(ctx);
+					imageLoader.DisplayImage(imageUrl + postIdent + imageEnd, bmImage);
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		        return mIcon11;
+		    }
+
+		    protected void onPostExecute(Bitmap result) {
+		        bmImage.setImageBitmap(result);
+		    }
+		}
 	
 	public void addComment(View view){
 		
