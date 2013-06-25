@@ -55,6 +55,11 @@ public class FullScreenImage extends Activity {
 			uStore.logout(ctx);
 			finish();
 			break;
+			
+		case android.R.id.home:
+			onBackPressed();
+			finish();
+			break;
 
 		default:
 			break;
