@@ -5,13 +5,16 @@ import java.io.InputStream;
 import de.hska.shareyourspot.android.R;
 import de.hska.shareyourspot.android.R.layout;
 import de.hska.shareyourspot.android.R.menu;
+import de.hska.shareyourspot.android.helper.UserStore;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
 public class FullScreenImage extends Activity {
@@ -20,6 +23,8 @@ public class FullScreenImage extends Activity {
 	public final String postId = "postId";
 	public String imageUrl = "http://hskaebusiness.square7.ch/ShareYourSpot/";
 	public String imageEnd = ".jpg";
+	private UserStore uStore = new UserStore();
+	private Context ctx = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +44,27 @@ public class FullScreenImage extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.full_screen_image, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case R.id.action_logout:
+			uStore.logout(ctx);
+			finish();
+			break;
+			
+		case android.R.id.home:
+			onBackPressed();
+			finish();
+			break;
+
+		default:
+			break;
+		}
+
 		return true;
 	}
 	
