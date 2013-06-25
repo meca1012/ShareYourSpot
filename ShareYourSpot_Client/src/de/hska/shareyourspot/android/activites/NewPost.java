@@ -51,9 +51,9 @@ import de.hska.shareyourspot.android.helper.UserStore;
 import de.hska.shareyourspot.android.restclient.RestClient;
 
 public class NewPost extends Activity {
-	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
+	//private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	private static final int TAKE_PHOTO_CODE = 1;
-	private static final int PICTURE_COMPRESS_RATE = 100;
+	private static final int PICTURE_COMPRESS_RATE = 10;
 	private UserStore uStore = new UserStore();
 	private RestClient restClient = new RestClient();
 	private Parties parties = new Parties();
@@ -224,11 +224,12 @@ public class NewPost extends Activity {
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
 		ByteArrayOutputStream streamThumbnail = new ByteArrayOutputStream();
 		Bitmap bitmap = this.picture;
-		Bitmap thumbnailBitmap = this.picture;
+		Bitmap thumbnailBitmap = bitmap.copy(bitmap.getConfig(),true);
 		bitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, stream);
-		thumbnailBitmap.compress(Bitmap.CompressFormat.JPEG, 100, streamThumbnail);
+		thumbnailBitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, streamThumbnail);
+		
 		byte[] imageInByte = stream.toByteArray();
-		byte[] thumbnailInByte = getThumbnail(streamThumbnail.toByteArray());
+		byte[] thumbnailInByte = streamThumbnail.toByteArray();
 		
 
         //write the bytes in file
