@@ -22,12 +22,12 @@
         android:id="@+id/commentText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="25dp"
         android:ems="10"
         android:gravity="center_vertical|top"
         android:hint="@string/commentHint"
         android:inputType="textMultiLine"
-        android:lines="5" >
+        android:lines="3" >
 
         <requestFocus />
     </EditText>
@@ -43,7 +43,7 @@
         android:id="@+id/commentAddBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/comment_Rating"
+        android:layout_alignRight="@+id/commentText"
         android:layout_below="@+id/comment_Rating"
         android:onClick="addComment"
         android:text="Add" />
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/commentAddBtn"
         android:layout_alignBottom="@+id/commentAddBtn"
-        android:layout_alignRight="@+id/commentText"
+        android:layout_alignLeft="@+id/comment_Rating"
         android:onClick="backToPost"
         android:text="Back" />
 
