@@ -172,18 +172,27 @@ public class NewGroup extends Activity {
 		this.newParty.setName(groupname.getText().toString());
 
 		this.meineListe = new ArrayList<String>();
-
 		Party party = this.restClient.getPartyByName(this.newParty);
+		this.foundParties = new ArrayList<Party>();
+		
 		if (party != null) {
-			this.meineListe.add(party.getName());
-		}
-		// else {
-		// this.meineListe.add("");
-		// }
-		ListAdapter listenAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, meineListe);
+			
+		this.foundParties.add(party);
+		
+		ArrayList<HashMap<String, String>> partyList = new ArrayList<HashMap<String, String>>();
+		
+		HashMap<String, String> map = new HashMap<String, String>();
 
-		this.listGroups.setAdapter(listenAdapter);
+		if (party.getName() != null) {
+			map.put(KEY_ID, party.getPartyId().toString());
+			map.put(KEY_TITLE, party.getName());
+		}
+		
+		partyList.add(map);
+		adapter = new LazyAdapterGroups(this, partyList);
+		this.listGroups.setAdapter(adapter);
+		
+		}
 	}
 
 	public void onClickSearch(View view) {

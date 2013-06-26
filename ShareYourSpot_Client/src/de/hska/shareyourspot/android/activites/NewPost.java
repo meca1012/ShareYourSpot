@@ -229,7 +229,7 @@ public class NewPost extends Activity {
 		thumbnailBitmap.compress(Bitmap.CompressFormat.JPEG, PICTURE_COMPRESS_RATE, streamThumbnail);
 		
 		byte[] imageInByte = stream.toByteArray();
-		byte[] thumbnailInByte = streamThumbnail.toByteArray();
+		byte[] thumbnailInByte = getThumbnail(streamThumbnail.toByteArray());
 		
 
         //write the bytes in file
