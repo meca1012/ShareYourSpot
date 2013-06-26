@@ -120,9 +120,19 @@ public class Post_Detail extends Activity {
 				}
 			}
 			this.ratingResults = this.ratingResults/this.foundComments.size();
-			DecimalFormat df = new DecimalFormat("#0.0");			
+			
 			TextView textView = (TextView) findViewById(R.id.textView_midvalue);
-			textView.setText(df.format(this.ratingResults));
+			if(this.ratingResults != this.ratingResults)
+			{
+				textView.setText("---");		
+
+			}
+			else
+				{
+				DecimalFormat df = new DecimalFormat("#0.0");			
+				textView.setText(df.format(this.ratingResults));
+				}
+
 		}
 //		else{
 //		this.meineListe.add("");}

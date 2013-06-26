@@ -83,7 +83,7 @@
     <string name="leave">Leave</string>
     <string name="groupDetailTitle">Manage Membership</string>
     <string name="result">Result: </string>
-    <string name="mid_value"></string>
+    <string name="mid_value">--</string>
     <string name="rating">Rating:</string>
     <string name="title_activity_add_comment">AddComment</string>
     <string name="title_activity_full_screen_image">FullScreenImage</string>

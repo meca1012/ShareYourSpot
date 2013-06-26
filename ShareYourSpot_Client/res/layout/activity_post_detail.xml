@@ -65,7 +65,7 @@
           android:layout_marginTop="28dp"
           android:clickable="true"
           android:onClick="addComment"
-          android:text="@string/add_comment"
+          android:text="Add Comment"
           android:textAppearance="?android:attr/textAppearanceMedium"
           android:textColor="@android:color/holo_blue_dark"
           android:textSize="13sp" />
