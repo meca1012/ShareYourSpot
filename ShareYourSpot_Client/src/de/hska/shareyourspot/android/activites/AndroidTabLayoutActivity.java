@@ -58,6 +58,7 @@ public class AndroidTabLayoutActivity extends TabActivity{
         tabHost.addTab(newspec); // Adding videos tab
         
         int tabIndexInt = getIntent().getIntExtra(tabIndexString, 0);
+        
         this.tabHost.setCurrentTab(tabIndexInt);
         
     }

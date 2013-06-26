@@ -156,6 +156,58 @@ public class PostList extends Activity {
 			
 	}
 
+	  @Override
+	    protected void onResume() {
+		  
+	        super.onResume();
+	        ArrayList<HashMap<String, String>> postList = new ArrayList<HashMap<String, String>>();
+					
+			try {
+				this.posts = restclient.getPostByUser(uStore.getUser(ctx));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+				
+				if(this.posts != null)
+				{
+					this.postsTitle = new ArrayList<String>();
+					List<Post> postArrayList = this.posts.getAllPosts();
+					Collections.sort(postArrayList);
+					for (Post post : postArrayList) {
+				            // creating new HashMap
+				            HashMap<String, String> map = new HashMap<String, String>();
+
+				            // adding each child node to HashMap key =&gt; value
+				            map.put(KEY_ID, post.getPostId().toString());
+				            String posttext = post.getText();
+				            if(posttext == null)
+				            {
+				            	posttext = "";
+				            }
+				            if(posttext.length() > 15)
+				            {
+				            	posttext = posttext.substring(0,15);
+				            }
+				            Date DateObject = new Date(post.getCreated());
+				            map.put(KEY_TITLE, posttext);
+				            map.put(KEY_ARTIST, post.getCreatedByUser().getName());
+				            map.put(KEY_DURATION, DateObject.toString());
+//				            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + webSpaceEndURL);
+				            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + thumbnailWebSpaceEndURL);
+				            //map.put(KEY_THUMB_URL, this.testPicPath);
+				            // adding HashList to ArrayList
+				            postList.add(map);
+				        }
+				 
+						ListView listUsers = (ListView) findViewById(R.id.list);
+				 
+				        // Getting adapter by passing xml data ArrayList
+				        adapter=new LazyAdapter(this, postList);
+				        listUsers.setAdapter(adapter);
+	        
+	  }
+	  }
+	
 	public void startPostDetail(Long id)
 	{
 		System.out.println(this.posts.toString());
