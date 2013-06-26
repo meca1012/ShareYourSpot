@@ -48,14 +48,4 @@
         android:onClick="addComment"
         android:text="Add" />
 
-    <Button
-        android:id="@+id/commentBackBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/commentAddBtn"
-        android:layout_alignBottom="@+id/commentAddBtn"
-        android:layout_alignLeft="@+id/comment_Rating"
-        android:onClick="backToPost"
-        android:text="Back" />
-
 </RelativeLayout>

@@ -52,6 +52,10 @@ public class AddComment extends Activity {
 			finish();
 			break;
 
+		 case android.R.id.home:
+			  	onBackPressed();
+		        finish();
+		    break;
 
 
 		default:
