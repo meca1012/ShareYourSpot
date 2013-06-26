@@ -56,6 +56,8 @@ public class PostList extends Activity {
     public String webSpaceBaseURL  = "http://hskaebusiness.square7.ch/ShareYourSpot/";
     public String webSpaceEndURL = ".jpg";
     public String thumbnailWebSpaceEndURL = "_thumbnail.jpg";
+    private ListView listUsers;
+    ArrayList<HashMap<String, String>> postList;
     private LazyAdapter adapter;
 	
 	
@@ -69,7 +71,7 @@ public class PostList extends Activity {
 		setContentView(R.layout.activity_post_list);
 		this.posts = new Posts();
 		
-		 ArrayList<HashMap<String, String>> postList = new ArrayList<HashMap<String, String>>();
+		 this.postList = new ArrayList<HashMap<String, String>>();
 		
 		User user = null;
 		try {
@@ -117,7 +119,7 @@ public class PostList extends Activity {
 			            postList.add(map);
 			        }
 			 
-					ListView listUsers = (ListView) findViewById(R.id.list);
+					this.listUsers = (ListView) findViewById(R.id.list);
 			 
 			        // Getting adapter by passing xml data ArrayList
 			        adapter=new LazyAdapter(this, postList);
@@ -158,54 +160,10 @@ public class PostList extends Activity {
 
 	  @Override
 	    protected void onResume() {
-		  
 	        super.onResume();
-	        ArrayList<HashMap<String, String>> postList = new ArrayList<HashMap<String, String>>();
-					
-			try {
-				this.posts = restclient.getPostByUser(uStore.getUser(ctx));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-				
-				if(this.posts != null)
-				{
-					this.postsTitle = new ArrayList<String>();
-					List<Post> postArrayList = this.posts.getAllPosts();
-					Collections.sort(postArrayList);
-					for (Post post : postArrayList) {
-				            // creating new HashMap
-				            HashMap<String, String> map = new HashMap<String, String>();
-
-				            // adding each child node to HashMap key =&gt; value
-				            map.put(KEY_ID, post.getPostId().toString());
-				            String posttext = post.getText();
-				            if(posttext == null)
-				            {
-				            	posttext = "";
-				            }
-				            if(posttext.length() > 15)
-				            {
-				            	posttext = posttext.substring(0,15);
-				            }
-				            Date DateObject = new Date(post.getCreated());
-				            map.put(KEY_TITLE, posttext);
-				            map.put(KEY_ARTIST, post.getCreatedByUser().getName());
-				            map.put(KEY_DURATION, DateObject.toString());
-//				            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + webSpaceEndURL);
-				            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + thumbnailWebSpaceEndURL);
-				            //map.put(KEY_THUMB_URL, this.testPicPath);
-				            // adding HashList to ArrayList
-				            postList.add(map);
-				        }
-				 
-						ListView listUsers = (ListView) findViewById(R.id.list);
-				 
-				        // Getting adapter by passing xml data ArrayList
-				        adapter=new LazyAdapter(this, postList);
-				        listUsers.setAdapter(adapter);
-	        
-	  }
+//	        this.updatePostList();
+//	        Bundle tempBundle = new Bundle();
+//	        onCreate(tempBundle);
 	  }
 	
 	public void startPostDetail(Long id)
@@ -214,6 +172,54 @@ public class PostList extends Activity {
 		Intent intent = new Intent(this, Post_Detail.class);
 		intent.putExtra(postId, id);
 		startActivity(intent);
+	}
+	
+	public void updatePostList(View view) {
+	 this.postList = new ArrayList<HashMap<String, String>>();
+		 
+		try {
+			this.posts = restclient.getPostByUser(uStore.getUser(ctx));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+			if(this.posts != null)
+			{
+				this.postsTitle = new ArrayList<String>();
+				List<Post> postArrayList = this.posts.getAllPosts();
+				Collections.sort(postArrayList);
+				for (Post post : postArrayList) {
+			            // creating new HashMap
+			            HashMap<String, String> map = new HashMap<String, String>();
+
+			            // adding each child node to HashMap key =&gt; value
+			            map.put(KEY_ID, post.getPostId().toString());
+			            String posttext = post.getText();
+			            if(posttext == null)
+			            {
+			            	posttext = "";
+			            }
+			            if(posttext.length() > 15)
+			            {
+			            	posttext = posttext.substring(0,15);
+			            }
+			            Date DateObject = new Date(post.getCreated());
+			            map.put(KEY_TITLE, posttext);
+			            map.put(KEY_ARTIST, post.getCreatedByUser().getName());
+			            map.put(KEY_DURATION, DateObject.toString());
+//			            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + webSpaceEndURL);
+			            map.put(KEY_THUMB_URL, webSpaceBaseURL + post.getPostId().toString() + thumbnailWebSpaceEndURL);
+			            //map.put(KEY_THUMB_URL, this.testPicPath);
+			            // adding HashList to ArrayList
+			            postList.add(map);
+			        }
+				this.listUsers = (ListView) findViewById(R.id.list);
+				 
+		        // Getting adapter by passing xml data ArrayList
+		        adapter=new LazyAdapter(this, postList);
+		        listUsers.setAdapter(adapter);
+			}
 	}
 	
 	@Override
