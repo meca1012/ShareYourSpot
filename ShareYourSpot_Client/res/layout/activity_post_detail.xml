@@ -56,28 +56,6 @@
         android:text="@string/rating"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/textView_midvalue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageViewPostDetail"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@+id/textView_result"
-        android:text="@string/mid_value" />
-
-      <TextView
-          android:id="@+id/btn_geo"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignLeft="@+id/textView_result"
-          android:layout_below="@+id/textView_result"
-          android:clickable="true"
-          android:onClick="startMap"
-          android:text="@string/showMap"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:textColor="@android:color/holo_blue_dark"
-          android:textSize="13sp" />
-
       <TextView
           android:id="@+id/btn_comment"
           android:layout_width="wrap_content"
@@ -91,5 +69,27 @@
           android:textAppearance="?android:attr/textAppearanceMedium"
           android:textColor="@android:color/holo_blue_dark"
           android:textSize="13sp" />
+
+      <TextView
+          android:id="@+id/btn_geo"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/textView_result"
+          android:layout_below="@+id/textView_result"
+          android:layout_marginTop="62dp"
+          android:clickable="true"
+          android:onClick="startMap"
+          android:text="@string/showMap"
+          android:textAppearance="?android:attr/textAppearanceMedium"
+          android:textColor="@android:color/holo_blue_dark"
+          android:textSize="13sp" />
+
+      <TextView
+          android:id="@+id/textView_midvalue"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/textView_result"
+          android:layout_below="@+id/textView_result"
+          android:text="@string/mid_value" />
     
 </RelativeLayout>
