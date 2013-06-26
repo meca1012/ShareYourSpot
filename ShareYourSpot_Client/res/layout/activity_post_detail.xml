@@ -71,25 +71,24 @@
           android:textSize="13sp" />
 
       <TextView
-          android:id="@+id/btn_geo"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_alignLeft="@+id/textView_result"
-          android:layout_below="@+id/textView_result"
-          android:layout_marginTop="62dp"
-          android:clickable="true"
-          android:onClick="startMap"
-          android:text="@string/showMap"
-          android:textAppearance="?android:attr/textAppearanceMedium"
-          android:textColor="@android:color/holo_blue_dark"
-          android:textSize="13sp" />
-
-      <TextView
           android:id="@+id/textView_midvalue"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_alignLeft="@+id/textView_result"
           android:layout_below="@+id/textView_result"
           android:text="@string/mid_value" />
+
+      <TextView
+          android:id="@+id/btn_geo"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignLeft="@+id/textView_midvalue"
+          android:layout_below="@+id/textView_midvalue"
+          android:clickable="true"
+          android:onClick="startMap"
+          android:text="@string/showMap"
+          android:textAppearance="?android:attr/textAppearanceMedium"
+          android:textColor="@android:color/holo_blue_dark"
+          android:textSize="13sp" />
     
 </RelativeLayout>
